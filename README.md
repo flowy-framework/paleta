@@ -19,16 +19,3 @@
     <img src="https://img.shields.io/github/last-commit/flowy-framework/paleta.svg"/>
   </a>
 </p>
-
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `paleta` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:paleta, "~> 0.1.0"}
-  ]
-end
-```
