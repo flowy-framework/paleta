@@ -1,0 +1,10 @@
+{
+  "name": "paleta",
+  "version": "1.0.0",
+  "description": "Paleta assets",
+  "main": "priv/static/paleta.js",
+  "style": "priv/static/paleta.css",
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.9"
+  }
+}
