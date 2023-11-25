@@ -1,14 +1,14 @@
 import "./custom.js";
-import ApexChartHook from "./hooks/apex_chart_hook";
-import Editor from "./hooks/editor";
-import GoogleMaps from "./hooks/google_maps";
-import Pickr from "./hooks/pickr"
-import Drag from "./hooks/drag_hook"
+import ApexChartHook from "./hooks/apex_chart_hook.js";
+import Editor from "./hooks/editor.js";
+import GoogleMaps from "./hooks/google_maps.js";
+import Pickr from "./hooks/pickr.js"
+import Drag from "./hooks/drag_hook.js"
 
 import "phoenix_html";
 import { Socket } from "phoenix";
 import { LiveSocket } from "phoenix_live_view";
-import topbar from "../vendor/topbar";
+import topbar from "../vendor/topbar.js";
 
 let Hooks = {
   ApexChartHook,
