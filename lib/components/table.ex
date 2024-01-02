@@ -8,6 +8,7 @@ defmodule Paleta.Components.Table do
   attr(:row_id, :any, default: nil, doc: "the function for generating the row id")
   attr(:search, :boolean, doc: "Show or hide search bar", default: false)
   attr(:pagination, :map, doc: "Show or hide pagination", default: nil)
+  attr(:row_click, :any, default: nil, doc: "the function for handling phx-click on each row")
 
   slot :col, doc: "Describe one of your table columns" do
     attr(:label, :string, doc: "Column label", required: true)
@@ -150,7 +151,11 @@ defmodule Paleta.Components.Table do
                 <tr
                   :for={row <- @rows}
                   id={@row_id && @row_id.(row)}
-                  class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500"
+                  phx-click={@row_click && @row_click.(row)}
+                  class={[
+                    "border-y border-transparent border-b-slate-200 dark:border-b-navy-500",
+                    @row_click && "hover:cursor-pointer"
+                  ]}
                 >
                   <td class="whitespace-nowrap px-4 py-3 sm:px-5">
                     <%= render_slot(@first_column, row) %>

@@ -131,12 +131,7 @@ defmodule Paleta.Components.Card do
 
   defp _card_formatted_field(assigns) do
     ~H"""
-    <div class="flex justify-between">
-      <p class="font-medium text-slate-700 dark:text-navy-100">
-        <%= @label %>
-      </p>
-      <p class="text-right"><%= @value %></p>
-    </div>
+    <.card_field value={@value} label={@label} />
     """
   end
 

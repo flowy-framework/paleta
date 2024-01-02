@@ -3,7 +3,7 @@ defmodule Paleta.MixProject do
 
   @repo_url "https://github.com/flowy-framework/paleta"
   @name "Paleta"
-  @version "0.1.0"
+  @version "0.1.1"
 
   def project do
     [

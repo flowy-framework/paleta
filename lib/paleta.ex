@@ -25,6 +25,7 @@ defmodule Paleta do
         Editor,
         ErrorPage,
         Field,
+        Flash,
         Form,
         FromNow,
         Head,

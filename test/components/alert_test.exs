@@ -14,7 +14,7 @@ defmodule Paleta.Components.AlertTest do
       assert rendered_to_string(h) =~ ~s(>Testing<)
     end
 
-    test "alert will be rendered properly with custom color and class", %{assigns: assigns} do
+    test "alert will be rendered properly with custom color and class" do
       assigns = %{description: "Testing", color: :info, class: "custom-class"}
 
       h = ~H(<.alert description={@description} color={@color} class={@class} />)

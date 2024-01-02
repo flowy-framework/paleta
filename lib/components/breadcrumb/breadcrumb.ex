@@ -1,11 +1,17 @@
 defmodule Paleta.Components.Breadcrumb do
   use Phoenix.Component
 
-  attr(:title, :string, required: true)
-  attr(:steps, :list, required: true)
+  attr(:title, :string, default: nil)
+  attr(:steps, :list, default: nil)
   attr(:border, :boolean, default: false)
 
   slot(:actions, doc: "Add action")
+
+  def breadcrumb(%{steps: nil} = assigns) do
+    assigns
+    |> assign(:border_class, border(assigns.border))
+    |> render()
+  end
 
   def breadcrumb(assigns) do
     {last, steps} =
@@ -23,13 +29,13 @@ defmodule Paleta.Components.Breadcrumb do
     ~H"""
     <div class="flex items-center justify-between py-5 lg:py-6">
       <div class="flex flex-col justify-center items-start space-y-1">
-        <h1 class="text-xl font-semibold text-gray-900 dark:text-navy-50 sm:text-2xl">
+        <h1 :if={@title} class="text-xl font-semibold text-gray-900 dark:text-navy-50 sm:text-2xl">
           <%= @title %>
         </h1>
-        <div class="hidden h-full py-1 sm:flex">
+        <div :if={@steps} class="hidden h-full py-1 sm:flex">
           <div class="h-full w-px bg-slate-300 dark:bg-navy-600"></div>
         </div>
-        <ul class="hidden flex-wrap items-center space-x-2 sm:flex">
+        <ul :if={@steps} class="hidden flex-wrap items-center space-x-2 sm:flex">
           <li :for={step <- @steps} class="flex items-center space-x-2">
             <.link
               :if={step.path}

@@ -3,6 +3,7 @@ defmodule Paleta.Components.Alert do
 
   attr(:description, :string, required: true)
   attr(:class, :string, default: "")
+  attr(:icon, :string, default: nil)
 
   attr(:color, :atom,
     default: :default,
@@ -16,9 +17,24 @@ defmodule Paleta.Components.Alert do
       assigns
       |> assign(:class, full_class)
 
+    _alert(assigns)
+  end
+
+  defp _alert(%{icon: nil} = assigns) do
     ~H"""
     <div class={@class}>
       <p><%= @description %></p>
+    </div>
+    """
+  end
+
+  defp _alert(assigns) do
+    ~H"""
+    <div class={@class}>
+      <div class="flex flex-1 items-center space-x-3">
+        <i class={@icon}></i>
+        <p><%= @description %></p>
+      </div>
     </div>
     """
   end
