@@ -5,13 +5,14 @@ defmodule Paleta.Components.SignIn do
   attr(:error, :string, default: nil)
   attr(:oauth_path, :string, required: true)
   attr(:footer, :boolean, default: true)
+  attr(:logo, :string, default: "/images/logo-300.png")
 
   def sign_in(assigns) do
     ~H"""
     <main class="grid w-full grow grid-cols-1 place-items-center">
       <div class="w-full max-w-[26rem] p-4 sm:px-5">
         <div class="text-center">
-          <img class="mx-auto h-16 w-24" src="/images/logo-300.png" alt="logo" />
+          <img class="mx-auto h-16 w-24" src={@logo} alt="logo" />
           <div class="mt-4">
             <h2 class="text-2xl font-semibold text-slate-600 dark:text-navy-100">
               <%= @title %>
