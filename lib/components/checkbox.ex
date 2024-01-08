@@ -1,6 +1,7 @@
 defmodule Paleta.Components.Checkbox do
   use Phoenix.Component
   import Paleta.Components.FieldHelper
+  import Paleta.Components.Error
 
   attr(:name, :string, default: "")
   attr(:value, :string, default: nil)
@@ -35,9 +36,9 @@ defmodule Paleta.Components.Checkbox do
     <label class="inline-flex items-center space-x-2">
       <input type="checkbox" value="true" name={@name} class={@class} checked={@checked} {@rest} />
       <p><%= @label %></p>
-      <Paleta.Components.Input.error :for={msg <- @errors}>
+      <.error :for={msg <- @errors}>
         <%= msg %>
-      </Paleta.Components.Input.error>
+      </.error>
     </label>
     """
   end

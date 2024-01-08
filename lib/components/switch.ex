@@ -1,6 +1,7 @@
 defmodule Paleta.Components.Switch do
   use Phoenix.Component
   import Paleta.Components.FieldHelper
+  import Paleta.Components.Error
 
   attr(:label, :string, required: true)
   attr(:name, :string, default: nil)
@@ -37,9 +38,9 @@ defmodule Paleta.Components.Switch do
         {@rest}
       />
       <span><%= @label %></span>
-      <Paleta.Components.Input.error :for={msg <- @errors}>
+      <.error :for={msg <- @errors}>
         <%= msg %>
-      </Paleta.Components.Input.error>
+      </.error>
     </label>
     """
   end

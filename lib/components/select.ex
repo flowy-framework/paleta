@@ -2,6 +2,7 @@ defmodule Paleta.Components.Select do
   use Phoenix.Component
   use Phoenix.HTML
   import Paleta.Components.FieldHelper
+  import Paleta.Components.Error
 
   @doc """
   Renders a list of select input options with the given one selected.
@@ -55,9 +56,9 @@ defmodule Paleta.Components.Select do
         <option :if={@prompt} value=""><%= @prompt %></option>
         <%= Phoenix.HTML.Form.options_for_select(@options, @value) %>
       </select>
-      <Paleta.Components.Label.error :for={{msg, _ops} <- @errors}>
+      <.error :for={{msg, _ops} <- @errors}>
         <%= msg %>
-      </Paleta.Components.Label.error>
+      </.error>
     </div>
     """
   end
