@@ -10,13 +10,20 @@ defmodule Paleta.Components.Span do
   def span(assigns) do
     assigns =
       assigns
-      |> assign(
-        :value,
-        Paleta.Utils.StringHelper.truncate(assigns.value, max_length: assigns.max_length)
-      )
+      |> truncate()
 
     ~H"""
     <span><%= @value %></span>
     """
+  end
+
+  defp truncate(%{value: nil} = assigns), do: assigns
+
+  defp truncate(%{value: value, max_length: max_length} = assigns) do
+    assigns
+    |> assign(
+      :value,
+      Paleta.Utils.StringHelper.truncate(value, max_length: max_length)
+    )
   end
 end
