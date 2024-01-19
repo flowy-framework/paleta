@@ -4,6 +4,7 @@ defmodule Paleta.Components.Badges.Badge do
   attr(:description, :string, default: nil)
   attr(:class, :string, default: "")
   slot(:inner_block, required: false)
+  attr(:tooltip, :string, default: nil)
 
   attr(:color, :atom,
     default: :default,
@@ -13,12 +14,20 @@ defmodule Paleta.Components.Badges.Badge do
   def badge(%{color: color, class: custom_class} = assigns) do
     full_class = "#{custom_class} #{class(color)}"
 
-    assigns =
-      assigns
-      |> assign(:class, full_class)
+    assigns
+    |> assign(:class, full_class)
+    |> do_render()
+  end
 
+  defp do_render(%{tooltip: nil} = assigns) do
     ~H"""
     <span class={@class}><%= @description || render_slot(@inner_block) %></span>
+    """
+  end
+
+  defp do_render(assigns) do
+    ~H"""
+    <span x-tooltip.light={"'#{@tooltip}'"} class={@class}><%= @description || render_slot(@inner_block) %></span>
     """
   end
 
