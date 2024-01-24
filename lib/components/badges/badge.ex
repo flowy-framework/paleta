@@ -27,7 +27,9 @@ defmodule Paleta.Components.Badges.Badge do
 
   defp do_render(assigns) do
     ~H"""
-    <span x-tooltip.light={"'#{@tooltip}'"} class={@class}><%= @description || render_slot(@inner_block) %></span>
+    <span x-tooltip.light={"'#{@tooltip}'"} class={@class}>
+      <%= @description || render_slot(@inner_block) %>
+    </span>
     """
   end
 

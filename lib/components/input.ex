@@ -3,7 +3,7 @@ defmodule Paleta.Components.Input do
   import Paleta.Components.FieldHelper
   import Paleta.Components.Error
 
-  attr(:label, :string, required: true)
+  attr(:label, :string, default: nil)
   attr(:name, :string, default: nil)
   attr(:value, :string, default: nil)
   attr(:field, Phoenix.HTML.FormField, default: nil)
@@ -24,7 +24,7 @@ defmodule Paleta.Components.Input do
 
     ~H"""
     <label for={@name} class="block">
-      <span><%= @label %><span :if={@required} class="ml-1">*</span></span>
+      <span :if={@label}><%= @label %><span :if={@required} class="ml-1">*</span></span>
       <input
         required={@required}
         type="text"
@@ -40,6 +40,10 @@ defmodule Paleta.Components.Input do
       </.error>
     </label>
     """
+  end
+
+  def input(assigns) do
+    text(assigns)
   end
 
   attr(:label, :string, required: true)
