@@ -9,7 +9,21 @@ defmodule Paleta.Components.Checkbox do
   attr(:class, :string, default: "")
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:label, :string, required: true)
-  attr(:checked, :boolean, default: false)
+  attr(:errors, :list, default: [])
+
+  attr(:color, :atom,
+    default: :default,
+    values: [:default, :primary, :secondary, :info, :success, :warning, :error, :dark, :light]
+  )
+
+  def checkbox(assigns), do: outline_circle_checkbox(assigns)
+
+  attr(:name, :string, default: "")
+  attr(:value, :string, default: nil)
+  attr(:rest, :global)
+  attr(:class, :string, default: "")
+  attr(:field, Phoenix.HTML.FormField, default: nil)
+  attr(:label, :string, required: true)
   attr(:errors, :list, default: [])
 
   attr(:color, :atom,

@@ -131,7 +131,7 @@ defmodule Paleta.Components.Input do
   end
 
   attr(:name, :string, default: nil)
-  attr(:value, :string, default: nil)
+  attr(:value, :string)
   attr(:rest, :global)
   attr(:field, Phoenix.HTML.FormField, default: nil)
 
