@@ -5,6 +5,7 @@ defmodule Paleta.Components.Input do
 
   attr(:label, :string, default: nil)
   attr(:name, :string, default: nil)
+  attr(:type, :string, default: "text")
   attr(:value, :string, default: nil)
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:required, :boolean, default: false)
@@ -27,7 +28,7 @@ defmodule Paleta.Components.Input do
       <span :if={@label}><%= @label %><span :if={@required} class="ml-1">*</span></span>
       <input
         required={@required}
-        type="text"
+        type={@type}
         value={@value}
         name={@name}
         id={@name}
@@ -48,6 +49,7 @@ defmodule Paleta.Components.Input do
 
   attr(:label, :string, required: true)
   attr(:name, :string, required: true)
+  attr(:type, :string, default: "text")
   attr(:value, :string, default: nil)
   attr(:required, :boolean, default: false)
   attr(:field, Phoenix.HTML.FormField, default: nil)
@@ -72,7 +74,7 @@ defmodule Paleta.Components.Input do
       <label for={@name} class="mt-1.5 flex -space-x-px">
         <input
           required={@required}
-          type="text"
+          type={@type}
           value={@value}
           name={@name}
           id={@name}
