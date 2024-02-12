@@ -1,6 +1,6 @@
 defmodule Paleta.Components.PageHeader do
   use Phoenix.Component
-  use Phoenix.HTML
+  import Phoenix.HTML
   alias Paleta.Components.Breadcrumb
 
   attr(:breadcrumb, :list, required: true)

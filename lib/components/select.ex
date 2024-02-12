@@ -1,6 +1,6 @@
 defmodule Paleta.Components.Select do
   use Phoenix.Component
-  use Phoenix.HTML
+  import Phoenix.HTML
   import Paleta.Components.FieldHelper
   import Paleta.Components.Error
 
