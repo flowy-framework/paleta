@@ -135,13 +135,14 @@ defmodule Paleta.Components.Input do
   attr(:name, :string, default: nil)
   attr(:value, :string)
   attr(:rest, :global)
+  attr(:required, :boolean, default: false)
   attr(:field, Phoenix.HTML.FormField, default: nil)
 
   def hidden_input(assigns) do
     assigns = assigns |> assign_basic_attrs()
 
     ~H"""
-    <input type="hidden" value={@value} name={@name} id={@name} {@rest} />
+    <input type="hidden" value={@value} name={@name} id={@name} required={@required} {@rest} />
     """
   end
 

@@ -5,6 +5,7 @@ defmodule Paleta.Components.AppHeader do
   attr(:search_module, :any, default: nil)
   attr(:results_title, :string, default: "Users")
   attr(:results, :list, default: [])
+  attr(:left_side, :boolean, default: true)
 
   @spec app_header(map) :: Phoenix.LiveView.Rendered.t()
   def app_header(assigns) do
@@ -14,11 +15,11 @@ defmodule Paleta.Components.AppHeader do
       |> assign_new(:right_side, fn -> nil end)
 
     ~H"""
-    <div class="header-container relative flex w-full bg-white dark:bg-navy-750 print:hidden">
+    <div class="relative flex w-full bg-white header-container dark:bg-navy-750 print:hidden">
       <!-- Header Items -->
-      <div class="flex w-full items-center justify-between">
+      <div class="flex items-center justify-between w-full">
         <!-- Left: Sidebar Toggle Button -->
-        <div class="h-7 w-7">
+        <div :if={@left_side} class="h-7 w-7">
           <button
             class="menu-toggle ml-0.5 flex h-7 w-7 flex-col justify-center space-y-1.5 text-primary outline-none focus:outline-none dark:text-accent-light/80"
             x-bind:class="$store.global.isSidebarExpanded && 'active'"
@@ -34,7 +35,7 @@ defmodule Paleta.Components.AppHeader do
           <!-- Mobile Search Toggle -->
           <button
             @click="$store.global.isSearchbarActive = !$store.global.isSearchbarActive"
-            class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25 sm:hidden"
+            class="w-8 h-8 p-0 rounded-full btn hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25 sm:hidden"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -61,14 +62,14 @@ defmodule Paleta.Components.AppHeader do
           <!-- Dark Mode Toggle -->
           <button
             @click="$store.global.isDarkModeEnabled = !$store.global.isDarkModeEnabled"
-            class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+            class="w-8 h-8 p-0 rounded-full btn hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
           >
             <svg
               x-show="$store.global.isDarkModeEnabled"
               x-transition:enter="transition-transform duration-200 ease-out absolute origin-top"
               x-transition:enter-start="scale-75"
               x-transition:enter-end="scale-100 static"
-              class="h-6 w-6 text-amber-400"
+              class="w-6 h-6 text-amber-400"
               fill="currentColor"
               viewBox="0 0 24 24"
             >
@@ -80,7 +81,7 @@ defmodule Paleta.Components.AppHeader do
               x-transition:enter="transition-transform duration-200 ease-out absolute origin-top"
               x-transition:enter-start="scale-75"
               x-transition:enter-end="scale-100 static"
-              class="h-6 w-6 text-amber-400"
+              class="w-6 h-6 text-amber-400"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
@@ -94,9 +95,9 @@ defmodule Paleta.Components.AppHeader do
           <!-- Monochrome Mode Toggle -->
           <button
             @click="$store.global.isMonochromeModeEnabled = !$store.global.isMonochromeModeEnabled"
-            class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+            class="w-8 h-8 p-0 rounded-full btn hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
           >
-            <i class="fa-solid fa-paleta bg-gradient-to-r from-sky-400 to-blue-600 bg-clip-text text-lg font-semibold text-transparent">
+            <i class="text-lg font-semibold text-transparent fa-solid fa-paleta bg-gradient-to-r from-sky-400 to-blue-600 bg-clip-text">
             </i>
           </button>
           <!-- Notification-->
@@ -110,11 +111,11 @@ defmodule Paleta.Components.AppHeader do
             <button
               @click="isShowPopper = !isShowPopper"
               x-ref="popperRef"
-              class="btn relative h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+              class="relative w-8 h-8 p-0 rounded-full btn hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5 text-slate-500 dark:text-navy-100"
+                class="w-5 h-5 text-slate-500 dark:text-navy-100"
                 stroke="currentColor"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -127,10 +128,10 @@ defmodule Paleta.Components.AppHeader do
                 />
               </svg>
 
-              <span class="absolute -top-px -right-px flex h-3 w-3 items-center justify-center">
-                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-secondary opacity-80">
+              <span class="absolute flex items-center justify-center w-3 h-3 -top-px -right-px">
+                <span class="absolute inline-flex w-full h-full rounded-full animate-ping bg-secondary opacity-80">
                 </span>
-                <span class="inline-flex h-2 w-2 rounded-full bg-secondary"></span>
+                <span class="inline-flex w-2 h-2 rounded-full bg-secondary"></span>
               </span>
             </button>
             <div x-bind:class="isShowPopper && 'show'" class="popper-root" x-ref="popperRoot">
@@ -172,7 +173,7 @@ defmodule Paleta.Components.AppHeader do
                     </button>
                   </div>
 
-                  <div class="is-scrollbar-hidden flex shrink-0 overflow-x-auto px-3">
+                  <div class="flex px-3 overflow-x-auto is-scrollbar-hidden shrink-0">
                     <button
                       @click="activeTab = 'tabAll'"
                       x-bind:class="activeTab === 'tabAll' ? 'border-primary dark:border-accent text-primary dark:text-accent-light' : 'border-transparent hover:text-slate-800 focus:text-slate-800 dark:hover:text-navy-100 dark:focus:text-navy-100'"
@@ -204,16 +205,16 @@ defmodule Paleta.Components.AppHeader do
                   </div>
                 </div>
 
-                <div class="tab-content flex flex-col overflow-hidden">
+                <div class="flex flex-col overflow-hidden tab-content">
                   <div
                     x-show="activeTab === 'tabAll'"
                     x-transition:enter="transition-all duration-300 easy-in-out"
                     x-transition:enter-start="opacity-0 [transform:translate3d(1rem,0,0)]"
                     x-transition:enter-end="opacity-100 [transform:translate3d(0,0,0)]"
-                    class="is-scrollbar-hidden space-y-4 overflow-y-auto px-4 py-4"
+                    class="px-4 py-4 space-y-4 overflow-y-auto is-scrollbar-hidden"
                   >
                     <div class="flex items-center space-x-3">
-                      <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary/10 dark:bg-secondary-light/15">
+                      <div class="flex items-center justify-center w-10 h-10 rounded-lg shrink-0 bg-secondary/10 dark:bg-secondary-light/15">
                         <i class="fa fa-user-edit text-secondary dark:text-secondary-light"></i>
                       </div>
                       <div>
@@ -226,10 +227,10 @@ defmodule Paleta.Components.AppHeader do
                       </div>
                     </div>
                     <div class="flex items-center space-x-3">
-                      <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
+                      <div class="flex items-center justify-center w-10 h-10 rounded-lg shrink-0 bg-info/10 dark:bg-info/15">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5 text-info"
+                          class="w-5 h-5 text-info"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -246,16 +247,16 @@ defmodule Paleta.Components.AppHeader do
                         <p class="font-medium text-slate-600 dark:text-navy-100">
                           Mon, June 14, 2021
                         </p>
-                        <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
+                        <div class="flex mt-1 text-xs text-slate-400 dark:text-navy-300">
                           <span class="shrink-0">08:00 - 09:00</span>
-                          <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                          <div class="w-px mx-2 my-1 bg-slate-200 dark:bg-navy-500"></div>
 
                           <span class="line-clamp-1">Frontend Conf</span>
                         </div>
                       </div>
                     </div>
                     <div class="flex items-center space-x-3">
-                      <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 dark:bg-accent-light/15">
+                      <div class="flex items-center justify-center w-10 h-10 rounded-lg shrink-0 bg-primary/10 dark:bg-accent-light/15">
                         <i class="fa-solid fa-image text-primary dark:text-accent-light"></i>
                       </div>
                       <div>
@@ -268,7 +269,7 @@ defmodule Paleta.Components.AppHeader do
                       </div>
                     </div>
                     <div class="flex items-center space-x-3">
-                      <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-success/10 dark:bg-success/15">
+                      <div class="flex items-center justify-center w-10 h-10 rounded-lg shrink-0 bg-success/10 dark:bg-success/15">
                         <i class="fa fa-leaf text-success"></i>
                       </div>
                       <div>
@@ -282,10 +283,10 @@ defmodule Paleta.Components.AppHeader do
                       </div>
                     </div>
                     <div class="flex items-center space-x-3">
-                      <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
+                      <div class="flex items-center justify-center w-10 h-10 rounded-lg shrink-0 bg-info/10 dark:bg-info/15">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5 text-info"
+                          class="w-5 h-5 text-info"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -302,16 +303,16 @@ defmodule Paleta.Components.AppHeader do
                         <p class="font-medium text-slate-600 dark:text-navy-100">
                           Wed, June 21, 2021
                         </p>
-                        <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
+                        <div class="flex mt-1 text-xs text-slate-400 dark:text-navy-300">
                           <span class="shrink-0">16:00 - 20:00</span>
-                          <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                          <div class="w-px mx-2 my-1 bg-slate-200 dark:bg-navy-500"></div>
 
                           <span class="line-clamp-1">UI/UX Conf</span>
                         </div>
                       </div>
                     </div>
                     <div class="flex items-center space-x-3">
-                      <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
+                      <div class="flex items-center justify-center w-10 h-10 rounded-lg shrink-0 bg-warning/10 dark:bg-warning/15">
                         <i class="fa fa-project-diagram text-warning"></i>
                       </div>
                       <div>
@@ -324,10 +325,10 @@ defmodule Paleta.Components.AppHeader do
                       </div>
                     </div>
                     <div class="flex items-center space-x-3">
-                      <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
+                      <div class="flex items-center justify-center w-10 h-10 rounded-lg shrink-0 bg-warning/10 dark:bg-warning/15">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5 text-warning"
+                          class="w-5 h-5 text-warning"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -344,15 +345,15 @@ defmodule Paleta.Components.AppHeader do
                         <p class="font-medium text-slate-600 dark:text-navy-100">
                           THU, May 11, 2021
                         </p>
-                        <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
+                        <div class="flex mt-1 text-xs text-slate-400 dark:text-navy-300">
                           <span class="shrink-0">10:00 - 11:30</span>
-                          <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                          <div class="w-px mx-2 my-1 bg-slate-200 dark:bg-navy-500"></div>
                           <span class="line-clamp-1">Interview, Konnor Guzman </span>
                         </div>
                       </div>
                     </div>
                     <div class="flex items-center space-x-3">
-                      <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-error/10 dark:bg-error/15">
+                      <div class="flex items-center justify-center w-10 h-10 rounded-lg shrink-0 bg-error/10 dark:bg-error/15">
                         <i class="fa fa-history text-error"></i>
                       </div>
                       <div>
@@ -370,10 +371,10 @@ defmodule Paleta.Components.AppHeader do
                     x-transition:enter="transition-all duration-300 easy-in-out"
                     x-transition:enter-start="opacity-0 [transform:translate3d(1rem,0,0)]"
                     x-transition:enter-end="opacity-100 [transform:translate3d(0,0,0)]"
-                    class="is-scrollbar-hidden space-y-4 overflow-y-auto px-4 py-4"
+                    class="px-4 py-4 space-y-4 overflow-y-auto is-scrollbar-hidden"
                   >
                     <div class="flex items-center space-x-3">
-                      <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary/10 dark:bg-secondary-light/15">
+                      <div class="flex items-center justify-center w-10 h-10 rounded-lg shrink-0 bg-secondary/10 dark:bg-secondary-light/15">
                         <i class="fa fa-user-edit text-secondary dark:text-secondary-light"></i>
                       </div>
                       <div>
@@ -386,7 +387,7 @@ defmodule Paleta.Components.AppHeader do
                       </div>
                     </div>
                     <div class="flex items-center space-x-3">
-                      <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 dark:bg-accent-light/15">
+                      <div class="flex items-center justify-center w-10 h-10 rounded-lg shrink-0 bg-primary/10 dark:bg-accent-light/15">
                         <i class="fa-solid fa-image text-primary dark:text-accent-light"></i>
                       </div>
                       <div>
@@ -399,7 +400,7 @@ defmodule Paleta.Components.AppHeader do
                       </div>
                     </div>
                     <div class="flex items-center space-x-3">
-                      <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-success/10 dark:bg-success/15">
+                      <div class="flex items-center justify-center w-10 h-10 rounded-lg shrink-0 bg-success/10 dark:bg-success/15">
                         <i class="fa fa-leaf text-success"></i>
                       </div>
                       <div>
@@ -413,7 +414,7 @@ defmodule Paleta.Components.AppHeader do
                       </div>
                     </div>
                     <div class="flex items-center space-x-3">
-                      <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
+                      <div class="flex items-center justify-center w-10 h-10 rounded-lg shrink-0 bg-warning/10 dark:bg-warning/15">
                         <i class="fa fa-project-diagram text-warning"></i>
                       </div>
                       <div>
@@ -426,7 +427,7 @@ defmodule Paleta.Components.AppHeader do
                       </div>
                     </div>
                     <div class="flex items-center space-x-3">
-                      <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-error/10 dark:bg-error/15">
+                      <div class="flex items-center justify-center w-10 h-10 rounded-lg shrink-0 bg-error/10 dark:bg-error/15">
                         <i class="fa fa-history text-error"></i>
                       </div>
                       <div>
@@ -444,13 +445,13 @@ defmodule Paleta.Components.AppHeader do
                     x-transition:enter="transition-all duration-300 easy-in-out"
                     x-transition:enter-start="opacity-0 [transform:translate3d(1rem,0,0)]"
                     x-transition:enter-end="opacity-100 [transform:translate3d(0,0,0)]"
-                    class="is-scrollbar-hidden space-y-4 overflow-y-auto px-4 py-4"
+                    class="px-4 py-4 space-y-4 overflow-y-auto is-scrollbar-hidden"
                   >
                     <div class="flex items-center space-x-3">
-                      <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
+                      <div class="flex items-center justify-center w-10 h-10 rounded-lg shrink-0 bg-info/10 dark:bg-info/15">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5 text-info"
+                          class="w-5 h-5 text-info"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -467,19 +468,19 @@ defmodule Paleta.Components.AppHeader do
                         <p class="font-medium text-slate-600 dark:text-navy-100">
                           Mon, June 14, 2021
                         </p>
-                        <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
+                        <div class="flex mt-1 text-xs text-slate-400 dark:text-navy-300">
                           <span class="shrink-0">08:00 - 09:00</span>
-                          <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                          <div class="w-px mx-2 my-1 bg-slate-200 dark:bg-navy-500"></div>
 
                           <span class="line-clamp-1">Frontend Conf</span>
                         </div>
                       </div>
                     </div>
                     <div class="flex items-center space-x-3">
-                      <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
+                      <div class="flex items-center justify-center w-10 h-10 rounded-lg shrink-0 bg-info/10 dark:bg-info/15">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5 text-info"
+                          class="w-5 h-5 text-info"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -496,19 +497,19 @@ defmodule Paleta.Components.AppHeader do
                         <p class="font-medium text-slate-600 dark:text-navy-100">
                           Wed, June 21, 2021
                         </p>
-                        <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
+                        <div class="flex mt-1 text-xs text-slate-400 dark:text-navy-300">
                           <span class="shrink-0">16:00 - 20:00</span>
-                          <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                          <div class="w-px mx-2 my-1 bg-slate-200 dark:bg-navy-500"></div>
 
                           <span class="line-clamp-1">UI/UX Conf</span>
                         </div>
                       </div>
                     </div>
                     <div class="flex items-center space-x-3">
-                      <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
+                      <div class="flex items-center justify-center w-10 h-10 rounded-lg shrink-0 bg-warning/10 dark:bg-warning/15">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5 text-warning"
+                          class="w-5 h-5 text-warning"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -525,18 +526,18 @@ defmodule Paleta.Components.AppHeader do
                         <p class="font-medium text-slate-600 dark:text-navy-100">
                           THU, May 11, 2021
                         </p>
-                        <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
+                        <div class="flex mt-1 text-xs text-slate-400 dark:text-navy-300">
                           <span class="shrink-0">10:00 - 11:30</span>
-                          <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                          <div class="w-px mx-2 my-1 bg-slate-200 dark:bg-navy-500"></div>
                           <span class="line-clamp-1">Interview, Konnor Guzman </span>
                         </div>
                       </div>
                     </div>
                     <div class="flex items-center space-x-3">
-                      <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-info/10 dark:bg-info/15">
+                      <div class="flex items-center justify-center w-10 h-10 rounded-lg shrink-0 bg-info/10 dark:bg-info/15">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5 text-info"
+                          class="w-5 h-5 text-info"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -553,19 +554,19 @@ defmodule Paleta.Components.AppHeader do
                         <p class="font-medium text-slate-600 dark:text-navy-100">
                           Mon, Jul 16, 2021
                         </p>
-                        <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
+                        <div class="flex mt-1 text-xs text-slate-400 dark:text-navy-300">
                           <span class="shrink-0">06:00 - 16:00</span>
-                          <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                          <div class="w-px mx-2 my-1 bg-slate-200 dark:bg-navy-500"></div>
 
                           <span class="line-clamp-1">Laravel Conf</span>
                         </div>
                       </div>
                     </div>
                     <div class="flex items-center space-x-3">
-                      <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-warning/10 dark:bg-warning/15">
+                      <div class="flex items-center justify-center w-10 h-10 rounded-lg shrink-0 bg-warning/10 dark:bg-warning/15">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          class="h-5 w-5 text-warning"
+                          class="w-5 h-5 text-warning"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
@@ -582,9 +583,9 @@ defmodule Paleta.Components.AppHeader do
                         <p class="font-medium text-slate-600 dark:text-navy-100">
                           Wed, Jun 16, 2021
                         </p>
-                        <div class="mt-1 flex text-xs text-slate-400 dark:text-navy-300">
+                        <div class="flex mt-1 text-xs text-slate-400 dark:text-navy-300">
                           <span class="shrink-0">15:30 - 11:30</span>
-                          <div class="mx-2 my-1 w-px bg-slate-200 dark:bg-navy-500"></div>
+                          <div class="w-px mx-2 my-1 bg-slate-200 dark:bg-navy-500"></div>
                           <span class="line-clamp-1">Interview, Jonh Doe </span>
                         </div>
                       </div>
@@ -595,9 +596,9 @@ defmodule Paleta.Components.AppHeader do
                     x-transition:enter="transition-all duration-300 easy-in-out"
                     x-transition:enter-start="opacity-0 [transform:translate3d(1rem,0,0)]"
                     x-transition:enter-end="opacity-100 [transform:translate3d(0,0,0)]"
-                    class="is-scrollbar-hidden overflow-y-auto px-4"
+                    class="px-4 overflow-y-auto is-scrollbar-hidden"
                   >
-                    <div class="mt-8 pb-8 text-center">
+                    <div class="pb-8 mt-8 text-center">
                       <img class="mx-auto w-36" src="/images/empty-girl-box.svg" alt="image" />
                       <div class="mt-5">
                         <p class="text-base font-semibold text-slate-700 dark:text-navy-100">
@@ -617,7 +618,7 @@ defmodule Paleta.Components.AppHeader do
           <button
             :if={@right_side}
             @click="$store.global.isRightSidebarExpanded = true"
-            class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+            class="w-8 h-8 p-0 rounded-full btn hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

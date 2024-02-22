@@ -22,7 +22,7 @@ defmodule Paleta.Components.Card do
 
     ~H"""
     <div class={@class} id={@id}>
-      <div :if={@title} class="my-3 flex h-8 items-center justify-between">
+      <div :if={@title} class="flex items-center justify-between h-8 my-3">
         <h2 class={@title_class}>
           <%= @title %>
         </h2>
@@ -37,6 +37,23 @@ defmodule Paleta.Components.Card do
     """
   end
 
+  attr(:color, :atom, default: :default, values: [:default, :success, :warning, :error])
+  attr(:class, :string, default: "")
+  attr(:id, :string, default: nil)
+  slot(:inner_block, required: false)
+
+  def simple_card(%{color: color, class: class} = assigns) do
+    assigns =
+      assigns
+      |> assign(:class, "#{class(color)} #{class}")
+
+    ~H"""
+    <div class={@class} id={@id}>
+      <%= render_slot(@inner_block) %>
+    </div>
+    """
+  end
+
   defp title_class(:default), do: "text-slate-700 dark:text-navy-100"
   defp title_class(_), do: "text-white"
 
@@ -46,8 +63,8 @@ defmodule Paleta.Components.Card do
 
   def card_fields_group(assigns) do
     ~H"""
-    <div class="rounded-lg bg-info/10 px-4 pb-5 dark:bg-navy-800 sm:px-5">
-      <div class="space-y-4 py-3">
+    <div class="px-4 pb-5 rounded-lg bg-info/10 dark:bg-navy-800 sm:px-5">
+      <div class="py-3 space-y-4">
         <div>
           <h3 class="text-lg font-medium text-slate-700 dark:text-navy-100">
             <%= @title %>
@@ -109,7 +126,7 @@ defmodule Paleta.Components.Card do
 
   def card_line(assigns) do
     ~H"""
-    <div class="my-3 h-px bg-slate-200 dark:bg-navy-500"></div>
+    <div class="h-px my-3 bg-slate-200 dark:bg-navy-500"></div>
     """
   end
 
