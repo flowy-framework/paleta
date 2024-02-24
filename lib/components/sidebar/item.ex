@@ -16,7 +16,6 @@ defmodule Paleta.Components.Sidebar.Item do
       <.link
         navigate={@path}
         class="flex py-2 text-xs+ tracking-wide outline-none transition-colors duration-300 ease-in-out"
-        x-data="navLink"
       >
         <%= @label %>
       </.link>
