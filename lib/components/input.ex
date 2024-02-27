@@ -48,7 +48,7 @@ defmodule Paleta.Components.Input do
   end
 
   attr(:label, :string, required: true)
-  attr(:name, :string, required: true)
+  attr(:name, :string, default: nil)
   attr(:type, :string, default: "text")
   attr(:value, :string, default: nil)
   attr(:required, :boolean, default: false)
