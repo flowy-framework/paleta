@@ -15865,6 +15865,12 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
   overflow-x: hidden;
 }
 
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .whitespace-nowrap {
   white-space: nowrap;
 }
@@ -16199,10 +16205,6 @@ table.is-zebra > tbody > tr:nth-child(even) > td {
 
 .fill-cyan-900 {
   fill: #164e63;
-}
-
-.fill-rose-500 {
-  fill: #f43f5e;
 }
 
 .fill-rose-900 {
