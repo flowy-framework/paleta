@@ -23,7 +23,7 @@ defmodule Paleta.Components.Head do
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
       />
 
-      <link rel="icon" type="image/png" href="/images/favicon.png" />
+      <link rel="icon" type="image/ico" href="/favicon.ico" />
 
       <meta name="csrf-token" content={get_csrf_token()} />
       <.live_title suffix={" · #{@title_suffix}"}>
