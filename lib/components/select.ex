@@ -19,6 +19,7 @@ defmodule Paleta.Components.Select do
   attr(:label, :string, default: nil)
   attr(:required, :boolean, default: false)
   attr(:prompt, :string, default: nil, doc: "the prompt for select inputs")
+  attr(:entity_label, :atom, default: :name, doc: "entity label")
   attr(:entities, :list, default: nil, doc: "a list of structs to convert to options")
   attr(:options, :list, doc: "the options to pass to Phoenix.HTML.Form.options_for_select/2")
   attr(:multiple, :boolean, default: false, doc: "the multiple flag for select inputs")
@@ -31,8 +32,9 @@ defmodule Paleta.Components.Select do
     |> _do_select()
   end
 
-  def select(%{entities: entities} = assigns) do
-    options = Enum.map(entities, fn entity -> [key: entity.name, value: entity.id] end)
+  def select(%{entities: entities, entity_label: entity_label} = assigns) do
+    options =
+      Enum.map(entities, fn entity -> [key: Map.get(entity, entity_label), value: entity.id] end)
 
     assigns
     |> assign(:options, options)

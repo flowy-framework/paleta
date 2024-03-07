@@ -54,7 +54,12 @@ defmodule Paleta.Components.AppHeader do
           </button>
           <!-- Main Searchbar -->
           <%= if @search do %>
-            <.live_component module={Paleta.Components.Live.GlobalSearch} id="global-search" search_module: @search_module />
+            <.live_component
+              module={Paleta.Components.Live.GlobalSearch}
+              id="global-search"
+              search_module:
+              @search_module
+            />
           <% end %>
           <!-- Dark Mode Toggle -->
           <button
