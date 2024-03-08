@@ -4,6 +4,7 @@ import Editor from "./hooks/editor.js";
 import GoogleMaps from "./hooks/google_maps.js";
 import Pickr from "./hooks/pickr.js"
 import Drag from "./hooks/drag_hook.js"
+import TomSelect from "./hooks/tom_select.js"
 
 import "phoenix_html";
 import { Socket } from "phoenix";
@@ -15,7 +16,8 @@ let Hooks = {
   Editor,
   GoogleMaps,
   Pickr,
-  Drag
+  Drag,
+  TomSelect
 };
 
 // Show progress bar on live navigation and form submits
