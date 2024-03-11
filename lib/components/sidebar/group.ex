@@ -1,6 +1,4 @@
 defmodule Paleta.Components.Sidebar.Group do
-==> heroicons
-Compiling 3 files (.ex)
   use Phoenix.Component, global_prefixes: ~w(x-)
 
   attr(:label, :string, required: true)
