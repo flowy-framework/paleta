@@ -7,6 +7,7 @@ defmodule Paleta do
     quote do
       import Paleta.Components.{
         ActionLink,
+        AdvanceSelect,
         Alert,
         AppHeader,
         AppHeaderWrapper,
