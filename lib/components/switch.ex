@@ -8,6 +8,7 @@ defmodule Paleta.Components.Switch do
   attr(:value, :string, default: nil)
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:required, :boolean, default: false)
+  attr(:checked, :boolean, default: false)
   attr(:class, :string, default: "")
   attr(:rest, :global)
   attr(:errors, :list, default: [])
@@ -34,6 +35,7 @@ defmodule Paleta.Components.Switch do
         value={@value}
         name={@name}
         id={@name}
+        checked={@checked}
         class={@class}
         {@rest}
       />
