@@ -1,5 +1,5 @@
 defmodule Paleta.Components.ActionLink do
-  use Phoenix.Component
+  use Phoenix.Component, global_prefixes: ~w(x-)
 
   attr(:path, :string, required: true)
   attr(:type, :atom, default: :patch, values: [:navigate, :patch])

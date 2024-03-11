@@ -1,5 +1,39 @@
 defmodule Paleta.Components.Sidebar.MainItem do
-  use Phoenix.Component
+==> timex
+Compiling 62 files (.ex)
+Compiling lib/l10n/gettext.ex (it's taking more than 10s)
+==> castore
+Compiling 1 file (.ex)
+Generated castore app
+==> tailwind
+Compiling 3 files (.ex)
+Generated tailwind app
+==> esbuild
+Compiling 4 files (.ex)
+Generated esbuild app
+==> earmark
+Compiling 3 files (.erl)
+Compiling 61 files (.ex)
+Generated earmark app
+==> websock
+Compiling 1 file (.ex)
+Generated websock app
+==> websock_adapter
+Compiling 4 files (.ex)
+Generated websock_adapter app
+==> phoenix
+Compiling 71 files (.ex)
+Generated phoenix app
+==> phoenix_live_reload
+Compiling 4 files (.ex)
+Generated phoenix_live_reload app
+==> phoenix_live_view
+Compiling 39 files (.ex)
+Generated phoenix_live_view app
+==> heroicons
+Compiling 3 files (.ex)
+Generated heroicons app
+  use Phoenix.Component, global_prefixes: ~w(x-)
 
   attr(:label, :string, required: true)
   attr(:path, :string, required: true)
