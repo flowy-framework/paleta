@@ -7,6 +7,7 @@ defmodule Paleta.Components.AdvanceSelect do
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:options, :list, required: true)
   attr(:required, :boolean, default: false)
+  attr(:label, :string)
   attr(:rest, :global)
   attr(:errors, :list, default: [])
 
@@ -19,7 +20,7 @@ defmodule Paleta.Components.AdvanceSelect do
 
     ~H"""
     <label for={@name} class="block" id={"#{@name}-label"} phx-update="ignore">
-      <span>Available Metros</span>
+      <span><%= @label %></span>
       <input
         id={@name}
         required={@required}

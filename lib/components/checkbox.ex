@@ -5,7 +5,7 @@ defmodule Paleta.Components.Checkbox do
 
   attr(:name, :string, default: "")
   attr(:value, :string, default: nil)
-  attr(:rest, :global)
+  attr(:rest, :global, include: ~w(checked))
   attr(:class, :string, default: "")
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:label, :string, required: true)
@@ -20,7 +20,7 @@ defmodule Paleta.Components.Checkbox do
 
   attr(:name, :string, default: "")
   attr(:value, :string, default: nil)
-  attr(:rest, :global)
+  attr(:rest, :global, include: ~w(checked))
   attr(:class, :string, default: "")
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:label, :string, required: true)

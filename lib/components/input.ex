@@ -11,7 +11,7 @@ defmodule Paleta.Components.Input do
   attr(:required, :boolean, default: false)
   attr(:placeholder, :string, default: "")
   attr(:class, :string, default: "")
-  attr(:rest, :global)
+  attr(:rest, :global, include: ~w(disabled readonly))
   attr(:errors, :list, default: [])
 
   def text(%{class: class} = assigns) do
@@ -153,7 +153,7 @@ defmodule Paleta.Components.Input do
   attr(:placeholder, :string, default: "")
   attr(:rows, :integer, default: 4)
   attr(:required, :boolean, default: false)
-  attr(:rest, :global)
+  attr(:rest, :global, include: ~w(required disabled))
   attr(:errors, :list, default: [])
 
   def textarea(assigns) do
