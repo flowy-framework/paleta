@@ -3,10 +3,9 @@ import TomSelect from "tom-select/dist/js/tom-select.complete.min.js";
 
 export default {
     mounted() {
-        const { options, items } = this.el.dataset;
-        console.log(items.split(","));
+        const { options, items, max_items } = this.el.dataset;
         const spec = {
-            "maxItems": null,
+            "maxItems": max_items,
             "valueField": "id",
             "labelField": "name",
             "searchField": "name",

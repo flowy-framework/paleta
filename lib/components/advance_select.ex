@@ -6,6 +6,7 @@ defmodule Paleta.Components.AdvanceSelect do
 
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:options, :list, required: true)
+  attr(:max_items, :integer, default: nil)
   attr(:required, :boolean, default: false)
   attr(:label, :string)
   attr(:rest, :global)
@@ -27,6 +28,7 @@ defmodule Paleta.Components.AdvanceSelect do
         value={@value}
         data-items={@items}
         data-options={@options}
+        data-max_items={@max_items}
         phx-hook="TomSelect"
         name={@name}
         class="select"
@@ -41,6 +43,14 @@ defmodule Paleta.Components.AdvanceSelect do
 
   defp encode_options(%{options: options} = assigns) do
     assign(assigns, :options, Jason.encode!(options))
+  end
+
+  defp encode_items(%{value: ""} = assigns) do
+    assign(assigns, :items, "")
+  end
+
+  defp encode_items(%{value: value} = assigns) when is_binary(value) do
+    assign(assigns, :items, value)
   end
 
   defp encode_items(%{value: value} = assigns) do

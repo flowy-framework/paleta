@@ -1,4 +1,27 @@
 defmodule Paleta.Components.Table.Pagination do
+  defstruct [:current_page, :pages, :per_page, :total, :zero_based]
+
+  def build(%{
+        current_page: current_page,
+        total_pages: total_pages,
+        page_size: page_size,
+        total_count: total_count
+      }) do
+    %__MODULE__{
+      current_page: current_page,
+      pages: total_pages,
+      per_page: page_size,
+      total: total_count,
+      zero_based: false
+    }
+  end
+
+  def build(attrs) do
+    struct(__MODULE__, attrs)
+  end
+
+  # Adding support for Flop pagination
+
   def pagination(%{current_page: current_page, pages: pages} = params) do
     zero_based = Map.get(params, :zero_based, true)
     start_index = if zero_based, do: 0, else: 1

@@ -48,7 +48,7 @@ defmodule Paleta.Components.Table do
                   phx-debounce="500"
                   x-effect="isInputActive === true && $nextTick(() => { $el.focus()});"
                   x-bind:class="isInputActive ? 'w-32 lg:w-48' : 'w-0'"
-                  class="form-input bg-transparent px-1 text-right transition-all duration-100 placeholder:text-slate-500 dark:placeholder:text-navy-200"
+                  class="px-1 text-right transition-all duration-100 bg-transparent form-input placeholder:text-slate-500 dark:placeholder:text-navy-200"
                   placeholder="Search here..."
                   type="text"
                 />
@@ -56,7 +56,7 @@ defmodule Paleta.Components.Table do
               <!-- TODO: We need to see if we can use phoenix JS here -->
               <button
                 @click="isInputActive = !isInputActive"
-                class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+                class="w-8 h-8 p-0 rounded-full btn hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +77,7 @@ defmodule Paleta.Components.Table do
             <button
               :if={@adv_search}
               phx-click={JS.toggle(to: "#adv-search", in: "fade-in-scale", out: "fade-out-scale")}
-              class="btn h-8 w-8 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+              class="w-8 h-8 p-0 rounded-full btn hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -109,14 +109,14 @@ defmodule Paleta.Components.Table do
                     phx-click={
                       JS.toggle(to: "#adv-search", in: "fade-in-scale", out: "fade-out-scale")
                     }
-                    class="btn font-medium text-slate-700 hover:bg-slate-300/20 active:bg-slate-300/25 dark:text-navy-100 dark:hover:bg-navy-300/20 dark:active:bg-navy-300/25"
+                    class="font-medium btn text-slate-700 hover:bg-slate-300/20 active:bg-slate-300/25 dark:text-navy-100 dark:hover:bg-navy-300/20 dark:active:bg-navy-300/25"
                   >
                     Cancel
                   </button>
 
                   <button
                     @click="isFilterExpanded = ! isFilterExpanded"
-                    class="btn bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
+                    class="font-medium text-white btn bg-primary hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
                   >
                     Apply
                   </button>
@@ -125,23 +125,23 @@ defmodule Paleta.Components.Table do
             </.form>
           </Card.card>
         </div>
-        <div class="card mt-3">
-          <div class="is-scrollbar-hidden min-w-full overflow-x-auto">
-            <table class="is-hoverable w-full text-left">
+        <div class="mt-3 card">
+          <div class="min-w-full overflow-x-auto is-scrollbar-hidden">
+            <table class="w-full text-left is-hoverable">
               <thead>
-                <tr class="border-y border-transparent border-b-slate-200 dark:border-b-navy-500">
-                  <th class="whitespace-nowrap px-3 py-3 font-semibold uppercase text-slate-800 dark:text-navy-100 lg:px-5">
+                <tr class="border-transparent border-y border-b-slate-200 dark:border-b-navy-500">
+                  <th class="px-3 py-3 font-semibold uppercase whitespace-nowrap text-slate-800 dark:text-navy-100 lg:px-5">
                     <%= @first_column.label %>
                   </th>
                   <th
                     :for={col <- @col}
-                    class="whitespace-nowrap px-3 py-3 font-semibold uppercase text-slate-800 dark:text-navy-100 lg:px-5"
+                    class="px-3 py-3 font-semibold uppercase whitespace-nowrap text-slate-800 dark:text-navy-100 lg:px-5"
                   >
                     <%= col.label %>
                   </th>
                   <th
                     :if={@show_actions}
-                    class="whitespace-nowrap px-3 py-3 font-semibold uppercase text-slate-800 dark:text-navy-100 lg:px-5"
+                    class="px-3 py-3 font-semibold uppercase whitespace-nowrap text-slate-800 dark:text-navy-100 lg:px-5"
                   >
                     Actions
                   </th>
@@ -157,14 +157,14 @@ defmodule Paleta.Components.Table do
                     @row_click && "hover:cursor-pointer"
                   ]}
                 >
-                  <td class="whitespace-nowrap px-4 py-3 sm:px-5">
+                  <td class="px-4 py-3 whitespace-nowrap sm:px-5">
                     <%= render_slot(@first_column, row) %>
                   </td>
-                  <td :for={col <- @col} class="whitespace-nowrap px-4 py-3 sm:px-5">
+                  <td :for={col <- @col} class="px-4 py-3 whitespace-nowrap sm:px-5">
                     <%= render_slot(col, row) %>
                   </td>
 
-                  <td :if={@actions} class="whitespace-nowrap px-4 py-3 sm:px-5">
+                  <td :if={@actions} class="px-4 py-3 whitespace-nowrap sm:px-5">
                     <div class="inline-flex">
                       <%= render_slot(@actions, row) %>
                     </div>
@@ -176,14 +176,14 @@ defmodule Paleta.Components.Table do
 
           <div
             :if={@pagination}
-            class="flex flex-col justify-between space-y-4 px-4 py-4 sm:flex-row sm:items-center sm:space-y-0 sm:px-5"
+            class="flex flex-col justify-between px-4 py-4 space-y-4 sm:flex-row sm:items-center sm:space-y-0 sm:px-5"
           >
             <div class="flex items-center space-x-2 text-xs+">
               <span>Show</span>
               <label class="block">
                 <select
                   disabled
-                  class="form-select rounded-full border border-slate-300 bg-white px-2 py-1 pr-6 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent"
+                  class="px-2 py-1 pr-6 bg-white border rounded-full form-select border-slate-300 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:bg-navy-700 dark:hover:border-navy-400 dark:focus:border-accent"
                 >
                   <option>10</option>
                   <option selected>20</option>
@@ -200,11 +200,11 @@ defmodule Paleta.Components.Table do
                   phx-value-page={prev_page(@pagination)}
                   href="#"
                   disabled={disable_prev_page(@pagination)}
-                  class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:text-navy-200 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+                  class="flex items-center justify-center w-8 h-8 transition-colors rounded-lg text-slate-500 hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:text-navy-200 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-4 w-4"
+                    class="w-4 h-4"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -225,11 +225,11 @@ defmodule Paleta.Components.Table do
                   phx-click="paginate"
                   phx-value-page={next_page(@pagination)}
                   disabled={disable_next_page(@pagination)}
-                  class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:text-navy-200 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+                  class="flex items-center justify-center w-8 h-8 transition-colors rounded-lg text-slate-500 hover:bg-slate-300 focus:bg-slate-300 active:bg-slate-300/80 dark:text-navy-200 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    class="h-4 w-4"
+                    class="w-4 h-4"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -246,10 +246,7 @@ defmodule Paleta.Components.Table do
             </ol>
 
             <div class="text-xs+">
-              <%= @pagination.current_page * @pagination.per_page + 1 %> - <%= current_page(
-                @pagination.current_page
-              ) *
-                @pagination.per_page %> of <%= @pagination.total %> entries
+              <%= entries_from(@pagination) %> - <%= entries_to(@pagination) %> of <%= @pagination.total %> entries
             </div>
           </div>
         </div>
@@ -277,7 +274,35 @@ defmodule Paleta.Components.Table do
   defp prev_page(%{current_page: current_page}) when current_page > 0,
     do: current_page - 1
 
-  defp current_page(page), do: page + 1
+  defp entries_from(%{zero_based: false, current_page: 1}), do: 1
+  defp entries_from(%{zero_based: true, current_page: 0}), do: 1
+
+  defp entries_from(%{zero_based: true, current_page: current_page, per_page: per_page}) do
+    current_page * per_page + 1
+  end
+
+  defp entries_from(%{zero_based: false, current_page: current_page, per_page: per_page}) do
+    (current_page - 1) * per_page + 1
+  end
+
+  defp entries_to(%{zero_based: true, current_page: current_page, per_page: per_page}) do
+    (current_page + 1) * per_page
+  end
+
+  defp entries_to(%{
+         zero_based: false,
+         current_page: current_page,
+         per_page: per_page,
+         total: total
+       }) do
+    calculated_total = current_page * per_page
+
+    if total < calculated_total do
+      total
+    else
+      calculated_total
+    end
+  end
 
   defp build_pages(nil), do: nil
 
