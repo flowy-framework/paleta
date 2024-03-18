@@ -15,6 +15,7 @@ defmodule Paleta.Components.Form do
   attr(:as, :atom, default: :form)
   attr(:event, :string, default: "save")
   attr(:target, :map, default: nil)
+  attr(:container_class, :string, default: "px-4 py-4 sm:px-5")
 
   attr(:rest, :global,
     include: ~w(autocomplete name rel action enctype method novalidate target),
@@ -42,7 +43,7 @@ defmodule Paleta.Components.Form do
 
   defp do_simple_form(assigns) do
     ~H"""
-    <div class="px-4 py-4 sm:px-5">
+    <div class={@container_class}>
       <.form
         :let={f}
         for={@for}
@@ -100,7 +101,7 @@ defmodule Paleta.Components.Form do
     <button id="save-button" type="submit" phx-disable-with="" class={@class}>
       <svg
         role="status"
-        class="while-submitting inline mr-3 w-4 h-4 text-white animate-spin"
+        class="inline w-4 h-4 mr-3 text-white while-submitting animate-spin"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -133,7 +134,7 @@ defmodule Paleta.Components.Form do
     >
       <svg
         role="status"
-        class="while-submitting inline mr-3 w-4 h-4 text-white animate-spin"
+        class="inline w-4 h-4 mr-3 text-white while-submitting animate-spin"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
