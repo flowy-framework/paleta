@@ -61,7 +61,7 @@ defmodule Paleta.MixProject do
       {:phoenix_live_view, "~> 0.20"},
       # {:phoenix_live_view,
       #  github: "phoenixframework/phoenix_live_view", branch: "main", override: true},
-      {:jason, "~> 1.0"},
+      {:jason, "~> 1.4"},
       {:timex, ">= 0.0.0"},
       {:excoveralls, "~> 0.15", only: :test},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
@@ -69,6 +69,7 @@ defmodule Paleta.MixProject do
       {:mix_audit, "~> 2.0", only: [:dev, :test], runtime: false},
       {:heroicons, "~> 0.5.0"},
       {:earmark, "~> 1.4"},
+      {:exmoji, "~> 0.3.0"},
       {:makeup, "~> 1.1"},
       {:makeup_elixir, "~> 0.16"},
 

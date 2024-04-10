@@ -43,13 +43,7 @@ defmodule Paleta.Utils.StringHelper do
     for {key, val} <- map, into: %{}, do: {Inflex.camelize(key, :lower), val}
   end
 
-  def markdown_to_html(nil), do: ""
-
-  def markdown_to_html(text) do
-    {:ok, html_content, []} = Earmark.as_html(text, compact_output: true)
-
-    html_content
-  end
+  def markdown_to_html(content), do: Paleta.Utils.MarkdownHelper.markdown_to_html(content)
 
   defp convert_to_string(value) when is_binary(value), do: value
   defp convert_to_string(value) when is_atom(value), do: Atom.to_string(value)
