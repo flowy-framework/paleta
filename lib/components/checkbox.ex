@@ -19,7 +19,7 @@ defmodule Paleta.Components.Checkbox do
   def checkbox(assigns), do: outline_circle_checkbox(assigns)
 
   attr(:name, :string, default: "")
-  attr(:value, :string, default: "true")
+  attr(:value, :string, default: nil)
   attr(:rest, :global, include: ~w(checked))
   attr(:class, :string, default: "")
   attr(:field, Phoenix.HTML.FormField, default: nil)
@@ -50,7 +50,7 @@ defmodule Paleta.Components.Checkbox do
     <label class="inline-flex items-center space-x-2">
       <input type="checkbox" value={@value} name={@name} class={@class} checked={@checked} {@rest} />
       <p><%= @label %></p>
-      <.error :for={msg <- @errors}>
+      <.error :for={{msg, _ops} <- @errors}>
         <%= msg %>
       </.error>
     </label>
