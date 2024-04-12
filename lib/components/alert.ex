@@ -1,9 +1,10 @@
 defmodule Paleta.Components.Alert do
   use Phoenix.Component
 
-  attr(:description, :string, required: true)
+  attr(:description, :string, default: nil)
   attr(:class, :string, default: "")
   attr(:icon, :string, default: nil)
+  slot(:inner_block, required: false)
 
   attr(:color, :atom,
     default: :default,
@@ -23,7 +24,7 @@ defmodule Paleta.Components.Alert do
   defp _alert(%{icon: nil} = assigns) do
     ~H"""
     <div class={@class}>
-      <p><%= @description %></p>
+      <p><%= @description || render_slot(@inner_block) %></p>
     </div>
     """
   end
@@ -31,9 +32,9 @@ defmodule Paleta.Components.Alert do
   defp _alert(assigns) do
     ~H"""
     <div class={@class}>
-      <div class="flex flex-1 items-center space-x-3">
+      <div class="flex items-center flex-1 space-x-3">
         <i class={@icon}></i>
-        <p><%= @description %></p>
+        <p><%= @description || render_slot(@inner_block) %></p>
       </div>
     </div>
     """

@@ -13,6 +13,7 @@ defmodule Paleta.Components.Card do
   attr(:title_class, :string, default: "text-lg font-medium tracking-wide line-clamp-1")
 
   slot(:inner_block, required: false)
+  slot(:title_actions, required: false)
 
   def card(%{color: color, class: class, title_class: title_class} = assigns) do
     assigns =
@@ -26,6 +27,9 @@ defmodule Paleta.Components.Card do
         <h2 class={@title_class}>
           <%= @title %>
         </h2>
+        <div class="inline-flex" :if={@title_actions}>
+          <%= render_slot(@title_actions) %>
+        </div>
       </div>
       <div class="pt-2">
         <p :if={@description}>

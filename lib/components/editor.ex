@@ -9,6 +9,7 @@ defmodule Paleta.Components.Editor do
   attr(:mode, :atom, default: :html, values: [:html, :yaml, :json])
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:errors, :list, default: [])
+  attr(:rest, :global)
 
   @spec editor(map) :: Phoenix.LiveView.Rendered.t()
   def editor(assigns) do
@@ -18,7 +19,7 @@ defmodule Paleta.Components.Editor do
     <div id="editor" class="editor-parent" phx-update="ignore" phx-hook="Editor" data-mode={@mode}>
       <div id="ace-editor" class="editor"><%= @value %></div>
     </div>
-    <Input.hidden_input name={@name} value={@value} />
+    <Input.hidden_input name={@name} value={@value} {@rest}/>
     <.error :for={{msg, _ops} <- @errors}>
       <%= msg %>
     </.error>

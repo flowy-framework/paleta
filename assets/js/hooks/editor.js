@@ -17,9 +17,22 @@ export default {
     this.editor.destroy()
   },
 
+  debounce(func, timeout = 300){
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => { func.apply(this, args); }, timeout);
+    };
+  },
+
+  
+
   mounted() {
     // Setup Ace Editor
     const editor_element = this.el.querySelector("#ace-editor");
+    const set_value = () => {                
+      document.getElementById('editor-content').value = this.editor.getSession().getValue();
+    }
     var mode = this.el.dataset.mode;
     this.editor = ace.edit(editor_element)
     this.editor.setOptions({
@@ -32,9 +45,7 @@ export default {
 
     this.editor.getSession().setMode(`ace/mode/${mode}`)
     this.editor.setTheme("ace/theme/pastel_on_dark")
-    this.editor.getSession().on("change",  () => {                
-      document.getElementById('editor-content').value = this.editor.getSession().getValue();
-    });
+    this.editor.getSession().on("change", set_value);
     
     this.editor.focus()
 
