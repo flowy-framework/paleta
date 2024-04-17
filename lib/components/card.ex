@@ -27,7 +27,7 @@ defmodule Paleta.Components.Card do
         <h2 class={@title_class}>
           <%= @title %>
         </h2>
-        <div class="inline-flex" :if={@title_actions}>
+        <div :if={@title_actions} class="inline-flex">
           <%= render_slot(@title_actions) %>
         </div>
       </div>
