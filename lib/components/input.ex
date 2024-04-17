@@ -13,6 +13,7 @@ defmodule Paleta.Components.Input do
   attr(:class, :string, default: "")
   attr(:rest, :global, include: ~w(disabled readonly))
   attr(:errors, :list, default: [])
+  attr(:multiple, :boolean, default: false)
 
   def text(%{class: class} = assigns) do
     assigns =
@@ -41,6 +42,65 @@ defmodule Paleta.Components.Input do
       </.error>
     </label>
     """
+  end
+
+  def input(%{type: "checkgroup"} = assigns) do
+    assigns =
+      assigns
+      |> assign_basic_attrs()
+
+    ~H"""
+    <div phx-feedback-for={@name} class="text-sm">
+      <div class="w-full py-2 pl-3 pr-10 mt-1 text-left bg-white border border-gray-300 rounded-md shadow-sm cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        <div class="grid items-baseline grid-cols-1 gap-1 text-sm">
+          <input type="hidden" name={@name} value="" />
+          <div :for={{label, value} <- @options} class="flex items-center">
+            <label for={"#{@name}-#{value}"} class="font-medium text-gray-700">
+              <input
+                type="checkbox"
+                id={"#{@name}-#{value}"}
+                name={@name}
+                value={value}
+                checked={value in @value}
+                class="w-4 h-4 mr-2 text-indigo-600 transition duration-150 ease-in-out border-gray-300 rounded focus:ring-indigo-500"
+                {@rest}
+              />
+              <%= label %>
+            </label>
+          </div>
+        </div>
+      </div>
+      <.error :for={msg <- @errors}><%= msg %></.error>
+    </div>
+    """
+  end
+
+  # ...
+
+  @doc """
+  Generate a checkbox group for multi-select.
+  """
+  attr(:id, :any)
+  attr(:name, :any)
+  attr(:label, :string, default: nil)
+
+  attr(:field, Phoenix.HTML.FormField,
+    doc: "a form field struct retrieved from the form, for example: @form[:email]"
+  )
+
+  attr(:errors, :list, default: [])
+  attr(:options, :list, doc: "the options to pass to Phoenix.HTML.Form.options_for_select/2")
+  attr(:rest, :global, include: ~w(disabled form readonly))
+  attr(:class, :string, default: nil)
+  attr(:value, :list, default: [])
+
+  def checkgroup(assigns) do
+    new_assigns =
+      assigns
+      |> assign(:multiple, true)
+      |> assign(:type, "checkgroup")
+
+    input(new_assigns)
   end
 
   def input(assigns) do
