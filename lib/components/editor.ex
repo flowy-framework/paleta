@@ -19,7 +19,7 @@ defmodule Paleta.Components.Editor do
     <div id="editor" class="editor-parent" phx-update="ignore" phx-hook="Editor" data-mode={@mode}>
       <div id="ace-editor" class="editor"><%= @value %></div>
     </div>
-    <Input.hidden_input name={@name} value={@value} {@rest}/>
+    <Input.hidden_input name={@name} value={@value} {@rest} />
     <.error :for={{msg, _ops} <- @errors}>
       <%= msg %>
     </.error>
