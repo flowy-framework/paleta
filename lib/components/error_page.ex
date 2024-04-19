@@ -33,14 +33,14 @@ defmodule Paleta.Components.ErrorPage do
       </head>
       <body x-data class="is-header-blur" x-bind="$store.global.documentBody">
         <!-- App preloader-->
-        <div class="app-preloader fixed z-50 grid h-full w-full place-content-center bg-slate-50 dark:bg-navy-900">
-          <div class="app-preloader-inner relative inline-block h-48 w-48"></div>
+        <div class="fixed z-50 grid w-full h-full app-preloader place-content-center bg-slate-50 dark:bg-navy-900">
+          <div class="relative inline-block w-48 h-48 app-preloader-inner"></div>
         </div>
         <!-- Page Wrapper -->
-        <div id="root" class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900">
+        <div id="root" class="flex min-h-100vh grow bg-slate-50 dark:bg-navy-900">
           <main
             style="backgroundImage:url('/images/ufo.svg')"
-            class="grid w-full grow grid-cols-1 place-items-center bg-center"
+            class="grid w-full grid-cols-1 bg-center grow place-items-center"
           >
             <div class="max-w-[26rem] text-center">
               <div class="w-full">
@@ -57,7 +57,7 @@ defmodule Paleta.Components.ErrorPage do
                   alt="image"
                 />
               </div>
-              <p class="pt-4 text-7xl font-bold text-primary dark:text-accent">
+              <p class="pt-4 font-bold text-7xl text-primary dark:text-accent">
                 404
               </p>
               <p class="pt-4 text-xl font-semibold text-slate-800 dark:text-navy-50">
@@ -69,7 +69,7 @@ defmodule Paleta.Components.ErrorPage do
 
               <a
                 href="/"
-                class="btn mt-8 h-11 bg-primary text-base font-medium text-white hover:bg-primary-focus hover:shadow-lg hover:shadow-primary/50 focus:bg-primary-focus focus:shadow-lg focus:shadow-primary/50 active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:hover:shadow-accent/50 dark:focus:bg-accent-focus dark:focus:shadow-accent/50 dark:active:bg-accent/90"
+                class="mt-8 text-base font-medium text-white btn h-11 bg-primary hover:bg-primary-focus hover:shadow-lg hover:shadow-primary/50 focus:bg-primary-focus focus:shadow-lg focus:shadow-primary/50 active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:hover:shadow-accent/50 dark:focus:bg-accent-focus dark:focus:shadow-accent/50 dark:active:bg-accent/90"
               >
                 Back To Home
               </a>
@@ -97,7 +97,7 @@ defmodule Paleta.Components.ErrorPage do
         />
 
         <title>Error 500 - <%= @title %></title>
-        <link rel="icon" type="/images/png" href="images/favicon.png" />
+        <link rel="icon" type="/images/png" href="/images/favicon.png" />
         <!-- CSS Assets -->
         <link phx-track-static rel="stylesheet" href="/assets/app.css" />
         <!-- TODO: We need to get rid of these js2 -->
@@ -113,17 +113,17 @@ defmodule Paleta.Components.ErrorPage do
       </head>
       <body x-data class="is-header-blur" x-bind="$store.global.documentBody">
         <!-- App preloader-->
-        <div class="app-preloader fixed z-50 grid h-full w-full place-content-center bg-slate-50 dark:bg-navy-900">
-          <div class="app-preloader-inner relative inline-block h-48 w-48"></div>
+        <div class="fixed z-50 grid w-full h-full app-preloader place-content-center bg-slate-50 dark:bg-navy-900">
+          <div class="relative inline-block w-48 h-48 app-preloader-inner"></div>
         </div>
         <!-- Page Wrapper -->
-        <div id="root" class="min-h-100vh flex grow bg-slate-50 dark:bg-navy-900" x-cloak>
-          <main class="grid w-full grow grid-cols-1 place-items-center">
+        <div id="root" class="flex min-h-100vh grow bg-slate-50 dark:bg-navy-900" x-cloak>
+          <main class="grid w-full grid-cols-1 grow place-items-center">
             <div class="max-w-md p-6 text-center">
               <div class="w-full">
                 <img class="w-full" src="/images/error-500.svg" alt="image" />
               </div>
-              <p class="pt-4 text-7xl font-bold text-primary dark:text-accent">
+              <p class="pt-4 font-bold text-7xl text-primary dark:text-accent">
                 500
               </p>
               <p class="pt-4 text-xl font-semibold text-slate-800 dark:text-navy-50">
