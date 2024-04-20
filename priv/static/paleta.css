@@ -18308,6 +18308,11 @@ button.swiper-pagination-bullet {
   transform: translate3d(1rem,0,0);
 }
 
+.size-5.5 {
+  height: 1.375rem;
+  width: 1.375rem;
+}
+
 .while-submitting {
   display: none;
 }
