@@ -8,7 +8,7 @@
 
 @import "tailwindcss/utilities";
 
-.size-5.5 {
+.size-5\.5 {
   height: 1.375rem;
   width: 1.375rem;
 }
