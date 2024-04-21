@@ -10,6 +10,7 @@
     "cleave.js": "^1.6.0",
     "clipboard": "^2.0.11",
     "flatpickr": "^4.6.13",
+    "quill": "^2.0.0",
     "simplebar": "^5.3.9",
     "sortablejs": "^1.14.0",
     "swiper": "^11.0.7",

@@ -5,12 +5,13 @@ import GoogleMaps from "./hooks/google_maps.js";
 import Pickr from "./hooks/pickr.js"
 import Drag from "./hooks/drag_hook.js"
 import TomSelect from "./hooks/tom_select.js"
+import { TextEditor } from './hooks/quill_editor.js'
+
 
 import "phoenix_html";
 import { Socket } from "phoenix";
 import { LiveSocket } from "phoenix_live_view";
 import topbar from "../vendor/topbar.js";
-
 
 let Hooks = {
   ApexChartHook,
@@ -18,7 +19,8 @@ let Hooks = {
   GoogleMaps,
   Pickr,
   Drag,
-  TomSelect
+  TomSelect,
+  TextEditor
 };
 
 // Show progress bar on live navigation and form submits
