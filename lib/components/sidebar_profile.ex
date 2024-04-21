@@ -5,8 +5,8 @@ defmodule Paleta.Components.SidebarProfile do
   attr(:profile_path, :string, default: "/profile")
   attr(:user, :map, default: nil)
 
-  def sidebar_profile(assigns) do
-    assigns = assigns |> assign(:full_name, "")
+  def sidebar_profile(%{user: user} = assigns) do
+    assigns = assigns |> assign(:full_name, full_name(user))
 
     ~H"""
     <!-- Profile -->
@@ -109,5 +109,13 @@ defmodule Paleta.Components.SidebarProfile do
       </div>
     </div>
     """
+  end
+
+  def full_name(%{first_name: first_name, last_name: last_name}) do
+    "#{first_name} #{last_name}"
+  end
+
+  def full_name(nil) do
+    ""
   end
 end
