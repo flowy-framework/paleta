@@ -49,6 +49,7 @@ defmodule Paleta do
         Checkbox,
         Select,
         ShortId,
+        SidebarComponent,
         Sidebar.Group,
         Sidebar.Item,
         Sidebar.Main,
