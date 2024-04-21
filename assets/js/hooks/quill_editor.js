@@ -7,7 +7,8 @@ export let TextEditor = {
 
     quill.on('text-change', (delta, oldDelta, source) => {
       if (source == 'user') {
-        this.pushEventTo(this.el.phxHookId, "text-editor", {"text_content": quill.getContents()})
+        document.getElementById('editor-content').value = quill.getContents();
+        // this.pushEventTo(this.el.phxHookId, "text-editor", {"text_content": quill.getContents()})
       }
     });
   },
