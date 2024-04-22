@@ -33,8 +33,8 @@ defmodule Paleta.Components.Editor do
 
   defp do_render(%{engine: :quill} = assigns) do
     ~H"""
-    <div id="editor" phx-hook="TextEditor" name={@name} value={@value} {@rest} />
-    <Input.hidden_input name="editor-content" value={@value} {@rest} />
+    <div id="editor" phx-hook="TextEditor" name={@name} {@rest}><%= Phoenix.HTML.raw(@value) %></div>
+    <Input.hidden_input name="editor-content" value={@value} />
     <.error :for={{msg, _ops} <- @errors}>
       <%= msg %>
     </.error>
