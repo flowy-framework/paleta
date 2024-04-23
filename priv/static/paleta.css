@@ -18365,10 +18365,10 @@ img.ProseMirror-separator {
 
 #prosemirror-editor,
 .prosemirror-editor {
-  color: black;
+  margin-bottom: 1.5rem;
   background-clip: padding-box;
-  border-radius: 4px;
-  margin-bottom: 23px;
+  color: #000;
+  border-radius: 0.25rem;
 }
 
 .ProseMirror p:first-child,
@@ -18378,17 +18378,21 @@ img.ProseMirror-separator {
 .ProseMirror h4:first-child,
 .ProseMirror h5:first-child,
 .ProseMirror h6:first-child {
-  margin-top: 10px;
+  margin-top: 0.5rem;
 }
 
 .ProseMirror {
-  padding: 4px 8px 4px 14px;
-  line-height: 1.2;
-  outline: none;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  line-height: 1;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 }
 
 .ProseMirror p {
-  margin-bottom: 1em;
+  margin-bottom: 1rem;
 }
 
 .sr-only {
