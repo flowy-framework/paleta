@@ -11,7 +11,6 @@ defmodule Paleta.Components.Editor do
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:errors, :list, default: [])
   attr(:rest, :global)
-  slot(:inner_block, required: false)
 
   @spec editor(map) :: Phoenix.LiveView.Rendered.t()
   def editor(assigns) do
