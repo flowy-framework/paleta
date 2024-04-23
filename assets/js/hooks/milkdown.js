@@ -4,14 +4,15 @@ import { commonmark } from "@milkdown/preset-commonmark";
 
 export let MilkdownEditor = {
   mounted() {
-   
     Editor.make()
-          .config((ctx) => {
-            ctx.set(defaultValueCtx, document.getElementById("editor-content").value)
-            ctx.set(rootCtx, "#richt-editor");
-          })
-          .use(nord)
-          .use(commonmark)
-          .create();
-  }
-}
+      .config((ctx) => {
+        ctx.set(
+          defaultValueCtx,
+          document.getElementById("editor-content").value
+        );
+        ctx.set(rootCtx, "#richt-editor");
+      })
+      .use(commonmark)
+      .create();
+  },
+};

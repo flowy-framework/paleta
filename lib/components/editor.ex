@@ -4,13 +4,14 @@ defmodule Paleta.Components.Editor do
   import Paleta.Components.Error
   alias Paleta.Components.Input
 
-  attr(:engine, :atom, default: :ace, values: [:ace, :quill, :milkdown])
+  attr(:engine, :atom, default: :ace, values: [:ace, :quill, :milkdown, :prosemirror])
   attr(:value, :string, default: nil)
   attr(:name, :string, default: "editor-content")
   attr(:mode, :atom, default: :html, values: [:html, :yaml, :json])
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:errors, :list, default: [])
   attr(:rest, :global)
+  slot(:inner_block, required: false)
 
   @spec editor(map) :: Phoenix.LiveView.Rendered.t()
   def editor(assigns) do
@@ -43,11 +44,39 @@ defmodule Paleta.Components.Editor do
 
   defp do_render(%{engine: :milkdown} = assigns) do
     ~H"""
-    <div id="richt-editor" class="relative" phx-update="ignore" phx-hook="MilkdownEditor" name={@name} {@rest}></div>
+    <div
+      id="richt-editor"
+      class="relative p-2 border rounded bg-slate-50"
+      phx-update="ignore"
+      phx-hook="MilkdownEditor"
+      name={@name}
+      {@rest}
+    >
+    </div>
     <Input.hidden_input name="editor-content" value={@value} />
     <.error :for={{msg, _ops} <- @errors}>
       <%= msg %>
     </.error>
+    """
+  end
+
+  defp do_render(%{engine: :prosemirror} = assigns) do
+    ~H"""
+    <div class="prosemirror-editor-wrapper">
+      <div
+        id="prosemirror-editor"
+        class="relative p-2 border rounded bg-slate-50"
+        phx-update="ignore"
+        phx-hook="ProsemirrorEditor"
+        name={@name}
+        {@rest}
+      >
+      </div>
+      <Input.textarea label="" name="prosemirror-content" value={@value} class="hidden" />
+      <.error :for={{msg, _ops} <- @errors}>
+        <%= msg %>
+      </.error>
+    </div>
     """
   end
 end

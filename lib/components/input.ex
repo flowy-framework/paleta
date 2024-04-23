@@ -184,6 +184,7 @@ defmodule Paleta.Components.Input do
   attr(:label, :string, required: true)
   attr(:name, :string, default: nil)
   attr(:value, :string, default: nil)
+  attr(:class, :string, default: "")
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:placeholder, :string, default: "")
   attr(:rows, :integer, default: 4)
@@ -191,8 +192,14 @@ defmodule Paleta.Components.Input do
   attr(:rest, :global, include: ~w(required disabled))
   attr(:errors, :list, default: [])
 
-  def textarea(assigns) do
-    assigns = assigns |> assign_basic_attrs()
+  def textarea(%{class: class} = assigns) do
+    assigns =
+      assigns
+      |> assign_basic_attrs()
+      |> assign(
+        :class,
+        "form-textarea mt-1.5 w-full resize-none rounded-lg border border-slate-300 bg-transparent p-2.5 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent #{class}"
+      )
 
     ~H"""
     <label class="block">
@@ -205,7 +212,7 @@ defmodule Paleta.Components.Input do
         id={@name}
         rows={@rows}
         placeholder={@placeholder}
-        class="form-textarea mt-1.5 w-full resize-none rounded-lg border border-slate-300 bg-transparent p-2.5 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+        class={@class}
         {@rest}
       ><%= @value %></textarea>
       <.error :for={{msg, _ops} <- @errors}>
