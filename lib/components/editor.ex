@@ -10,6 +10,7 @@ defmodule Paleta.Components.Editor do
   attr(:mode, :atom, default: :html, values: [:html, :yaml, :json])
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:errors, :list, default: [])
+  attr(:class, :string, default: "")
   attr(:rest, :global)
 
   @spec editor(map) :: Phoenix.LiveView.Rendered.t()
@@ -59,12 +60,19 @@ defmodule Paleta.Components.Editor do
     """
   end
 
-  defp do_render(%{engine: :prosemirror} = assigns) do
+  defp do_render(%{engine: :prosemirror, class: class} = assigns) do
+    assigns =
+      assigns
+      |> assign(
+        :class,
+        "relative py-2 border rounded #{class}"
+      )
+
     ~H"""
     <div class="prosemirror-editor-wrapper">
       <div
         id="prosemirror-editor"
-        class="relative p-2 border rounded bg-slate-50"
+        class={@class}
         phx-update="ignore"
         phx-hook="ProsemirrorEditor"
         name={@name}
