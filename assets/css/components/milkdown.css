@@ -1,7 +1,3 @@
-@import '@milkdown/theme-nord/lib/style.css';
-@import '@milkdown/prose/lib/style/prosemirror.css';
-@import '@milkdown/prose/lib/style/gapcursor.css';
-
-.milkdown {
-    @apply bg-slate-50 px-2 py-4 m-5 border rounded;
-  }
+@import "@milkdown/theme-nord/lib/style.css";
+@import "@milkdown/prose/lib/style/prosemirror.css";
+@import "@milkdown/prose/lib/style/gapcursor.css";
