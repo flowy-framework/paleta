@@ -1,13 +1,22 @@
 import flatpickr from "flatpickr";
 
 const Pickr = {
+  time_only() { return this.el.dataset.time_only == "true"},
   mounted() {
-    this.pickr = flatpickr(this.el, {
-      wrap: true,
-      altInput: this.el.dataset.pickrAltFormat ? true : false,
-      altFormat: this.el.dataset.pickrAltFormat || "d M Y",
-      dateFormat: this.el.dataset.pickrDateFormat || "Y-m-d"
-    })
+    const settings = {}
+
+    if (this.time_only()) {
+      settings.enableTime = true
+      settings.noCalendar = true
+      settings.dateFormat = "H:i"
+    } else {
+      settings.wrap = true,
+      settings.altInput = this.el.dataset.pickrAltFormat ? true : false,
+      settings.altFormat = this.el.dataset.pickrAltFormat || "d M Y",
+      settings.dateFormat = this.el.dataset.pickrDateFormat || "Y-m-d"
+    }
+
+    this.pickr = flatpickr(this.el, settings)
   },
   updated() {
     const altFormat = this.el.dataset.pickrAltFormat

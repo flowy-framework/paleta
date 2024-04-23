@@ -4,6 +4,8 @@ defmodule Paleta.Components.AdvanceSelect do
   import Paleta.Components.FieldHelper
   import Paleta.Components.Error
 
+  attr(:name, :string, default: nil)
+  attr(:value, :string, default: nil)
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:options, :list, required: true)
   attr(:max_items, :integer, default: nil)
@@ -11,6 +13,8 @@ defmodule Paleta.Components.AdvanceSelect do
   attr(:label, :string)
   attr(:rest, :global)
   attr(:errors, :list, default: [])
+  attr(:order_field, :string, default: "name")
+  attr(:order_field_order, :string, default: "asc")
 
   def advance_select(assigns) do
     assigns =
@@ -30,6 +34,8 @@ defmodule Paleta.Components.AdvanceSelect do
         data-options={@options}
         data-max_items={@max_items}
         phx-hook="TomSelect"
+        data-order_field={@order_field}
+        data-order_field_order={@order_field_order}
         name={@name}
         class="select"
         {@rest}

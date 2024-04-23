@@ -122,6 +122,42 @@ defmodule Paleta.Components.Input do
         id={@name}
         placeholder={@placeholder}
         data-input
+        data-time_only="false"
+        class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+        {@rest}
+      />
+      <.error :for={{msg, _ops} <- @errors}>
+        <%= msg %>
+      </.error>
+    </label>
+    """
+  end
+
+  attr(:label, :string, required: true)
+  attr(:name, :string, required: true)
+  attr(:value, :string, default: nil)
+  attr(:field, Phoenix.HTML.FormField, default: nil)
+  attr(:required, :boolean, default: false)
+  attr(:placeholder, :string, default: "")
+  attr(:rest, :global)
+  attr(:errors, :list, default: [])
+
+  def timepicker(assigns) do
+    assigns = assigns |> assign_basic_attrs()
+
+    ~H"""
+    <label id={"pick-#{@name}"} for={@name} class="block flatpickr" phx-update="ignore">
+      <span><%= @label %><span :if={@required} class="ml-1">*</span></span>
+      <input
+        phx-hook="Pickr"
+        data-time_only="true"
+        required={@required}
+        type="text"
+        value={@value}
+        name={@name}
+        id={@name}
+        placeholder={@placeholder}
+        data-input
         class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
         {@rest}
       />

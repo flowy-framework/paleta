@@ -2,6 +2,8 @@ import { getAttributeOrThrow } from "../lib/attribute";
 import TomSelect from "tom-select/dist/js/tom-select.complete.min.js";
 
 export default {
+    order_field() { return this.el.dataset.order_field},
+    order_field_order() { return this.el.dataset.order_field_order},
     mounted() {
         const { options, items, max_items } = this.el.dataset;
         const spec = {
@@ -13,8 +15,8 @@ export default {
             "options": JSON.parse(options),
             "items": items.split(","),
             "sortField": {
-              "field": "name",
-              "direction": "asc"
+              "field": this.order_field(),
+              "direction": this.order_field_order()
             }
           }
         this.tomselect = new TomSelect(this.el, spec)
