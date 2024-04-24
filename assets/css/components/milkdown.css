@@ -1,3 +1,4 @@
 @import "@milkdown/theme-nord/lib/style.css";
 @import "@milkdown/prose/lib/style/prosemirror.css";
 @import "@milkdown/prose/lib/style/gapcursor.css";
+@import "@milkdown-lab/plugin-menu/style.css";
