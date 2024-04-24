@@ -4,6 +4,7 @@ defmodule Paleta.Components.FieldHelper do
   def assign_basic_attrs(%{field: nil} = assigns) do
     with %{value: %Phoenix.HTML.FormField{} = field} <- assigns do
       assigns
+      |> assign(:id, field.id)
       |> assign(:name, field.name)
       |> assign(:value, field.value)
       |> assign(:errors, field.errors)
@@ -12,6 +13,7 @@ defmodule Paleta.Components.FieldHelper do
 
   def assign_basic_attrs(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
     assigns
+    |> assign(:id, field.id)
     |> assign(:name, field.name)
     |> assign(:value, field.value)
     |> assign(:errors, field.errors)

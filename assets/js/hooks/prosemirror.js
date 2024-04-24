@@ -9,6 +9,7 @@ import {
 import { exampleSetup } from "prosemirror-example-setup";
 
 export let ProsemirrorEditor = {
+  hidden_id() { return this.el.dataset.hidden_id},
   mounted() {
     // ProseMirrorView{
     class ProseMirrorView {
@@ -34,17 +35,18 @@ export let ProsemirrorEditor = {
     // }
 
     let place = document.querySelector("#prosemirror-editor");
-
+    let hidden_id = this.hidden_id();
+    
     let editorView = new ProseMirrorView(
       place,
-      document.querySelector("#prosemirror-content").value
+      document.getElementById(hidden_id).value
     );
 
     editorView.view.setProps({
       dispatchTransaction(transaction) {
         let newState = editorView.view.state.apply(transaction);
         editorView.view.updateState(newState);
-        document.querySelector("#prosemirror-content").value =
+        document.getElementById(hidden_id).value =
           editorView.content;
       },
     });

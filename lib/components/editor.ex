@@ -4,19 +4,21 @@ defmodule Paleta.Components.Editor do
   import Paleta.Components.Error
   alias Paleta.Components.Input
 
-  attr(:engine, :atom, default: :ace, values: [:ace, :prosemirror])
-  attr(:value, :string, default: nil)
-  attr(:name, :string, default: "editor-content")
-  attr(:mode, :atom, default: :html, values: [:html, :yaml, :json])
-  attr(:field, Phoenix.HTML.FormField, default: nil)
-  attr(:errors, :list, default: [])
-  attr(:class, :string, default: "")
-  attr(:rest, :global)
+  attr :engine, :atom, default: :ace, values: [:ace, :prosemirror]
+  attr :value, :string, default: nil
+  attr :name, :string, default: "editor-content"
+  attr :mode, :atom, default: :html, values: [:html, :yaml, :json]
+  attr :field, Phoenix.HTML.FormField, default: nil
+  attr :errors, :list, default: []
+  attr :class, :string, default: ""
+  attr :rest, :global
+  attr :id, :string, default: ""
 
   @spec editor(map) :: Phoenix.LiveView.Rendered.t()
   def editor(assigns) do
-    assigns = assigns |> assign_basic_attrs()
-    do_render(assigns)
+    assigns
+    |> assign_basic_attrs()
+    |> do_render()
   end
 
   defp do_render(%{engine: :ace, class: class} = assigns) do
@@ -53,11 +55,11 @@ defmodule Paleta.Components.Editor do
         class={@class}
         phx-update="ignore"
         phx-hook="ProsemirrorEditor"
-        name={@name}
+        data-hidden_id={@id}
         {@rest}
       >
       </div>
-      <Input.textarea label="" name="prosemirror-content" value={@value} class="hidden" />
+      <Input.textarea label="" field={@field} class="hidden" />
       <.error :for={{msg, _ops} <- @errors}>
         <%= msg %>
       </.error>
