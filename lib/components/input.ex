@@ -109,13 +109,7 @@ defmodule Paleta.Components.Input do
     assigns = assigns |> assign_basic_attrs()
 
     ~H"""
-    <label
-      id={"pick-#{@id}"}
-      for={@id}
-      class="block flatpickr"
-      phx-update="ignore"
-      phx-hook="Pickr"
-    >
+    <label id={"pick-#{@id}"} for={@id} class="block flatpickr" phx-update="ignore" phx-hook="Pickr">
       <span><%= @label %><span :if={@required} class="ml-1">*</span></span>
       <input
         required={@required}

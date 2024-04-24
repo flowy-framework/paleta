@@ -4,15 +4,15 @@ defmodule Paleta.Components.Editor do
   import Paleta.Components.Error
   alias Paleta.Components.Input
 
-  attr :engine, :atom, default: :ace, values: [:ace, :prosemirror]
-  attr :value, :string, default: nil
-  attr :name, :string, default: "editor-content"
-  attr :mode, :atom, default: :html, values: [:html, :yaml, :json]
-  attr :field, Phoenix.HTML.FormField, default: nil
-  attr :errors, :list, default: []
-  attr :class, :string, default: ""
-  attr :rest, :global
-  attr :id, :string, default: ""
+  attr(:engine, :atom, default: :ace, values: [:ace, :prosemirror])
+  attr(:value, :string, default: nil)
+  attr(:name, :string, default: "editor-content")
+  attr(:mode, :atom, default: :html, values: [:html, :yaml, :json])
+  attr(:field, Phoenix.HTML.FormField, default: nil)
+  attr(:errors, :list, default: [])
+  attr(:class, :string, default: "")
+  attr(:rest, :global)
+  attr(:id, :string, default: "")
 
   @spec editor(map) :: Phoenix.LiveView.Rendered.t()
   def editor(assigns) do
