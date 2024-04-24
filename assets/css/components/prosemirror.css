@@ -1,0 +1,378 @@
+/* Prosemirror editor
+node_modules/prosemirror-view/style/prosemirror.css
+node_modules/prosemirror-tables/style/tables.css
+node_modules/prosemirror-gapcursor/style/gapcursor.css
+node_modules/prosemirror-menu/style/menu.css
+node_modules/prosemirror-example-setup/style/style.css
+*/
+/*
+  Based on TailwindCSS recommendations,
+  consider using classes instead of the `@apply` directive
+  @see https://tailwindcss.com/docs/reusing-styles#avoiding-premature-abstraction
+*/
+#prosemirror-editor,
+.prosemirror-editor {
+  @apply box-border text-[13px] min-h-[100px] relative border border-slate-300 dark:border-navy-400 flex flex-col overflow-hidden m-0 rounded-lg border-solid;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+
+  /* Ensures no overflow from the editor itself */
+}
+#prosemirror-editor:focus-within,
+.prosemirror-editor:focus-within {
+  @apply border-primary
+
+  /* Ensures no overflow from the editor itself */;
+}
+
+/* Prosemirror view node_modules/prosemirror-view/style/prosemirror.css */
+.ProseMirror-menubar-wrapper {
+  @apply h-full flex flex-col;
+
+  /* Fill the editor */
+}
+.ProseMirror {
+  @apply box-border grow overflow-y-auto overflow-x-hidden text-left whitespace-pre-wrap text-sm leading-[1.4rem] px-[15px] py-3 whitespace-pre-wrap;
+
+  /* Take up all available space */
+
+  /* Scroll vertically if content overflows */
+
+  /* Prevent horizontal scrolling */
+  outline: none;
+  tab-size: 4;
+  -moz-tab-size: 4;
+  word-wrap: break-word;
+}
+.ProseMirror > * {
+  @apply cursor-text;
+}
+.ProseMirror p {
+  @apply mb-[1em];
+}
+.ProseMirror {
+  word-wrap: break-word;
+  white-space: break-spaces;
+  -webkit-font-variant-ligatures: none;
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0;
+
+  /* the above doesn't seem to work in Edge */
+}
+
+/* .ProseMirror li {
+  position: relative;
+} */
+.ProseMirror p,
+.ProseMirror ol,
+.ProseMirror ul,
+.ProseMirror pre,
+.ProseMirror blockquote,
+.ProseMirror h1,
+.ProseMirror h2,
+.ProseMirror h3,
+.ProseMirror h4,
+.ProseMirror h5,
+.ProseMirror h6 {
+  @apply m-0 p-0;
+  counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+}
+.ProseMirror ol,
+.ProseMirror ul {
+  @apply pl-[1.5em];
+}
+.ProseMirror ol > li,
+.ProseMirror ul > li {
+  @apply list-none;
+}
+.ProseMirror ul > li::before {
+  @apply content-["\2022"];
+}
+.ProseMirror ul[data-checked="true"],
+.ProseMirror ul[data-checked="false"] {
+  @apply pointer-events-none;
+}
+.ProseMirror ul[data-checked="true"] > li *,
+.ProseMirror ul[data-checked="false"] > li * {
+  pointer-events: all;
+}
+.ProseMirror ul[data-checked="true"] > li::before,
+.ProseMirror ul[data-checked="false"] > li::before {
+  @apply text-[#777] cursor-pointer;
+  pointer-events: all;
+}
+.ProseMirror ul[data-checked="true"] > li::before {
+  @apply content-["\2611"];
+}
+.ProseMirror ul[data-checked="false"] > li::before {
+  @apply content-["\2610"];
+}
+.ProseMirror li::before {
+  @apply float-left whitespace-nowrap w-[1.2em];
+}
+.ProseMirror ol li {
+  counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+  counter-increment: list-0;
+}
+.ProseMirror ol li:before {
+  @apply content-[counter(list-0,decimal)_"._"];
+}
+.ProseMirror ol li ol li {
+  counter-increment: list-1;
+}
+.ProseMirror ol li ol li:before {
+  @apply content-[counter(list-1,lower-alpha)_"._"];
+}
+.ProseMirror ol li ol li {
+  counter-reset: list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+}
+.ProseMirror ol li ol li ol li {
+  counter-increment: list-2;
+}
+.ProseMirror ol li ol li ol li:before {
+  @apply content-[counter(list-2,lower-roman)_"._"];
+}
+.ProseMirror ol li ol li ol li {
+  counter-reset: list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+}
+.ProseMirror ol li ol li ol li ol li {
+  counter-increment: list-3;
+}
+.ProseMirror ol li ol li ol li ol li:before {
+  @apply content-[counter(list-3,decimal)_"._"];
+}
+.ProseMirror ol li ol li ol li ol li {
+  counter-reset: list-4 list-5 list-6 list-7 list-8 list-9;
+}
+.ProseMirror ol li ol li ol li ol li ol li {
+  counter-increment: list-4;
+}
+.ProseMirror ol li ol li ol li ol li ol li:before {
+  @apply content-[counter(list-4,lower-alpha)_"._"];
+}
+.ProseMirror ol li ol li ol li ol li ol li {
+  counter-reset: list-5 list-6 list-7 list-8 list-9;
+}
+.ProseMirror h1 {
+  @apply text-[2em] mb-1;
+}
+.ProseMirror h2 {
+  @apply text-[1.5em];
+}
+.ProseMirror h3 {
+  @apply text-[1.17em];
+}
+.ProseMirror h4 {
+  @apply text-[1em];
+}
+.ProseMirror h5 {
+  @apply text-[0.83em];
+}
+.ProseMirror h6 {
+  @apply text-[0.67em];
+}
+.ProseMirror a {
+  @apply underline text-primary;
+}
+.ProseMirror blockquote {
+  @apply my-[5px] pl-4 border-l-4 border-l-[#ccc] border-solid border-l-slate-300 mx-0 pl-[1em] border-l-[3px] border-solid;
+}
+
+.ProseMirror pre {
+  @apply whitespace-pre-wrap whitespace-pre-wrap my-[5px] px-2.5 py-[5px];
+}
+.ProseMirror code,
+.ProseMirror pre {
+  @apply bg-[#f0f0f0] rounded-[3px] dark:bg-[#6e768166] dark:text-[#f8f8f2];
+}
+.ProseMirror pre code {
+  @apply bg-transparent dark:bg-transparent;
+}
+.ProseMirror code {
+  @apply text-[85%] px-1 py-0.5;
+}
+.ProseMirror-hideselection *::selection {
+  @apply bg-transparent;
+}
+.ProseMirror-hideselection *::-moz-selection {
+  @apply bg-transparent;
+}
+.ProseMirror-hideselection {
+  @apply caret-transparent;
+}
+
+/* See https://github.com/ProseMirror/prosemirror/issues/1421#issuecomment-1759320191 */
+.ProseMirror [draggable][contenteditable="false"] {
+  @apply select-text;
+}
+.ProseMirror-selectednode {
+  @apply outline-[1px_solid_#efefef];
+}
+
+/* Make sure li selections wrap around markers */
+li.ProseMirror-selectednode {
+  outline: none;
+}
+li.ProseMirror-selectednode:after {
+  @apply content-[""] absolute border-slate-300 pointer-events-none border-2 border-solid -left-8 -right-0.5 -inset-y-0.5;
+}
+
+/* Protect against generic img rules */
+img.ProseMirror-separator {
+  @apply inline m-0 border-[none];
+}
+
+/* Menu: node_modules/prosemirror-menu/style/menu.css */
+.ProseMirror-menubar-spacer + .ProseMirror-menubar {
+  @apply bg-white;
+}
+.ProseMirror-menubar {
+  @apply border-b-slate-300 dark:border-b-navy-400 box-border relative z-10 box-border px-3 py-1.5 border-b border-solid top-0 inset-x-0;
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  -moz-box-sizing: border-box;
+}
+.ProseMirror-textblock-dropdown {
+  @apply min-w-[3em];
+}
+.ProseMirror-menu {
+  @apply leading-none -mx-1 my-0;
+}
+.ProseMirror-tooltip .ProseMirror-menu {
+  @apply w-[-webkit-fit-content] w-fit whitespace-pre;
+}
+.ProseMirror-menuitem {
+  @apply cursor-pointer inline-block min-w-[18px] px-[5px] py-[3px] border-[none];
+  background: none;
+}
+.ProseMirror-menuseparator {
+  @apply border-r-slate-300 mr-[3px] border-r border-solid;
+}
+.ProseMirror-menu-dropdown,
+.ProseMirror-menu-dropdown-menu {
+  @apply whitespace-nowrap;
+}
+.ProseMirror-menu-dropdown {
+  @apply cursor-pointer relative min-w-[50px] pr-[15px] after:content-[""] after:opacity-60 after:absolute after:top-[calc(50%_-_2px)] after:border-t-4 after:border-t-current after:border-x-4 after:border-x-transparent after:border-solid after:right-1;
+  vertical-align: 1px;
+}
+.ProseMirror-menu-dropdown-wrap {
+  @apply inline-block text-sm relative align-middle pl-1 pr-0 py-px;
+}
+.ProseMirror-menu-dropdown-menu,
+.ProseMirror-menu-submenu {
+  @apply absolute border border-slate-300 p-0.5 border-solid bg-white;
+}
+.ProseMirror-menu-dropdown-menu {
+  @apply z-[15] min-w-[6em];
+}
+.ProseMirror-menu-dropdown-item {
+  @apply cursor-pointer pl-1 pr-2 py-0.5;
+}
+.ProseMirror-menu-dropdown-item:hover {
+  @apply bg-gray-300;
+}
+.ProseMirror-menu-submenu-wrap {
+  @apply relative -mr-1;
+}
+.ProseMirror-menu-submenu-label:after {
+  @apply content-[""] opacity-60 absolute top-[calc(50%_-_4px)] border-l-4 border-l-current border-y-4 border-y-transparent border-solid right-1;
+}
+.ProseMirror-menu-submenu {
+  @apply hidden min-w-[4em] top-[-3px] left-full;
+}
+.ProseMirror-menu-active {
+  @apply rounded bg-gray-100;
+}
+.ProseMirror-menu-disabled {
+  @apply opacity-30;
+}
+.ProseMirror-menu-submenu-wrap:hover .ProseMirror-menu-submenu,
+.ProseMirror-menu-submenu-wrap-active .ProseMirror-menu-submenu {
+  @apply block;
+}
+.ProseMirror-icon {
+  @apply inline-block leading-[0.8] cursor-pointer;
+  vertical-align: -2px;
+
+  /* Compensate for padding */
+}
+.ProseMirror-menu-disabled.ProseMirror-icon {
+  @apply cursor-default;
+}
+.ProseMirror-icon svg {
+  @apply fill-current h-[1em];
+}
+.ProseMirror-icon span {
+  @apply align-text-top;
+}
+
+/* Easy Setup */
+/* Add space around the hr to make clicking it easier */
+.ProseMirror-example-setup-style hr {
+  @apply mx-0 my-[1em] px-2.5 py-0.5 border-[none] after:content-[""] after:block after:h-px after:bg-slate-300 after:leading-[2px];
+}
+.ProseMirror-example-setup-style img {
+  @apply cursor-default;
+}
+.ProseMirror-prompt {
+  @apply border bg-white border-slate-300 fixed z-[11] shadow-[-0.5px_2px_5px_rgba(0,0,0,0.2)] pl-[15px] pr-2.5 py-[5px] rounded-[3px] border-solid;
+}
+.ProseMirror-prompt h5 {
+  @apply font-[normal] text-[100%] text-gray-500 m-0;
+}
+.ProseMirror-prompt input[type="text"],
+.ProseMirror-prompt textarea {
+  @apply border-[none];
+  background: #eee;
+  outline: none;
+}
+.ProseMirror-prompt input[type="text"] {
+  @apply px-1 py-0;
+}
+.ProseMirror-prompt-close {
+  @apply absolute text-gray-600 p-0 border-[none] left-0.5 top-px after:content-["✕"] after:text-xs;
+  background: transparent;
+}
+.ProseMirror-invalid {
+  @apply border bg-yellow-200 rounded absolute min-w-[10em] px-2.5 py-[5px] border-solid border-yellow-300;
+}
+.ProseMirror-prompt-buttons {
+  @apply hidden mt-[5px];
+}
+
+/* GAP Cursor */
+.ProseMirror-gapcursor {
+  @apply hidden pointer-events-none absolute after:content-[""] after:block after:absolute after:w-5 after:animate-[ProseMirror-cursor-blink_1.1s_steps(2,start)_infinite] after:border-t-[black] after:border-t after:border-solid after:-top-0.5;
+}
+@keyframes ProseMirror-cursor-blink {
+  to {
+    @apply invisible;
+  }
+}
+.ProseMirror-focused .ProseMirror-gapcursor {
+  @apply block;
+}
+
+/* Table: assets/node_modules/prosemirror-tables/style/tables.css */
+.ProseMirror .tableWrapper {
+  @apply overflow-x-auto;
+}
+.ProseMirror table {
+  @apply table-fixed w-full overflow-hidden border-collapse;
+}
+.ProseMirror td,
+.ProseMirror th {
+  @apply align-top box-border relative;
+}
+.ProseMirror .column-resize-handle {
+  @apply absolute w-1 z-20 bg-slate-400 pointer-events-none -right-0.5 inset-y-0;
+}
+.ProseMirror.resize-cursor {
+  @apply cursor-ew-resize cursor-col-resize;
+}
+/* Give selected cells a blue overlay */
+.ProseMirror .selectedCell:after {
+  @apply z-[2] absolute content-[""] pointer-events-none inset-0;
+  background: rgba(200, 200, 255, 0.4);
+}
+/* End of prosemirror.css */
