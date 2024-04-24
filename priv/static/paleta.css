@@ -11442,7 +11442,6 @@ code.inline-code {
 
 .prose {
   color: var(--tw-prose-body);
-  max-width: 65ch;
 }
 
 .prose :where([class~="lead"]):not(:where([class~="not-prose"] *)) {
