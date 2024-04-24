@@ -18076,98 +18076,83 @@ img.ProseMirror-separator {
   display: block;
 }
 
-.ProseMirror .tableWrapper {
-  overflow-x: auto;
-}
+/* Prosemirror editor
+node_modules/prosemirror-view/style/prosemirror.css
+node_modules/prosemirror-tables/style/tables.css
+node_modules/prosemirror-gapcursor/style/gapcursor.css
+node_modules/prosemirror-menu/style/menu.css
+node_modules/prosemirror-example-setup/style/style.css
+*/
 
-.ProseMirror table {
-  border-collapse: collapse;
-  table-layout: fixed;
-  width: 100%;
-  overflow: hidden;
-}
+/*
+  Based on TailwindCSS recommendations,
+  consider using classes instead of the `@apply` directive
+  @see https://tailwindcss.com/docs/reusing-styles#avoiding-premature-abstraction
+*/
 
-.ProseMirror td,
-.ProseMirror th {
-  vertical-align: top;
-  box-sizing: border-box;
+#prosemirror-editor,
+.prosemirror-editor {
   position: relative;
+  margin: 0px;
+  box-sizing: border-box;
+  display: flex;
+  min-height: 100px;
+  flex-direction: column;
+  border-style: solid;
+  font-size: 13px;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  border-width: 1px;
+  border-color: #cbd5e1;
 }
 
-.ProseMirror .column-resize-handle {
-  position: absolute;
-  right: -2px;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  z-index: 20;
-  background-color: #adf;
-  pointer-events: none;
-}
-
-.ProseMirror.resize-cursor {
-  cursor: ew-resize;
-  cursor: col-resize;
-}
-
-/* Give selected cells a blue overlay */
-
-.ProseMirror .selectedCell:after {
-  z-index: 2;
-  position: absolute;
-  content: '';
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background: rgba(200, 200, 255, 0.4);
-  pointer-events: none;
+.dark #prosemirror-editor,.dark 
+.prosemirror-editor {
+  border-color: #5C6B8A;
 }
 
 #prosemirror-editor,
 .prosemirror-editor {
-  box-sizing: border-box;
-  font-size: 13px;
-  min-height: 100px;
-  margin: 0px;
-  position: relative;
-  border: 1px solid #cbd5e1;
-  border-radius: 0.5rem;
   font-family: Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji,
     Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
   /* Ensures no overflow from the editor itself */
 }
 
-/* Prosemirror view */
+#prosemirror-editor:focus-within,
+.prosemirror-editor:focus-within {
+  border-color: #4f46e5;
+}
+
+/* Prosemirror view node_modules/prosemirror-view/style/prosemirror.css */
 
 .ProseMirror-menubar-wrapper {
-  height: 100%;
-  /* Fill the editor */
   display: flex;
+  height: 100%;
   flex-direction: column;
+  /* Fill the editor */
 }
 
 .ProseMirror {
   box-sizing: border-box;
   flex-grow: 1;
-  /* Take up all available space */
+  white-space: pre-wrap;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  text-align: left;
+  font-size: 0.875rem;
+  line-height: 1.4rem;
   overflow-y: auto;
-  /* Scroll vertically if content overflows */
   overflow-x: hidden;
+  /* Take up all available space */
+  /* Scroll vertically if content overflows */
   /* Prevent horizontal scrolling */
   outline: none;
-  padding: 12px 15px;
   -o-tab-size: 4;
      tab-size: 4;
   -moz-tab-size: 4;
-  text-align: left;
-  white-space: pre-wrap;
   word-wrap: break-word;
-  font-size: 0.875rem;
-  line-height: 1.4rem;
 }
 
 .ProseMirror > * {
@@ -18180,15 +18165,10 @@ img.ProseMirror-separator {
 
 .ProseMirror {
   word-wrap: break-word;
-  white-space: pre-wrap;
   white-space: break-spaces;
   font-variant-ligatures: none;
   font-feature-settings: "liga" 0;
   /* the above doesn't seem to work in Edge */
-}
-
-.ProseMirror pre {
-  white-space: pre-wrap;
 }
 
 /* .ProseMirror li {
@@ -18206,8 +18186,8 @@ img.ProseMirror-separator {
 .ProseMirror h4,
 .ProseMirror h5,
 .ProseMirror h6 {
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
   counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
 }
 
@@ -18222,7 +18202,8 @@ img.ProseMirror-separator {
 }
 
 .ProseMirror ul > li::before {
-  content: "\2022";
+  --tw-content: "\2022";
+  content: var(--tw-content);
 }
 
 .ProseMirror ul[data-checked="true"],
@@ -18237,23 +18218,25 @@ img.ProseMirror-separator {
 
 .ProseMirror ul[data-checked="true"] > li::before,
 .ProseMirror ul[data-checked="false"] > li::before {
-  color: #777;
   cursor: pointer;
+  color: #777;
   pointer-events: all;
 }
 
 .ProseMirror ul[data-checked="true"] > li::before {
-  content: "\2611";
+  --tw-content: "\2611";
+  content: var(--tw-content);
 }
 
 .ProseMirror ul[data-checked="false"] > li::before {
-  content: "\2610";
+  --tw-content: "\2610";
+  content: var(--tw-content);
 }
 
 .ProseMirror li::before {
   float: left;
-  white-space: nowrap;
   width: 1.2em;
+  white-space: nowrap;
 }
 
 .ProseMirror ol li {
@@ -18262,7 +18245,8 @@ img.ProseMirror-separator {
 }
 
 .ProseMirror ol li:before {
-  content: counter(list-0, decimal) ". ";
+  --tw-content: counter(list-0,decimal) ". ";
+  content: var(--tw-content);
 }
 
 .ProseMirror ol li ol li {
@@ -18270,7 +18254,8 @@ img.ProseMirror-separator {
 }
 
 .ProseMirror ol li ol li:before {
-  content: counter(list-1, lower-alpha) ". ";
+  --tw-content: counter(list-1,lower-alpha) ". ";
+  content: var(--tw-content);
 }
 
 .ProseMirror ol li ol li {
@@ -18282,7 +18267,8 @@ img.ProseMirror-separator {
 }
 
 .ProseMirror ol li ol li ol li:before {
-  content: counter(list-2, lower-roman) ". ";
+  --tw-content: counter(list-2,lower-roman) ". ";
+  content: var(--tw-content);
 }
 
 .ProseMirror ol li ol li ol li {
@@ -18294,7 +18280,8 @@ img.ProseMirror-separator {
 }
 
 .ProseMirror ol li ol li ol li ol li:before {
-  content: counter(list-3, decimal) ". ";
+  --tw-content: counter(list-3,decimal) ". ";
+  content: var(--tw-content);
 }
 
 .ProseMirror ol li ol li ol li ol li {
@@ -18306,7 +18293,8 @@ img.ProseMirror-separator {
 }
 
 .ProseMirror ol li ol li ol li ol li ol li:before {
-  content: counter(list-4, lower-alpha) ". ";
+  --tw-content: counter(list-4,lower-alpha) ". ";
+  content: var(--tw-content);
 }
 
 .ProseMirror ol li ol li ol li ol li ol li {
@@ -18314,8 +18302,8 @@ img.ProseMirror-separator {
 }
 
 .ProseMirror h1 {
+  margin-bottom: 0.25rem;
   font-size: 2em;
-  margin-bottom: 4px;
 }
 
 .ProseMirror h2 {
@@ -18339,50 +18327,71 @@ img.ProseMirror-separator {
 }
 
 .ProseMirror a {
-  text-decoration: underline;
+  color: #4f46e5;
+  text-decoration-line: underline;
 }
 
 .ProseMirror blockquote {
-  border-left: 4px solid #ccc;
-  margin-bottom: 5px;
   margin-top: 5px;
-  padding-left: 16px;
+  margin-bottom: 5px;
+  margin-left: 0px;
+  margin-right: 0px;
+  border-left-width: 3px;
+  border-style: solid;
+  border-left-color: #ccc;
+  border-left-color: #cbd5e1;
+  padding-left: 1rem;
+  padding-left: 1em;
+}
+
+.ProseMirror pre {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  white-space: pre-wrap;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .ProseMirror code,
 .ProseMirror pre {
-  background-color: #f0f0f0;
   border-radius: 3px;
+  background-color: #f0f0f0;
 }
 
+.dark .ProseMirror code,.dark 
 .ProseMirror pre {
-  white-space: pre-wrap;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  padding: 5px 10px;
+  background-color: #6e768166;
+  color: #f8f8f2;
+}
+
+.ProseMirror pre code {
+  background-color: transparent;
+}
+
+.dark .ProseMirror pre code {
+  background-color: transparent;
 }
 
 .ProseMirror code {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
   font-size: 85%;
-  padding: 2px 4px;
-}
-
-.ProseMirror pre.dark {
-  background-color: #23241f;
-  color: #f8f8f2;
-  overflow: visible;
 }
 
 .ProseMirror-hideselection *::-moz-selection {
-  background: transparent;
+  background-color: transparent;
 }
 
 .ProseMirror-hideselection *::selection {
-  background: transparent;
+  background-color: transparent;
 }
 
 .ProseMirror-hideselection *::-moz-selection {
-  background: transparent;
+  background-color: transparent;
 }
 
 .ProseMirror-hideselection {
@@ -18398,7 +18407,7 @@ img.ProseMirror-separator {
 }
 
 .ProseMirror-selectednode {
-  outline: 1px solid #efefef;
+  outline-color: 1px solid #efefef;
 }
 
 /* Make sure li selections wrap around markers */
@@ -18408,40 +18417,69 @@ li.ProseMirror-selectednode {
 }
 
 li.ProseMirror-selectednode:after {
-  content: "";
-  position: absolute;
-  left: -32px;
-  right: -2px;
-  top: -2px;
-  bottom: -2px;
-  border: 2px solid #cbd5e1;
   pointer-events: none;
+  position: absolute;
+  top: -0.125rem;
+  bottom: -0.125rem;
+  left: -2rem;
+  right: -0.125rem;
+  border-style: solid;
+  --tw-content: "";
+  content: var(--tw-content);
+  border-width: 2px;
+  border-color: #cbd5e1;
 }
 
 /* Protect against generic img rules */
 
 img.ProseMirror-separator {
-  display: inline !important;
-  border: none !important;
-  margin: 0 !important;
+  margin: 0px;
+  display: inline;
+  border-color: none;
 }
 
-/* Menu */
+img
+.flatpickr-calendar.ProseMirror-separator {
+  opacity: 1;
+  max-height: 640px;
+  visibility: visible;
+}
+
+img.flatpickr-calendar.ProseMirror-separator {
+  display: block;
+  position: relative;
+  top: 2px;
+}
+
+/* Menu: node_modules/prosemirror-menu/style/menu.css */
 
 .ProseMirror-menubar-spacer + .ProseMirror-menubar {
-  background: white;
+  background-color: #fff;
 }
 
 .ProseMirror-menubar {
-  border-bottom: 1px solid #cbd5e1;
-  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  padding: 6px 12px;
   position: relative;
-  top: 0;
-  left: 0;
-  right: 0;
+  left: 0px;
+  right: 0px;
+  top: 0px;
   z-index: 10;
   box-sizing: border-box;
+  border-bottom-width: 1px;
+  border-style: solid;
+  border-bottom-color: #cbd5e1;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+}
+
+.dark .ProseMirror-menubar {
+  border-bottom-color: #5C6B8A;
+}
+
+.ProseMirror-menubar {
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  -moz-box-sizing: border-box;
 }
 
 .ProseMirror-textblock-dropdown {
@@ -18449,7 +18487,10 @@ img.ProseMirror-separator {
 }
 
 .ProseMirror-menu {
-  margin: 0 -4px;
+  margin-left: -0.25rem;
+  margin-right: -0.25rem;
+  margin-top: 0px;
+  margin-bottom: 0px;
   line-height: 1;
 }
 
@@ -18460,17 +18501,22 @@ img.ProseMirror-separator {
 }
 
 .ProseMirror-menuitem {
-  background: none;
-  border: none;
-  cursor: pointer;
   display: inline-block;
-  padding: 3px 5px;
   min-width: 18px;
+  cursor: pointer;
+  border-color: none;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  background: none;
 }
 
 .ProseMirror-menuseparator {
-  border-right: 1px solid #cbd5e1;
   margin-right: 3px;
+  border-style: solid;
+  border-right-color: #cbd5e1;
+  border-right-width: 1px;
 }
 
 .ProseMirror-menu-dropdown,
@@ -18479,38 +18525,52 @@ img.ProseMirror-separator {
 }
 
 .ProseMirror-menu-dropdown {
-  vertical-align: 1px;
-  cursor: pointer;
   position: relative;
-  padding-right: 15px;
   min-width: 50px;
+  cursor: pointer;
+  padding-right: 15px;
+}
+
+.ProseMirror-menu-dropdown::after {
+  position: absolute;
+  top: calc(50% - 2px);
+  right: 0.25rem;
+  border-left-width: 4px;
+  border-right-width: 4px;
+  border-top-width: 4px;
+  border-style: solid;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-top-color: currentColor;
+  opacity: 0.6;
+  --tw-content: "";
+  content: var(--tw-content);
+}
+
+.ProseMirror-menu-dropdown {
+  vertical-align: 1px;
 }
 
 .ProseMirror-menu-dropdown-wrap {
-  display: inline-block;
-  font-size: 14px;
   position: relative;
+  display: inline-block;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 0.25rem;
+  padding-right: 0px;
   vertical-align: middle;
-  padding: 1px 0 1px 4px;
-}
-
-.ProseMirror-menu-dropdown:after {
-  content: "";
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 4px solid currentColor;
-  opacity: 0.6;
-  position: absolute;
-  right: 4px;
-  top: calc(50% - 2px);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .ProseMirror-menu-dropdown-menu,
 .ProseMirror-menu-submenu {
   position: absolute;
-  background: white;
-  border: 1px solid #cbd5e1;
-  padding: 2px;
+  border-style: solid;
+  background-color: #fff;
+  padding: 0.125rem;
+  border-width: 1px;
+  border-color: #cbd5e1;
 }
 
 .ProseMirror-menu-dropdown-menu {
@@ -18520,39 +18580,51 @@ img.ProseMirror-separator {
 
 .ProseMirror-menu-dropdown-item {
   cursor: pointer;
-  padding: 2px 8px 2px 4px;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+  padding-left: 0.25rem;
+  padding-right: 0.5rem;
 }
 
 .ProseMirror-menu-dropdown-item:hover {
-  background: #cbd5e1;
+  background-color: #d1d5db;
 }
 
 .ProseMirror-menu-submenu-wrap {
   position: relative;
-  margin-right: -4px;
+  margin-right: -0.25rem;
 }
 
 .ProseMirror-menu-submenu-label:after {
-  content: "";
-  border-top: 4px solid transparent;
-  border-bottom: 4px solid transparent;
-  border-left: 4px solid currentColor;
-  opacity: 0.6;
   position: absolute;
-  right: 4px;
   top: calc(50% - 4px);
+  right: 0.25rem;
+  border-top-width: 4px;
+  border-bottom-width: 4px;
+  border-left-width: 4px;
+  border-style: solid;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: currentColor;
+  opacity: 0.6;
+  --tw-content: "";
+  content: var(--tw-content);
 }
 
 .ProseMirror-menu-submenu {
+  top: -3px;
+  left: 100%;
   display: none;
   min-width: 4em;
-  left: 100%;
-  top: -3px;
+}
+
+.flatpickr-day.ProseMirror-menu-submenu {
+  visibility: hidden;
 }
 
 .ProseMirror-menu-active {
-  background: #eee;
-  border-radius: 4px;
+  background-color: #f3f4f6;
+  border-radius: 0.25rem;
 }
 
 .ProseMirror-menu-disabled {
@@ -18566,10 +18638,10 @@ img.ProseMirror-separator {
 
 .ProseMirror-icon {
   display: inline-block;
+  cursor: pointer;
   line-height: 0.8;
   vertical-align: -2px;
   /* Compensate for padding */
-  cursor: pointer;
 }
 
 .ProseMirror-menu-disabled.ProseMirror-icon {
@@ -18577,8 +18649,8 @@ img.ProseMirror-separator {
 }
 
 .ProseMirror-icon svg {
-  fill: currentColor;
   height: 1em;
+  fill: currentColor;
 }
 
 .ProseMirror-icon span {
@@ -18590,24 +18662,24 @@ img.ProseMirror-separator {
 /* Add space around the hr to make clicking it easier */
 
 .ProseMirror-example-setup-style hr {
-  padding: 2px 10px;
-  border: none;
-  margin: 1em 0;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  border-color: none;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
 }
 
-.ProseMirror-example-setup-style hr:after {
-  content: "";
+.ProseMirror-example-setup-style hr::after {
   display: block;
   height: 1px;
   background-color: #cbd5e1;
   line-height: 2px;
-}
-
-.ProseMirror blockquote {
-  padding-left: 1em;
-  border-left: 3px solid #cbd5e1;
-  margin-left: 0;
-  margin-right: 0;
+  --tw-content: "";
+  content: var(--tw-content);
 }
 
 .ProseMirror-example-setup-style img {
@@ -18615,61 +18687,173 @@ img.ProseMirror-separator {
 }
 
 .ProseMirror-prompt {
-  background: white;
-  padding: 5px 10px 5px 15px;
-  border: 1px solid #cbd5e1;
   position: fixed;
-  border-radius: 3px;
   z-index: 11;
-  box-shadow: -0.5px 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  border-style: solid;
+  background-color: #fff;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 0.625rem;
+  --tw-shadow: -0.5px 2px 5px rgba(0,0,0,0.2);
+  --tw-shadow-colored: -0.5px 2px 5px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  border-width: 1px;
+  border-color: #cbd5e1;
 }
 
 .ProseMirror-prompt h5 {
-  margin: 0;
-  font-weight: normal;
+  margin: 0px;
+  font-family: normal;
   font-size: 100%;
-  color: #444;
+  color: #6b7280;
 }
 
 .ProseMirror-prompt input[type="text"],
 .ProseMirror-prompt textarea {
+  border-color: none;
   background: #eee;
-  border: none;
   outline: none;
 }
 
 .ProseMirror-prompt input[type="text"] {
-  padding: 0 4px;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 .ProseMirror-prompt-close {
   position: absolute;
-  left: 2px;
+  left: 0.125rem;
   top: 1px;
-  color: #666;
-  border: none;
-  background: transparent;
-  padding: 0;
+  border-color: none;
+  padding: 0px;
+  color: #4b5563;
 }
 
-.ProseMirror-prompt-close:after {
-  content: "✕";
-  font-size: 12px;
+.ProseMirror-prompt-close::after {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  --tw-content: "✕";
+  content: var(--tw-content);
+}
+
+.ProseMirror-prompt-close {
+  background: transparent;
 }
 
 .ProseMirror-invalid {
-  background: #ffc;
-  border: 1px solid #cc7;
-  border-radius: 4px;
-  padding: 5px 10px;
   position: absolute;
   min-width: 10em;
+  border-style: solid;
+  border-color: #fde047;
+  background-color: #fef08a;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 0.25rem;
+  border-width: 1px;
 }
 
 .ProseMirror-prompt-buttons {
   margin-top: 5px;
   display: none;
 }
+
+.flatpickr-day.ProseMirror-prompt-buttons {
+  visibility: hidden;
+}
+
+/* GAP Cursor */
+
+.ProseMirror-gapcursor {
+  pointer-events: none;
+  position: absolute;
+  display: none;
+}
+
+.flatpickr-day.ProseMirror-gapcursor {
+  visibility: hidden;
+}
+
+.ProseMirror-gapcursor::after {
+  position: absolute;
+  top: -0.125rem;
+  display: block;
+  width: 1.25rem;
+  animation: ProseMirror-cursor-blink 1.1s steps(2,start) infinite;
+  border-top-width: 1px;
+  border-style: solid;
+  border-top-color: black;
+  --tw-content: "";
+  content: var(--tw-content);
+}
+
+@keyframes ProseMirror-cursor-blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+.ProseMirror-focused .ProseMirror-gapcursor {
+  display: block;
+}
+
+/* Table: assets/node_modules/prosemirror-tables/style/tables.css */
+
+.ProseMirror .tableWrapper {
+  overflow-x: auto;
+}
+
+.ProseMirror table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  overflow: hidden;
+}
+
+.ProseMirror td,
+.ProseMirror th {
+  position: relative;
+  box-sizing: border-box;
+  vertical-align: top;
+}
+
+.ProseMirror .column-resize-handle {
+  pointer-events: none;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  right: -0.125rem;
+  z-index: 20;
+  width: 0.25rem;
+  background-color: #94a3b8;
+}
+
+.ProseMirror.resize-cursor {
+  cursor: ew-resize;
+  cursor: col-resize;
+}
+
+/* Give selected cells a blue overlay */
+
+.ProseMirror .selectedCell:after {
+  pointer-events: none;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  z-index: 2;
+  --tw-content: "";
+  content: var(--tw-content);
+  background: rgba(200, 200, 255, 0.4);
+}
+
+/* End of prosemirror.css */
 
 .sr-only {
   position: absolute;

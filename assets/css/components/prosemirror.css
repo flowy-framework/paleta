@@ -1,72 +1,68 @@
-@import "prosemirror-gapcursor/style/gapcursor.css";
-@import "prosemirror-tables/style/tables.css";
-
+/* Prosemirror editor
+node_modules/prosemirror-view/style/prosemirror.css
+node_modules/prosemirror-tables/style/tables.css
+node_modules/prosemirror-gapcursor/style/gapcursor.css
+node_modules/prosemirror-menu/style/menu.css
+node_modules/prosemirror-example-setup/style/style.css
+*/
+/*
+  Based on TailwindCSS recommendations,
+  consider using classes instead of the `@apply` directive
+  @see https://tailwindcss.com/docs/reusing-styles#avoiding-premature-abstraction
+*/
 #prosemirror-editor,
 .prosemirror-editor {
-  box-sizing: border-box;
-  font-size: 13px;
-  min-height: 100px;
-  margin: 0px;
-  position: relative;
-  border: 1px solid #cbd5e1;
-  border-radius: 0.5rem;
-  border-radius: 0.5rem;
+  @apply box-border text-[13px] min-h-[100px] relative border border-slate-300 dark:border-navy-400 flex flex-col overflow-hidden m-0 rounded-lg border-solid;
   font-family: Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji,
     Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden; /* Ensures no overflow from the editor itself */
+
+  /* Ensures no overflow from the editor itself */
+}
+#prosemirror-editor:focus-within,
+.prosemirror-editor:focus-within {
+  @apply border-primary
+
+  /* Ensures no overflow from the editor itself */;
 }
 
-/* Prosemirror view */
-
+/* Prosemirror view node_modules/prosemirror-view/style/prosemirror.css */
 .ProseMirror-menubar-wrapper {
-  height: 100%; /* Fill the editor */
-  display: flex;
-  flex-direction: column;
-}
+  @apply h-full flex flex-col;
 
+  /* Fill the editor */
+}
 .ProseMirror {
-  box-sizing: border-box;
-  flex-grow: 1; /* Take up all available space */
-  overflow-y: auto; /* Scroll vertically if content overflows */
-  overflow-x: hidden; /* Prevent horizontal scrolling */
+  @apply box-border grow overflow-y-auto overflow-x-hidden text-left whitespace-pre-wrap text-sm leading-[1.4rem] px-[15px] py-3 whitespace-pre-wrap;
+
+  /* Take up all available space */
+
+  /* Scroll vertically if content overflows */
+
+  /* Prevent horizontal scrolling */
   outline: none;
-  padding: 12px 15px;
   tab-size: 4;
   -moz-tab-size: 4;
-  text-align: left;
-  white-space: pre-wrap;
   word-wrap: break-word;
-  font-size: 0.875rem;
-  line-height: 1.4rem;
 }
-
 .ProseMirror > * {
-  cursor: text;
+  @apply cursor-text;
 }
-
 .ProseMirror p {
-  margin-bottom: 1em;
+  @apply mb-[1em];
 }
-
 .ProseMirror {
   word-wrap: break-word;
-  white-space: pre-wrap;
   white-space: break-spaces;
   -webkit-font-variant-ligatures: none;
   font-variant-ligatures: none;
-  font-feature-settings: "liga" 0; /* the above doesn't seem to work in Edge */
-}
+  font-feature-settings: "liga" 0;
 
-.ProseMirror pre {
-  white-space: pre-wrap;
+  /* the above doesn't seem to work in Edge */
 }
 
 /* .ProseMirror li {
   position: relative;
 } */
-
 .ProseMirror p,
 .ProseMirror ol,
 .ProseMirror ul,
@@ -78,24 +74,23 @@
 .ProseMirror h4,
 .ProseMirror h5,
 .ProseMirror h6 {
-  margin: 0;
-  padding: 0;
+  @apply m-0 p-0;
   counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
 }
 .ProseMirror ol,
 .ProseMirror ul {
-  padding-left: 1.5em;
+  @apply pl-[1.5em];
 }
 .ProseMirror ol > li,
 .ProseMirror ul > li {
-  list-style-type: none;
+  @apply list-none;
 }
 .ProseMirror ul > li::before {
-  content: "\2022";
+  @apply content-["\2022"];
 }
 .ProseMirror ul[data-checked="true"],
 .ProseMirror ul[data-checked="false"] {
-  pointer-events: none;
+  @apply pointer-events-none;
 }
 .ProseMirror ul[data-checked="true"] > li *,
 .ProseMirror ul[data-checked="false"] > li * {
@@ -103,33 +98,30 @@
 }
 .ProseMirror ul[data-checked="true"] > li::before,
 .ProseMirror ul[data-checked="false"] > li::before {
-  color: #777;
-  cursor: pointer;
+  @apply text-[#777] cursor-pointer;
   pointer-events: all;
 }
 .ProseMirror ul[data-checked="true"] > li::before {
-  content: "\2611";
+  @apply content-["\2611"];
 }
 .ProseMirror ul[data-checked="false"] > li::before {
-  content: "\2610";
+  @apply content-["\2610"];
 }
 .ProseMirror li::before {
-  float: left;
-  white-space: nowrap;
-  width: 1.2em;
+  @apply float-left whitespace-nowrap w-[1.2em];
 }
 .ProseMirror ol li {
   counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
   counter-increment: list-0;
 }
 .ProseMirror ol li:before {
-  content: counter(list-0, decimal) ". ";
+  @apply content-[counter(list-0,decimal)_"._"];
 }
 .ProseMirror ol li ol li {
   counter-increment: list-1;
 }
 .ProseMirror ol li ol li:before {
-  content: counter(list-1, lower-alpha) ". ";
+  @apply content-[counter(list-1,lower-alpha)_"._"];
 }
 .ProseMirror ol li ol li {
   counter-reset: list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
@@ -138,7 +130,7 @@
   counter-increment: list-2;
 }
 .ProseMirror ol li ol li ol li:before {
-  content: counter(list-2, lower-roman) ". ";
+  @apply content-[counter(list-2,lower-roman)_"._"];
 }
 .ProseMirror ol li ol li ol li {
   counter-reset: list-3 list-4 list-5 list-6 list-7 list-8 list-9;
@@ -147,7 +139,7 @@
   counter-increment: list-3;
 }
 .ProseMirror ol li ol li ol li ol li:before {
-  content: counter(list-3, decimal) ". ";
+  @apply content-[counter(list-3,decimal)_"._"];
 }
 .ProseMirror ol li ol li ol li ol li {
   counter-reset: list-4 list-5 list-6 list-7 list-8 list-9;
@@ -156,345 +148,231 @@
   counter-increment: list-4;
 }
 .ProseMirror ol li ol li ol li ol li ol li:before {
-  content: counter(list-4, lower-alpha) ". ";
+  @apply content-[counter(list-4,lower-alpha)_"._"];
 }
 .ProseMirror ol li ol li ol li ol li ol li {
   counter-reset: list-5 list-6 list-7 list-8 list-9;
 }
 .ProseMirror h1 {
-  font-size: 2em;
-  margin-bottom: 4px;
+  @apply text-[2em] mb-1;
 }
 .ProseMirror h2 {
-  font-size: 1.5em;
+  @apply text-[1.5em];
 }
 .ProseMirror h3 {
-  font-size: 1.17em;
+  @apply text-[1.17em];
 }
 .ProseMirror h4 {
-  font-size: 1em;
+  @apply text-[1em];
 }
 .ProseMirror h5 {
-  font-size: 0.83em;
+  @apply text-[0.83em];
 }
 .ProseMirror h6 {
-  font-size: 0.67em;
+  @apply text-[0.67em];
 }
 .ProseMirror a {
-  text-decoration: underline;
+  @apply underline text-primary;
 }
 .ProseMirror blockquote {
-  border-left: 4px solid #ccc;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  padding-left: 16px;
+  @apply my-[5px] pl-4 border-l-4 border-l-[#ccc] border-solid border-l-slate-300 mx-0 pl-[1em] border-l-[3px] border-solid;
+}
+
+.ProseMirror pre {
+  @apply whitespace-pre-wrap whitespace-pre-wrap my-[5px] px-2.5 py-[5px];
 }
 .ProseMirror code,
 .ProseMirror pre {
-  background-color: #f0f0f0;
-  border-radius: 3px;
+  @apply bg-[#f0f0f0] rounded-[3px] dark:bg-[#6e768166] dark:text-[#f8f8f2];
 }
-.ProseMirror pre {
-  white-space: pre-wrap;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  padding: 5px 10px;
+.ProseMirror pre code {
+  @apply bg-transparent dark:bg-transparent;
 }
 .ProseMirror code {
-  font-size: 85%;
-  padding: 2px 4px;
+  @apply text-[85%] px-1 py-0.5;
 }
-.ProseMirror pre.dark {
-  background-color: #23241f;
-  color: #f8f8f2;
-  overflow: visible;
-}
-
 .ProseMirror-hideselection *::selection {
-  background: transparent;
+  @apply bg-transparent;
 }
 .ProseMirror-hideselection *::-moz-selection {
-  background: transparent;
+  @apply bg-transparent;
 }
 .ProseMirror-hideselection {
-  caret-color: transparent;
+  @apply caret-transparent;
 }
 
 /* See https://github.com/ProseMirror/prosemirror/issues/1421#issuecomment-1759320191 */
 .ProseMirror [draggable][contenteditable="false"] {
-  user-select: text;
+  @apply select-text;
 }
-
 .ProseMirror-selectednode {
-  outline: 1px solid #efefef;
+  @apply outline-[1px_solid_#efefef];
 }
 
 /* Make sure li selections wrap around markers */
-
 li.ProseMirror-selectednode {
   outline: none;
 }
-
 li.ProseMirror-selectednode:after {
-  content: "";
-  position: absolute;
-  left: -32px;
-  right: -2px;
-  top: -2px;
-  bottom: -2px;
-  border: 2px solid #cbd5e1;
-  pointer-events: none;
+  @apply content-[""] absolute border-slate-300 pointer-events-none border-2 border-solid -left-8 -right-0.5 -inset-y-0.5;
 }
 
 /* Protect against generic img rules */
-
 img.ProseMirror-separator {
-  display: inline !important;
-  border: none !important;
-  margin: 0 !important;
+  @apply inline m-0 border-[none];
 }
 
-/* Menu */
-
+/* Menu: node_modules/prosemirror-menu/style/menu.css */
 .ProseMirror-menubar-spacer + .ProseMirror-menubar {
-  background: white;
+  @apply bg-white;
 }
-
 .ProseMirror-menubar {
-  border-bottom: 1px solid #cbd5e1;
-  box-sizing: border-box;
+  @apply border-b-slate-300 dark:border-b-navy-400 box-border relative z-10 box-border px-3 py-1.5 border-b border-solid top-0 inset-x-0;
   font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  padding: 6px 12px;
-  position: relative;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
   -moz-box-sizing: border-box;
-  box-sizing: border-box;
 }
-
 .ProseMirror-textblock-dropdown {
-  min-width: 3em;
+  @apply min-w-[3em];
 }
-
 .ProseMirror-menu {
-  margin: 0 -4px;
-  line-height: 1;
+  @apply leading-none -mx-1 my-0;
 }
-
 .ProseMirror-tooltip .ProseMirror-menu {
-  width: -webkit-fit-content;
-  width: fit-content;
-  white-space: pre;
+  @apply w-[-webkit-fit-content] w-fit whitespace-pre;
 }
-
 .ProseMirror-menuitem {
+  @apply cursor-pointer inline-block min-w-[18px] px-[5px] py-[3px] border-[none];
   background: none;
-  border: none;
-  cursor: pointer;
-  display: inline-block;
-  padding: 3px 5px;
-  min-width: 18px;
 }
-
 .ProseMirror-menuseparator {
-  border-right: 1px solid #cbd5e1;
-  margin-right: 3px;
+  @apply border-r-slate-300 mr-[3px] border-r border-solid;
 }
-
 .ProseMirror-menu-dropdown,
 .ProseMirror-menu-dropdown-menu {
-  white-space: nowrap;
+  @apply whitespace-nowrap;
 }
-
 .ProseMirror-menu-dropdown {
+  @apply cursor-pointer relative min-w-[50px] pr-[15px] after:content-[""] after:opacity-60 after:absolute after:top-[calc(50%_-_2px)] after:border-t-4 after:border-t-current after:border-x-4 after:border-x-transparent after:border-solid after:right-1;
   vertical-align: 1px;
-  cursor: pointer;
-  position: relative;
-  padding-right: 15px;
-  min-width: 50px;
 }
-
 .ProseMirror-menu-dropdown-wrap {
-  display: inline-block;
-  font-size: 14px;
-  position: relative;
-  vertical-align: middle;
-  padding: 1px 0 1px 4px;
+  @apply inline-block text-sm relative align-middle pl-1 pr-0 py-px;
 }
-
-.ProseMirror-menu-dropdown:after {
-  content: "";
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 4px solid currentColor;
-  opacity: 0.6;
-  position: absolute;
-  right: 4px;
-  top: calc(50% - 2px);
-}
-
 .ProseMirror-menu-dropdown-menu,
 .ProseMirror-menu-submenu {
-  position: absolute;
-  background: white;
-  border: 1px solid #cbd5e1;
-  padding: 2px;
+  @apply absolute border border-slate-300 p-0.5 border-solid bg-white;
 }
-
 .ProseMirror-menu-dropdown-menu {
-  z-index: 15;
-  min-width: 6em;
+  @apply z-[15] min-w-[6em];
 }
-
 .ProseMirror-menu-dropdown-item {
-  cursor: pointer;
-  padding: 2px 8px 2px 4px;
+  @apply cursor-pointer pl-1 pr-2 py-0.5;
 }
-
 .ProseMirror-menu-dropdown-item:hover {
-  background: #cbd5e1;
+  @apply bg-gray-300;
 }
-
 .ProseMirror-menu-submenu-wrap {
-  position: relative;
-  margin-right: -4px;
+  @apply relative -mr-1;
 }
-
 .ProseMirror-menu-submenu-label:after {
-  content: "";
-  border-top: 4px solid transparent;
-  border-bottom: 4px solid transparent;
-  border-left: 4px solid currentColor;
-  opacity: 0.6;
-  position: absolute;
-  right: 4px;
-  top: calc(50% - 4px);
+  @apply content-[""] opacity-60 absolute top-[calc(50%_-_4px)] border-l-4 border-l-current border-y-4 border-y-transparent border-solid right-1;
 }
-
 .ProseMirror-menu-submenu {
-  display: none;
-  min-width: 4em;
-  left: 100%;
-  top: -3px;
+  @apply hidden min-w-[4em] top-[-3px] left-full;
 }
-
 .ProseMirror-menu-active {
-  background: #eee;
-  border-radius: 4px;
+  @apply rounded bg-gray-100;
 }
-
 .ProseMirror-menu-disabled {
-  opacity: 0.3;
+  @apply opacity-30;
 }
-
 .ProseMirror-menu-submenu-wrap:hover .ProseMirror-menu-submenu,
 .ProseMirror-menu-submenu-wrap-active .ProseMirror-menu-submenu {
-  display: block;
+  @apply block;
 }
-
 .ProseMirror-icon {
-  display: inline-block;
-  line-height: 0.8;
-  vertical-align: -2px; /* Compensate for padding */
-  cursor: pointer;
-}
+  @apply inline-block leading-[0.8] cursor-pointer;
+  vertical-align: -2px;
 
+  /* Compensate for padding */
+}
 .ProseMirror-menu-disabled.ProseMirror-icon {
-  cursor: default;
+  @apply cursor-default;
 }
-
 .ProseMirror-icon svg {
-  fill: currentColor;
-  height: 1em;
+  @apply fill-current h-[1em];
 }
-
 .ProseMirror-icon span {
-  vertical-align: text-top;
+  @apply align-text-top;
 }
 
 /* Easy Setup */
 /* Add space around the hr to make clicking it easier */
-
 .ProseMirror-example-setup-style hr {
-  padding: 2px 10px;
-  border: none;
-  margin: 1em 0;
+  @apply mx-0 my-[1em] px-2.5 py-0.5 border-[none] after:content-[""] after:block after:h-px after:bg-slate-300 after:leading-[2px];
 }
-
-.ProseMirror-example-setup-style hr:after {
-  content: "";
-  display: block;
-  height: 1px;
-  background-color: #cbd5e1;
-  line-height: 2px;
-}
-
-.ProseMirror blockquote {
-  padding-left: 1em;
-  border-left: 3px solid #cbd5e1;
-  margin-left: 0;
-  margin-right: 0;
-}
-
 .ProseMirror-example-setup-style img {
-  cursor: default;
+  @apply cursor-default;
 }
-
 .ProseMirror-prompt {
-  background: white;
-  padding: 5px 10px 5px 15px;
-  border: 1px solid #cbd5e1;
-  position: fixed;
-  border-radius: 3px;
-  z-index: 11;
-  box-shadow: -0.5px 2px 5px rgba(0, 0, 0, 0.2);
+  @apply border bg-white border-slate-300 fixed z-[11] shadow-[-0.5px_2px_5px_rgba(0,0,0,0.2)] pl-[15px] pr-2.5 py-[5px] rounded-[3px] border-solid;
 }
-
 .ProseMirror-prompt h5 {
-  margin: 0;
-  font-weight: normal;
-  font-size: 100%;
-  color: #444;
+  @apply font-[normal] text-[100%] text-gray-500 m-0;
 }
-
 .ProseMirror-prompt input[type="text"],
 .ProseMirror-prompt textarea {
+  @apply border-[none];
   background: #eee;
-  border: none;
   outline: none;
 }
-
 .ProseMirror-prompt input[type="text"] {
-  padding: 0 4px;
+  @apply px-1 py-0;
 }
-
 .ProseMirror-prompt-close {
-  position: absolute;
-  left: 2px;
-  top: 1px;
-  color: #666;
-  border: none;
+  @apply absolute text-gray-600 p-0 border-[none] left-0.5 top-px after:content-["✕"] after:text-xs;
   background: transparent;
-  padding: 0;
 }
-
-.ProseMirror-prompt-close:after {
-  content: "✕";
-  font-size: 12px;
-}
-
 .ProseMirror-invalid {
-  background: #ffc;
-  border: 1px solid #cc7;
-  border-radius: 4px;
-  padding: 5px 10px;
-  position: absolute;
-  min-width: 10em;
+  @apply border bg-yellow-200 rounded absolute min-w-[10em] px-2.5 py-[5px] border-solid border-yellow-300;
+}
+.ProseMirror-prompt-buttons {
+  @apply hidden mt-[5px];
 }
 
-.ProseMirror-prompt-buttons {
-  margin-top: 5px;
-  display: none;
+/* GAP Cursor */
+.ProseMirror-gapcursor {
+  @apply hidden pointer-events-none absolute after:content-[""] after:block after:absolute after:w-5 after:animate-[ProseMirror-cursor-blink_1.1s_steps(2,start)_infinite] after:border-t-[black] after:border-t after:border-solid after:-top-0.5;
 }
+@keyframes ProseMirror-cursor-blink {
+  to {
+    @apply invisible;
+  }
+}
+.ProseMirror-focused .ProseMirror-gapcursor {
+  @apply block;
+}
+
+/* Table: assets/node_modules/prosemirror-tables/style/tables.css */
+.ProseMirror .tableWrapper {
+  @apply overflow-x-auto;
+}
+.ProseMirror table {
+  @apply table-fixed w-full overflow-hidden border-collapse;
+}
+.ProseMirror td,
+.ProseMirror th {
+  @apply align-top box-border relative;
+}
+.ProseMirror .column-resize-handle {
+  @apply absolute w-1 z-20 bg-slate-400 pointer-events-none -right-0.5 inset-y-0;
+}
+.ProseMirror.resize-cursor {
+  @apply cursor-ew-resize cursor-col-resize;
+}
+/* Give selected cells a blue overlay */
+.ProseMirror .selectedCell:after {
+  @apply z-[2] absolute content-[""] pointer-events-none inset-0;
+  background: rgba(200, 200, 255, 0.4);
+}
+/* End of prosemirror.css */
