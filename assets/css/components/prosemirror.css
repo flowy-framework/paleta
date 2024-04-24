@@ -281,7 +281,7 @@ img.ProseMirror-separator {
   @apply hidden min-w-[4em] top-[-3px] left-full;
 }
 .ProseMirror-menu-active {
-  @apply rounded bg-gray-100;
+  @apply rounded text-primary;
 }
 .ProseMirror-menu-disabled {
   @apply opacity-30;
