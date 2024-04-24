@@ -18076,157 +18076,6 @@ img.ProseMirror-separator {
   display: block;
 }
 
-.ProseMirror-textblock-dropdown {
-  min-width: 3em;
-}
-
-.ProseMirror-menu {
-  margin: 0 -4px;
-  line-height: 1;
-}
-
-.ProseMirror-tooltip .ProseMirror-menu {
-  width: -moz-fit-content;
-  width: fit-content;
-  white-space: pre;
-}
-
-.ProseMirror-menuitem {
-  margin-right: 3px;
-  display: inline-block;
-}
-
-.ProseMirror-menuseparator {
-  border-right: 1px solid #ddd;
-  margin-right: 3px;
-}
-
-.ProseMirror-menu-dropdown, .ProseMirror-menu-dropdown-menu {
-  font-size: 90%;
-  white-space: nowrap;
-}
-
-.ProseMirror-menu-dropdown {
-  vertical-align: 1px;
-  cursor: pointer;
-  position: relative;
-  padding-right: 15px;
-}
-
-.ProseMirror-menu-dropdown-wrap {
-  padding: 1px 0 1px 4px;
-  display: inline-block;
-  position: relative;
-}
-
-.ProseMirror-menu-dropdown:after {
-  content: "";
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 4px solid currentColor;
-  opacity: .6;
-  position: absolute;
-  right: 4px;
-  top: calc(50% - 2px);
-}
-
-.ProseMirror-menu-dropdown-menu, .ProseMirror-menu-submenu {
-  position: absolute;
-  background: white;
-  color: #666;
-  border: 1px solid #aaa;
-  padding: 2px;
-}
-
-.ProseMirror-menu-dropdown-menu {
-  z-index: 15;
-  min-width: 6em;
-}
-
-.ProseMirror-menu-dropdown-item {
-  cursor: pointer;
-  padding: 2px 8px 2px 4px;
-}
-
-.ProseMirror-menu-dropdown-item:hover {
-  background: #f2f2f2;
-}
-
-.ProseMirror-menu-submenu-wrap {
-  position: relative;
-  margin-right: -4px;
-}
-
-.ProseMirror-menu-submenu-label:after {
-  content: "";
-  border-top: 4px solid transparent;
-  border-bottom: 4px solid transparent;
-  border-left: 4px solid currentColor;
-  opacity: .6;
-  position: absolute;
-  right: 4px;
-  top: calc(50% - 4px);
-}
-
-.ProseMirror-menu-submenu {
-  display: none;
-  min-width: 4em;
-  left: 100%;
-  top: -3px;
-}
-
-.ProseMirror-menu-active {
-  background: #eee;
-  border-radius: 4px;
-}
-
-.ProseMirror-menu-disabled {
-  opacity: .3;
-}
-
-.ProseMirror-menu-submenu-wrap:hover .ProseMirror-menu-submenu, .ProseMirror-menu-submenu-wrap-active .ProseMirror-menu-submenu {
-  display: block;
-}
-
-.ProseMirror-menubar {
-  border-top-left-radius: inherit;
-  border-top-right-radius: inherit;
-  position: relative;
-  min-height: 1em;
-  color: #666;
-  padding: 1px 6px;
-  top: 0;
-  left: 0;
-  right: 0;
-  border-bottom: 1px solid silver;
-  background: white;
-  z-index: 10;
-  box-sizing: border-box;
-  overflow: visible;
-}
-
-.ProseMirror-icon {
-  display: inline-block;
-  line-height: .8;
-  vertical-align: -2px;
-  /* Compensate for padding */
-  padding: 2px 8px;
-  cursor: pointer;
-}
-
-.ProseMirror-menu-disabled.ProseMirror-icon {
-  cursor: default;
-}
-
-.ProseMirror-icon svg {
-  fill: currentColor;
-  height: 1em;
-}
-
-.ProseMirror-icon span {
-  vertical-align: text-top;
-}
-
 .ProseMirror .tableWrapper {
   overflow-x: auto;
 }
@@ -18275,6 +18124,469 @@ img.ProseMirror-separator {
   pointer-events: none;
 }
 
+#prosemirror-editor,
+.prosemirror-editor {
+  box-sizing: border-box;
+  font-size: 13px;
+  min-height: 100px;
+  margin: 0px;
+  position: relative;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.5rem;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* Ensures no overflow from the editor itself */
+}
+
+/* Prosemirror view */
+
+.ProseMirror-menubar-wrapper {
+  height: 100%;
+  /* Fill the editor */
+  display: flex;
+  flex-direction: column;
+}
+
+.ProseMirror {
+  box-sizing: border-box;
+  flex-grow: 1;
+  /* Take up all available space */
+  overflow-y: auto;
+  /* Scroll vertically if content overflows */
+  overflow-x: hidden;
+  /* Prevent horizontal scrolling */
+  outline: none;
+  padding: 12px 15px;
+  -o-tab-size: 4;
+     tab-size: 4;
+  -moz-tab-size: 4;
+  text-align: left;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 0.875rem;
+  line-height: 1.4rem;
+}
+
+.ProseMirror > * {
+  cursor: text;
+}
+
+.ProseMirror p {
+  margin-bottom: 1em;
+}
+
+.ProseMirror {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  white-space: break-spaces;
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0;
+  /* the above doesn't seem to work in Edge */
+}
+
+.ProseMirror pre {
+  white-space: pre-wrap;
+}
+
+/* .ProseMirror li {
+  position: relative;
+} */
+
+.ProseMirror p,
+.ProseMirror ol,
+.ProseMirror ul,
+.ProseMirror pre,
+.ProseMirror blockquote,
+.ProseMirror h1,
+.ProseMirror h2,
+.ProseMirror h3,
+.ProseMirror h4,
+.ProseMirror h5,
+.ProseMirror h6 {
+  margin: 0;
+  padding: 0;
+  counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+}
+
+.ProseMirror ol,
+.ProseMirror ul {
+  padding-left: 1.5em;
+}
+
+.ProseMirror ol > li,
+.ProseMirror ul > li {
+  list-style-type: none;
+}
+
+.ProseMirror ul > li::before {
+  content: "\2022";
+}
+
+.ProseMirror ul[data-checked="true"],
+.ProseMirror ul[data-checked="false"] {
+  pointer-events: none;
+}
+
+.ProseMirror ul[data-checked="true"] > li *,
+.ProseMirror ul[data-checked="false"] > li * {
+  pointer-events: all;
+}
+
+.ProseMirror ul[data-checked="true"] > li::before,
+.ProseMirror ul[data-checked="false"] > li::before {
+  color: #777;
+  cursor: pointer;
+  pointer-events: all;
+}
+
+.ProseMirror ul[data-checked="true"] > li::before {
+  content: "\2611";
+}
+
+.ProseMirror ul[data-checked="false"] > li::before {
+  content: "\2610";
+}
+
+.ProseMirror li::before {
+  float: left;
+  white-space: nowrap;
+  width: 1.2em;
+}
+
+.ProseMirror ol li {
+  counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+  counter-increment: list-0;
+}
+
+.ProseMirror ol li:before {
+  content: counter(list-0, decimal) ". ";
+}
+
+.ProseMirror ol li ol li {
+  counter-increment: list-1;
+}
+
+.ProseMirror ol li ol li:before {
+  content: counter(list-1, lower-alpha) ". ";
+}
+
+.ProseMirror ol li ol li {
+  counter-reset: list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+}
+
+.ProseMirror ol li ol li ol li {
+  counter-increment: list-2;
+}
+
+.ProseMirror ol li ol li ol li:before {
+  content: counter(list-2, lower-roman) ". ";
+}
+
+.ProseMirror ol li ol li ol li {
+  counter-reset: list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+}
+
+.ProseMirror ol li ol li ol li ol li {
+  counter-increment: list-3;
+}
+
+.ProseMirror ol li ol li ol li ol li:before {
+  content: counter(list-3, decimal) ". ";
+}
+
+.ProseMirror ol li ol li ol li ol li {
+  counter-reset: list-4 list-5 list-6 list-7 list-8 list-9;
+}
+
+.ProseMirror ol li ol li ol li ol li ol li {
+  counter-increment: list-4;
+}
+
+.ProseMirror ol li ol li ol li ol li ol li:before {
+  content: counter(list-4, lower-alpha) ". ";
+}
+
+.ProseMirror ol li ol li ol li ol li ol li {
+  counter-reset: list-5 list-6 list-7 list-8 list-9;
+}
+
+.ProseMirror h1 {
+  font-size: 2em;
+  margin-bottom: 4px;
+}
+
+.ProseMirror h2 {
+  font-size: 1.5em;
+}
+
+.ProseMirror h3 {
+  font-size: 1.17em;
+}
+
+.ProseMirror h4 {
+  font-size: 1em;
+}
+
+.ProseMirror h5 {
+  font-size: 0.83em;
+}
+
+.ProseMirror h6 {
+  font-size: 0.67em;
+}
+
+.ProseMirror a {
+  text-decoration: underline;
+}
+
+.ProseMirror blockquote {
+  border-left: 4px solid #ccc;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding-left: 16px;
+}
+
+.ProseMirror code,
+.ProseMirror pre {
+  background-color: #f0f0f0;
+  border-radius: 3px;
+}
+
+.ProseMirror pre {
+  white-space: pre-wrap;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 5px 10px;
+}
+
+.ProseMirror code {
+  font-size: 85%;
+  padding: 2px 4px;
+}
+
+.ProseMirror pre.dark {
+  background-color: #23241f;
+  color: #f8f8f2;
+  overflow: visible;
+}
+
+.ProseMirror-hideselection *::-moz-selection {
+  background: transparent;
+}
+
+.ProseMirror-hideselection *::selection {
+  background: transparent;
+}
+
+.ProseMirror-hideselection *::-moz-selection {
+  background: transparent;
+}
+
+.ProseMirror-hideselection {
+  caret-color: transparent;
+}
+
+/* See https://github.com/ProseMirror/prosemirror/issues/1421#issuecomment-1759320191 */
+
+.ProseMirror [draggable][contenteditable="false"] {
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
+}
+
+.ProseMirror-selectednode {
+  outline: 1px solid #efefef;
+}
+
+/* Make sure li selections wrap around markers */
+
+li.ProseMirror-selectednode {
+  outline: none;
+}
+
+li.ProseMirror-selectednode:after {
+  content: "";
+  position: absolute;
+  left: -32px;
+  right: -2px;
+  top: -2px;
+  bottom: -2px;
+  border: 2px solid #cbd5e1;
+  pointer-events: none;
+}
+
+/* Protect against generic img rules */
+
+img.ProseMirror-separator {
+  display: inline !important;
+  border: none !important;
+  margin: 0 !important;
+}
+
+/* Menu */
+
+.ProseMirror-menubar-spacer + .ProseMirror-menubar {
+  background: white;
+}
+
+.ProseMirror-menubar {
+  border-bottom: 1px solid #cbd5e1;
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  padding: 6px 12px;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.ProseMirror-textblock-dropdown {
+  min-width: 3em;
+}
+
+.ProseMirror-menu {
+  margin: 0 -4px;
+  line-height: 1;
+}
+
+.ProseMirror-tooltip .ProseMirror-menu {
+  width: -moz-fit-content;
+  width: fit-content;
+  white-space: pre;
+}
+
+.ProseMirror-menuitem {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  padding: 3px 5px;
+  min-width: 18px;
+}
+
+.ProseMirror-menuseparator {
+  border-right: 1px solid #cbd5e1;
+  margin-right: 3px;
+}
+
+.ProseMirror-menu-dropdown,
+.ProseMirror-menu-dropdown-menu {
+  white-space: nowrap;
+}
+
+.ProseMirror-menu-dropdown {
+  vertical-align: 1px;
+  cursor: pointer;
+  position: relative;
+  padding-right: 15px;
+  min-width: 50px;
+}
+
+.ProseMirror-menu-dropdown-wrap {
+  display: inline-block;
+  font-size: 14px;
+  position: relative;
+  vertical-align: middle;
+  padding: 1px 0 1px 4px;
+}
+
+.ProseMirror-menu-dropdown:after {
+  content: "";
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid currentColor;
+  opacity: 0.6;
+  position: absolute;
+  right: 4px;
+  top: calc(50% - 2px);
+}
+
+.ProseMirror-menu-dropdown-menu,
+.ProseMirror-menu-submenu {
+  position: absolute;
+  background: white;
+  border: 1px solid #cbd5e1;
+  padding: 2px;
+}
+
+.ProseMirror-menu-dropdown-menu {
+  z-index: 15;
+  min-width: 6em;
+}
+
+.ProseMirror-menu-dropdown-item {
+  cursor: pointer;
+  padding: 2px 8px 2px 4px;
+}
+
+.ProseMirror-menu-dropdown-item:hover {
+  background: #cbd5e1;
+}
+
+.ProseMirror-menu-submenu-wrap {
+  position: relative;
+  margin-right: -4px;
+}
+
+.ProseMirror-menu-submenu-label:after {
+  content: "";
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 4px solid currentColor;
+  opacity: 0.6;
+  position: absolute;
+  right: 4px;
+  top: calc(50% - 4px);
+}
+
+.ProseMirror-menu-submenu {
+  display: none;
+  min-width: 4em;
+  left: 100%;
+  top: -3px;
+}
+
+.ProseMirror-menu-active {
+  background: #eee;
+  border-radius: 4px;
+}
+
+.ProseMirror-menu-disabled {
+  opacity: 0.3;
+}
+
+.ProseMirror-menu-submenu-wrap:hover .ProseMirror-menu-submenu,
+.ProseMirror-menu-submenu-wrap-active .ProseMirror-menu-submenu {
+  display: block;
+}
+
+.ProseMirror-icon {
+  display: inline-block;
+  line-height: 0.8;
+  vertical-align: -2px;
+  /* Compensate for padding */
+  cursor: pointer;
+}
+
+.ProseMirror-menu-disabled.ProseMirror-icon {
+  cursor: default;
+}
+
+.ProseMirror-icon svg {
+  fill: currentColor;
+  height: 1em;
+}
+
+.ProseMirror-icon span {
+  vertical-align: text-top;
+}
+
+/* Easy Setup */
+
 /* Add space around the hr to make clicking it easier */
 
 .ProseMirror-example-setup-style hr {
@@ -18287,17 +18599,13 @@ img.ProseMirror-separator {
   content: "";
   display: block;
   height: 1px;
-  background-color: silver;
+  background-color: #cbd5e1;
   line-height: 2px;
-}
-
-.ProseMirror ul, .ProseMirror ol {
-  padding-left: 30px;
 }
 
 .ProseMirror blockquote {
   padding-left: 1em;
-  border-left: 3px solid #eee;
+  border-left: 3px solid #cbd5e1;
   margin-left: 0;
   margin-right: 0;
 }
@@ -18309,11 +18617,11 @@ img.ProseMirror-separator {
 .ProseMirror-prompt {
   background: white;
   padding: 5px 10px 5px 15px;
-  border: 1px solid silver;
+  border: 1px solid #cbd5e1;
   position: fixed;
   border-radius: 3px;
   z-index: 11;
-  box-shadow: -.5px 2px 5px rgba(0, 0, 0, .2);
+  box-shadow: -0.5px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .ProseMirror-prompt h5 {
@@ -18361,38 +18669,6 @@ img.ProseMirror-separator {
 .ProseMirror-prompt-buttons {
   margin-top: 5px;
   display: none;
-}
-
-#prosemirror-editor,
-.prosemirror-editor {
-  margin-bottom: 1.5rem;
-  background-clip: padding-box;
-  color: #000;
-  border-radius: 0.25rem;
-}
-
-.ProseMirror p:first-child,
-.ProseMirror h1:first-child,
-.ProseMirror h2:first-child,
-.ProseMirror h3:first-child,
-.ProseMirror h4:first-child,
-.ProseMirror h5:first-child,
-.ProseMirror h6:first-child {
-  margin-top: 0.5rem;
-}
-
-.ProseMirror {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  line-height: 1;
-  outline: 2px solid transparent;
-  outline-offset: 2px;
-}
-
-.ProseMirror p {
-  margin-bottom: 1rem;
 }
 
 .sr-only {

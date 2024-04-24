@@ -65,7 +65,7 @@ defmodule Paleta.Components.Editor do
       assigns
       |> assign(
         :class,
-        "relative py-2 border rounded #{class}"
+        "relative #{class}"
       )
 
     ~H"""
