@@ -8,6 +8,7 @@ defmodule Paleta.Components.ActionLink do
   attr(:custom_icon, :string, default: nil)
   attr(:permission, :string, default: "")
   attr(:permissions, :any, default: [])
+  attr(:rest, :global)
 
   def action_link(assigns) do
     assigns =
@@ -23,7 +24,7 @@ defmodule Paleta.Components.ActionLink do
 
   def _do_link(%{type: :patch} = assigns) do
     ~H"""
-    <.link patch={@path} class={@class} x-tooltip.light={"'#{@tooltip}'"}>
+    <.link patch={@path} class={@class} x-tooltip.light={"'#{@tooltip}'"} {@rest}>
       <i class={"#{@icon} fa-xl"}></i>
     </.link>
     """
@@ -31,7 +32,7 @@ defmodule Paleta.Components.ActionLink do
 
   def _do_link(%{type: :navigate} = assigns) do
     ~H"""
-    <.link navigate={@path} class={@class} x-tooltip.light={"'#{@tooltip}'"}>
+    <.link navigate={@path} class={@class} x-tooltip.light={"'#{@tooltip}'"} {@rest}>
       <i class={"#{@icon} fa-xl"}></i>
     </.link>
     """
