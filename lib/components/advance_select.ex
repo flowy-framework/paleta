@@ -4,6 +4,8 @@ defmodule Paleta.Components.AdvanceSelect do
   import Paleta.Components.FieldHelper
   import Paleta.Components.Error
 
+  attr(:search_field, :string, default: "name")
+  attr(:label_field, :string, default: "name")
   attr(:name, :string, default: nil)
   attr(:value, :string, default: nil)
   attr(:field, Phoenix.HTML.FormField, default: nil)
@@ -36,6 +38,8 @@ defmodule Paleta.Components.AdvanceSelect do
         phx-hook="TomSelect"
         data-order_field={@order_field}
         data-order_field_order={@order_field_order}
+        data-search_field={@search_field}
+        data-label_field={@label_field}
         name={@name}
         class="select"
         {@rest}
@@ -49,6 +53,10 @@ defmodule Paleta.Components.AdvanceSelect do
 
   defp encode_options(%{options: options} = assigns) do
     assign(assigns, :options, Jason.encode!(options))
+  end
+
+  defp encode_items(%{value: nil} = assigns) do
+    assign(assigns, :items, "")
   end
 
   defp encode_items(%{value: ""} = assigns) do

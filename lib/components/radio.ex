@@ -2,6 +2,7 @@ defmodule Paleta.Components.Radio do
   use Phoenix.Component
   import Paleta.Components.FieldHelper
 
+  attr(:id, :string, default: "")
   attr(:name, :string, default: "")
   attr(:value, :string, default: nil)
   attr(:field, Phoenix.HTML.FormField, default: nil)
@@ -28,7 +29,7 @@ defmodule Paleta.Components.Radio do
       <input
         type="radio"
         name={@name}
-        id={@name}
+        id={@id}
         class={@class}
         value={Phoenix.HTML.Form.normalize_value("radio", @value)}
         checked={@checked}

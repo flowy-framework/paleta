@@ -2,6 +2,8 @@ import { getAttributeOrThrow } from "../lib/attribute";
 import TomSelect from "tom-select/dist/js/tom-select.complete.min.js";
 
 export default {
+    label_field() { return this.el.dataset.label_field},
+    search_field() { return this.el.dataset.search_field},
     order_field() { return this.el.dataset.order_field},
     order_field_order() { return this.el.dataset.order_field_order},
     mounted() {
@@ -9,8 +11,8 @@ export default {
         const spec = {
             "maxItems": max_items,
             "valueField": "id",
-            "labelField": "name",
-            "searchField": "name",
+            "labelField": this.label_field(),
+            "searchField": this.search_field(),
             "create": false,
             "options": JSON.parse(options),
             "items": items.split(","),
