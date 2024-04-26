@@ -46,7 +46,7 @@ defmodule Paleta.Components.Modal do
     >
       <div
         id={"#{@id}-bg"}
-        class="absolute inset-0 bg-slate-900/60 transition-opacity duration-300"
+        class="absolute inset-0 transition-opacity duration-300 bg-slate-900/60"
         aria-hidden="true"
       />
       <div
@@ -57,7 +57,7 @@ defmodule Paleta.Components.Modal do
         aria-modal="true"
         tabindex="0"
       >
-        <div class="flex justify-between rounded-t-lg border-b border-slate-200 px-4 py-3 dark:border-navy-600 sm:px-5">
+        <div class="flex justify-between px-4 py-3 border-b rounded-t-lg border-slate-200 dark:border-navy-600 sm:px-5">
           <h3 class="text-base font-medium text-slate-700 dark:text-navy-100">
             <%= @title %>
           </h3>
@@ -66,7 +66,7 @@ defmodule Paleta.Components.Modal do
             type="button"
             class="btn -mr-1.5 h-5 w-5 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
           >
-            <Icon.icon name="hero-x-mark-solid" class="h-5 w-5" />
+            <Icon.icon name="hero-x-mark-solid" class="w-5 h-5" />
           </button>
         </div>
         <.focus_wrap
@@ -155,6 +155,7 @@ defmodule Paleta.Components.Modal do
 
   attr(:label, :string, default: "Save")
   attr(:in_progress_label, :string, default: "Saving...")
+  attr(:rest, :global, include: ~w(disabled))
 
   def save_modal_button(assigns) do
     ~H"""
@@ -163,10 +164,11 @@ defmodule Paleta.Components.Modal do
       type="submit"
       phx-disable-with=""
       class="btn min-w-[7rem] rounded-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
+      {@rest}
     >
       <svg
         role="status"
-        class="while-submitting inline mr-3 w-4 h-4 text-white animate-spin"
+        class="inline w-4 h-4 mr-3 text-white while-submitting animate-spin"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -188,6 +190,7 @@ defmodule Paleta.Components.Modal do
 
   attr(:label, :string, default: "Delete")
   attr(:in_progress_label, :string, default: "Deleting...")
+  attr(:rest, :global, include: ~w(disabled))
 
   def delete_modal_button(assigns) do
     ~H"""
@@ -196,10 +199,11 @@ defmodule Paleta.Components.Modal do
       type="submit"
       phx-disable-with=""
       class="btn min-w-[7rem] rounded-full bg-error font-medium text-white hover:bg-error-focus focus:bg-error-focus active:bg-error-focus/90 dark:bg-error dark:hover:bg-error-focus dark:focus:bg-error-focus dark:active:bg-error/90"
+      {@rest}
     >
       <svg
         role="status"
-        class="while-submitting inline mr-3 w-4 h-4 text-white animate-spin"
+        class="inline w-4 h-4 mr-3 text-white while-submitting animate-spin"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
