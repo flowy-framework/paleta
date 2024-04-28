@@ -20043,6 +20043,10 @@ img.flatpickr-calendar.ProseMirror-separator {
   border-color: #202B40;
 }
 
+.dark\:border-secondary:is(.dark *) {
+  border-color: #F000B9;
+}
+
 .dark\:border-b-navy-500:is(.dark *) {
   border-bottom-color: #384766;
 }

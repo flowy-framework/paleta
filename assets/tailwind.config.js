@@ -41,7 +41,7 @@ const customColors = {
 };
 
 module.exports = {
-  content: ["./js/**/*.{js,ts}", "../lib/components/**/*.*ex"],
+  content: ["./js/**/*.{js,ts}", "../lib/components/**/*.*ex", "../lib/components/**/*.ex"],
   darkMode: "class",
   safelist: [
     'h-20',
