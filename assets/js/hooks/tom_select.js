@@ -7,16 +7,22 @@ export default {
     order_field() { return this.el.dataset.order_field},
     order_field_order() { return this.el.dataset.order_field_order},
     mounted() {
-        const { options, items, max_items, search_event_name } = this.el.dataset;
+        const { options, items, max_items, search_event_name, target} = this.el.dataset;
         const view = this;
         var load_function = null;
 
         if (search_event_name) {
             load_function = function(query, callback) {
                 if (!query.length) return callback();
-                view.pushEvent(search_event_name, query, (reply) => {
-                    callback(reply.data);
-                });
+                if (target) {
+                    view.pushEventTo(target, search_event_name, query, (reply) => {
+                        callback(reply.data);
+                    });
+                } else {
+                    view.pushEvent(search_event_name, query, (reply) => {
+                        callback(reply.data);
+                    });
+                }
             }
         }
         const spec = {

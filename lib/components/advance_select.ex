@@ -19,6 +19,7 @@ defmodule Paleta.Components.AdvanceSelect do
   attr(:order_field_order, :string, default: "asc")
   attr(:search_event_name, :string, default: nil)
   attr(:placeholder, :string, default: nil)
+  attr(:target, :any, default: nil)
 
   def advance_select(assigns) do
     assigns =
@@ -43,6 +44,7 @@ defmodule Paleta.Components.AdvanceSelect do
         data-search_field={@search_field}
         data-label_field={@label_field}
         data-search_event_name={@search_event_name}
+        data-target={@target}
         name={@name}
         placeholder={@placeholder}
         class="select"
