@@ -4,21 +4,21 @@ defmodule Paleta.Components.AdvanceSelect do
   import Paleta.Components.FieldHelper
   import Paleta.Components.Error
 
-  attr :search_field, :string, default: "name"
-  attr :label_field, :string, default: "name"
-  attr :name, :string, default: nil
-  attr :value, :string, default: nil
-  attr :field, Phoenix.HTML.FormField, default: nil
-  attr :options, :list, default: []
-  attr :max_items, :integer, default: nil
-  attr :required, :boolean, default: false
-  attr :label, :string
-  attr :rest, :global
-  attr :errors, :list, default: []
-  attr :order_field, :string, default: "name"
-  attr :order_field_order, :string, default: "asc"
-  attr :search_event_name, :string, default: nil
-  attr :placeholder, :string, default: nil
+  attr(:search_field, :string, default: "name")
+  attr(:label_field, :string, default: "name")
+  attr(:name, :string, default: nil)
+  attr(:value, :string, default: nil)
+  attr(:field, Phoenix.HTML.FormField, default: nil)
+  attr(:options, :list, default: [])
+  attr(:max_items, :integer, default: nil)
+  attr(:required, :boolean, default: false)
+  attr(:label, :string)
+  attr(:rest, :global)
+  attr(:errors, :list, default: [])
+  attr(:order_field, :string, default: "name")
+  attr(:order_field_order, :string, default: "asc")
+  attr(:search_event_name, :string, default: nil)
+  attr(:placeholder, :string, default: nil)
 
   def advance_select(assigns) do
     assigns =
