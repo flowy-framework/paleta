@@ -9,7 +9,7 @@ defmodule Paleta.Components.Dummy do
 
   def dummy(assigns) do
     ~H"""
-    <div class="size-10 size-16 size-20 size-28"></div>
+    <div class="h-32 size-10 size-16 size-20 size-28"></div>
     """
   end
 end

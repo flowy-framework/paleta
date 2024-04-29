@@ -17693,6 +17693,10 @@ img.flatpickr-calendar.ProseMirror-separator {
   height: 0.875rem;
 }
 
+.h-32 {
+  height: 8rem;
+}
+
 .h-4 {
   height: 1rem;
 }
