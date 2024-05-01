@@ -9,6 +9,7 @@ defmodule Paleta.Components.Form do
 
   slot(:actions, required: false) do
     attr(:align, :atom, values: [:left, :center, :right])
+    attr(:class, :string)
   end
 
   attr(:for, :any, default: %{})
@@ -16,6 +17,7 @@ defmodule Paleta.Components.Form do
   attr(:event, :string, default: "save")
   attr(:target, :map, default: nil)
   attr(:container_class, :string, default: "px-4 py-4 sm:px-5")
+  attr(:inner_class, :string, default: "space-y-4")
 
   attr(:rest, :global,
     include: ~w(autocomplete name rel action enctype method novalidate target),
@@ -32,12 +34,14 @@ defmodule Paleta.Components.Form do
   def simple_form(%{actions: []} = assigns) do
     assigns
     |> assign(:actions_align, :right)
+    |> assign(:actions_class, :right)
     |> do_simple_form()
   end
 
   def simple_form(%{actions: [actions]} = assigns) do
     assigns
     |> assign(:actions_align, Map.get(actions, :align, :right))
+    |> assign(:actions_class, Map.get(actions, :class, ""))
     |> do_simple_form()
   end
 
@@ -53,9 +57,9 @@ defmodule Paleta.Components.Form do
         role="form text-left"
         {@rest}
       >
-        <div class="space-y-4">
+        <div class={@inner_class}>
           <%= render_slot(@inner_block, f) %>
-          <div class={"space-x-2 text-#{@actions_align}"}>
+          <div class={"space-x-2 text-#{@actions_align} #{@actions_class}"}>
             <%= render_slot(@actions || %{}, f) %>
           </div>
         </div>
