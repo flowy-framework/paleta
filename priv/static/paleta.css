@@ -11482,6 +11482,7 @@ code.inline-code:is(.dark *) {
 
 .prose {
   color: var(--tw-prose-body);
+  max-width: 65ch;
 }
 
 .prose :where([class~="lead"]):not(:where([class~="not-prose"] *)) {
@@ -18780,6 +18781,21 @@ img.flatpickr-calendar.ProseMirror-separator {
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+
+.text-sm\+ {
+  font-size: 0.9375rem;
+  line-height: 1.375rem;
+}
+
+.text-tiny {
+  font-size: 0.625rem;
+  line-height: 0.8125rem;
+}
+
+.text-tiny\+ {
+  font-size: 0.6875rem;
+  line-height: 0.875rem;
 }
 
 .text-xl {
