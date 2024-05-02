@@ -21,6 +21,7 @@ defmodule Paleta do
         Breadcrumb,
         Button,
         Card,
+        CardWithSideMenu,
         Containers.OneColumnList,
         CopyToClipboard,
         Favorite,
