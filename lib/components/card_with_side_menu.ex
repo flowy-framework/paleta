@@ -3,10 +3,14 @@ defmodule Paleta.Components.CardWithSideMenu do
   import Paleta.Components.Card
 
   defmodule Item do
-    defstruct [:key, :title, :icon, :path]
+    defstruct [:key, :label, :title, :icon, :path]
 
     def build(key, title, icon, path) do
-      %__MODULE__{key: key, title: title, icon: icon, path: path}
+      %__MODULE__{key: key, label: title, title: title, icon: icon, path: path}
+    end
+
+    def build(key, label, title, icon, path) do
+      %__MODULE__{key: key, label: label, title: title, icon: icon, path: path}
     end
   end
 
@@ -19,11 +23,11 @@ defmodule Paleta.Components.CardWithSideMenu do
     <div class="grid grid-cols-12 gap-4 sm:gap-5 lg:gap-6">
       <div class="col-span-12 lg:col-span-2">
         <div class="p-4 card sm:p-5">
-          <ul class="mt-6 space-y-1.5 font-inter font-medium">
+          <ul class="mt-2 space-y-1.5 font-inter font-medium">
             <li :for={item <- @items}>
               <.link class={class(@active == item.key)} href={item.path}>
                 <i class={item.icon}></i>
-                <span><%= item.title %></span>
+                <span><%= item.label %></span>
               </.link>
             </li>
           </ul>
@@ -49,6 +53,9 @@ defmodule Paleta.Components.CardWithSideMenu do
   defp title(items, active) do
     items
     |> Enum.find(fn %{key: key} -> key == active end)
-    |> Map.get(:title)
+    |> (fn
+          %{title: title} -> title
+          _ -> ""
+        end).()
   end
 end
