@@ -34,9 +34,7 @@ defmodule Paleta.Components.Editor do
       <div id="ace-editor" class="editor"><%= @value %></div>
     </div>
     <Input.hidden_input name={@name} value={@value} {@rest} />
-    <.error :for={{msg, _ops} <- @errors}>
-      <%= msg %>
-    </.error>
+    <.errors errors={@errors} />
     """
   end
 
@@ -60,9 +58,7 @@ defmodule Paleta.Components.Editor do
       >
       </div>
       <Input.textarea label="" field={@field} class="hidden" />
-      <.error :for={{msg, _ops} <- @errors}>
-        <%= msg %>
-      </.error>
+      <.errors errors={@errors} />
     </div>
     """
   end

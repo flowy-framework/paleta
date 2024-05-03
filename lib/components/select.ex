@@ -57,9 +57,7 @@ defmodule Paleta.Components.Select do
         <option :if={@prompt} value=""><%= @prompt %></option>
         <%= Phoenix.HTML.Form.options_for_select(@options, @value) %>
       </select>
-      <.error :for={{msg, _ops} <- @errors}>
-        <%= msg %>
-      </.error>
+      <.errors errors={@errors} />
     </div>
     """
   end

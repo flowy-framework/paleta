@@ -50,9 +50,7 @@ defmodule Paleta.Components.Checkbox do
     <label class="inline-flex items-center space-x-2">
       <input type="checkbox" value={@value} name={@name} class={@class} checked={@checked} {@rest} />
       <p><%= @label %></p>
-      <.error :for={{msg, _ops} <- @errors}>
-        <%= msg %>
-      </.error>
+      <.errors errors={@errors} />
     </label>
     """
   end
