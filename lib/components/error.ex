@@ -32,9 +32,6 @@ defmodule Paleta.Components.Error do
     """
   end
 
-  @doc """
-  Translates an error message using gettext.
-  """
   defp translate_error({msg, opts}) do
     # When using gettext, we typically pass the strings we want
     # to translate as a static argument:
@@ -51,12 +48,5 @@ defmodule Paleta.Components.Error do
     else
       Gettext.dgettext(Paleta.Gettext, "errors", msg, opts)
     end
-  end
-
-  @doc """
-  Translates the errors for a field from a keyword list of errors.
-  """
-  defp translate_errors(errors, field) when is_list(errors) do
-    for {^field, {msg, opts}} <- errors, do: translate_error({msg, opts})
   end
 end
