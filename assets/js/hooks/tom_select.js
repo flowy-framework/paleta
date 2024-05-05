@@ -1,4 +1,3 @@
-import { getAttributeOrThrow } from "../lib/attribute";
 import TomSelect from "tom-select/dist/js/tom-select.complete.min.js";
 
 export default {

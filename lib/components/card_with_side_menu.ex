@@ -1,6 +1,5 @@
 defmodule Paleta.Components.CardWithSideMenu do
   use Phoenix.Component
-  import Paleta.Components.Card
 
   defmodule Item do
     defstruct [:key, :label, :title, :icon, :path]
@@ -34,9 +33,7 @@ defmodule Paleta.Components.CardWithSideMenu do
         </div>
       </div>
       <div class="col-span-12 lg:col-span-10">
-        <.card title={title(@items, @active)}>
-          <%= render_slot(@inner_block) %>
-        </.card>
+        <%= render_slot(@inner_block) %>
       </div>
     </div>
     """
@@ -49,13 +46,4 @@ defmodule Paleta.Components.CardWithSideMenu do
   defp class(false),
     do:
       "group flex space-x-2 rounded-lg px-4 py-2.5 tracking-wide outline-none transition-all hover:bg-slate-100 hover:text-slate-800 focus:bg-slate-100 focus:text-slate-800 dark:hover:bg-navy-600 dark:hover:text-navy-100 dark:focus:bg-navy-600 dark:focus:text-navy-100"
-
-  defp title(items, active) do
-    items
-    |> Enum.find(fn %{key: key} -> key == active end)
-    |> (fn
-          %{title: title} -> title
-          _ -> ""
-        end).()
-  end
 end
