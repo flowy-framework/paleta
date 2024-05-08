@@ -22,6 +22,7 @@ defmodule Paleta.Components.FieldHelper do
   # This is mainly used for the advance select component,
   # but it can be used for other components as well. We basically
   # can't have atoms as values
+  defp parse_value(nil), do: nil
   defp parse_value(value) when is_atom(value), do: Atom.to_string(value)
 
   defp parse_value(values) when is_list(values) do
@@ -29,5 +30,5 @@ defmodule Paleta.Components.FieldHelper do
     |> Enum.map(&parse_value(&1))
   end
 
-  defp parse_value(value), do: value
+  defp parse_value(value), do: value |> IO.inspect(label: "parse_value")
 end
