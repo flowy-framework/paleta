@@ -30,5 +30,5 @@ defmodule Paleta.Components.FieldHelper do
     |> Enum.map(&parse_value(&1))
   end
 
-  defp parse_value(value), do: value |> IO.inspect(label: "parse_value")
+  defp parse_value(value), do: value
 end
