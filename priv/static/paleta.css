@@ -19226,6 +19226,10 @@ img.flatpickr-calendar.ProseMirror-separator {
   color: #18181b;
 }
 
+.no-underline {
+  text-decoration-line: none;
+}
+
 .antialiased {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -9,7 +9,7 @@ defmodule Paleta.Components.Dummy do
 
   def dummy(assigns) do
     ~H"""
-    <div class="h-32 size-10 size-16 size-20 size-28">
+    <div class="h-32 no-underline size-10 size-16 size-20 size-28">
       <!-- This is a dummy component to generate tailwind css classes for fonts -->
       <span class="text-tiny text-tiny+ text-xs+ text-sm+"></span>
     </div>
