@@ -5,6 +5,7 @@ defmodule Paleta.Components.Span do
   Renders a text.
   """
   attr(:value, :string, default: nil)
+  attr(:rest, :global)
   attr(:max_length, :integer, default: 50)
 
   def span(assigns) do
@@ -13,7 +14,7 @@ defmodule Paleta.Components.Span do
       |> truncate()
 
     ~H"""
-    <span><%= @value %></span>
+    <span {@rest}><%= @value %></span>
     """
   end
 

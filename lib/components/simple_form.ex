@@ -80,20 +80,40 @@ defmodule Paleta.Components.Form do
 
   attr(:label, :string, default: "Cancel")
   attr(:cancel_url, :string, default: "/")
+  attr(:type, :atom, default: :link, values: [:btn, :link])
+  attr(:rest, :global)
 
   def cancel_button(assigns) do
+    do_render_cancel_button(assigns)
+  end
+
+  def do_render_cancel_button(%{type: :link} = assigns) do
     ~H"""
     <.link
       navigate={@cancel_url}
       class="btn min-w-[7rem] rounded-full border border-slate-300 font-medium text-slate-800 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-50 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90"
+      {@rest}
     >
       <%= @label %>
     </.link>
     """
   end
 
+  def do_render_cancel_button(%{type: :btn} = assigns) do
+    ~H"""
+    <button
+      type="button"
+      class="btn min-w-[7rem] rounded-full border border-slate-300 font-medium text-slate-800 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-50 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90"
+      {@rest}
+    >
+      <%= @label %>
+    </button>
+    """
+  end
+
   attr(:label, :string, default: "Save")
   attr(:in_progress_label, :string, default: "Saving...")
+  attr(:rest, :global, include: ~w(disabled))
 
   attr(:class, :string,
     default:
@@ -102,7 +122,13 @@ defmodule Paleta.Components.Form do
 
   def save_button(assigns) do
     ~H"""
-    <button id="save-button" type="submit" phx-disable-with="" class={@class}>
+    <button
+      id="save-button"
+      type="submit"
+      phx-disable-with={@in_progress_label}
+      class={@class}
+      {@rest}
+    >
       <svg
         role="status"
         class="inline w-4 h-4 mr-3 text-white while-submitting animate-spin"
@@ -119,8 +145,7 @@ defmodule Paleta.Components.Form do
           fill="currentColor"
         />
       </svg>
-      <span class="inner-text"><%= @label %></span>
-      <span class="while-submitting"><%= @in_progress_label %></span>
+      <%= @label %>
     </button>
     """
   end

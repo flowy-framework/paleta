@@ -10,8 +10,8 @@ import { exampleSetup } from "prosemirror-example-setup";
 
 export let ProsemirrorEditor = {
   hidden_id() { return this.el.dataset.hidden_id},
+  
   mounted() {
-    // ProseMirrorView{
     class ProseMirrorView {
       constructor(target, content) {
         this.view = new EditorView(target, {
@@ -31,8 +31,14 @@ export let ProsemirrorEditor = {
       destroy() {
         this.view.destroy();
       }
+      reset(value) {
+        let newState = EditorState.create({
+          doc: defaultMarkdownParser.parse(value),
+          plugins: exampleSetup({ schema }),
+        })
+        this.view.updateState(newState);
+      }
     }
-    // }
 
     let place = document.querySelector("#prosemirror-editor");
     let hidden_id = this.hidden_id();
@@ -41,6 +47,10 @@ export let ProsemirrorEditor = {
       place,
       document.getElementById(hidden_id).value
     );
+    
+    this.handleEvent(`reset-${this.el.id}`, data => {
+      editorView.reset(data.value);
+    })
 
     editorView.view.setProps({
       dispatchTransaction(transaction) {
