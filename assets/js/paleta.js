@@ -11,6 +11,7 @@ import "phoenix_html";
 import { Socket } from "phoenix";
 import { LiveSocket } from "phoenix_live_view";
 import topbar from "../vendor/topbar.js";
+import InfiniteScroll from "./hooks/infinite_scroll"
 
 let Hooks = {
   ApexChartHook,
@@ -20,6 +21,7 @@ let Hooks = {
   Drag,
   TomSelect,
   ProsemirrorEditor,
+  InfiniteScroll
 };
 
 // Show progress bar on live navigation and form submits
