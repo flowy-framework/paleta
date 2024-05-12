@@ -43,6 +43,7 @@ defmodule Paleta do
         SignIn,
         Modal,
         PageHeader,
+        Pagination,
         PageWrapper,
         Preloader,
         Progress,
