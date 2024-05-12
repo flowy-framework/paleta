@@ -24,6 +24,7 @@ defmodule Paleta do
         CardWithSideMenu,
         Containers.OneColumnList,
         CopyToClipboard,
+        Div,
         Favorite,
         Editor,
         Error,
