@@ -6,6 +6,7 @@ defmodule Paleta.Components.AppHeader do
   attr(:results_title, :string, default: "Users")
   attr(:results, :list, default: [])
   attr(:left_side, :boolean, default: true)
+  slot(:header_content, required: false)
 
   @spec app_header(map) :: Phoenix.LiveView.Rendered.t()
   def app_header(assigns) do
@@ -29,6 +30,9 @@ defmodule Paleta.Components.AppHeader do
             <span></span>
             <span></span>
           </button>
+        </div>
+        <div class="flex items-center space-x-2 md:ml-auto">
+          <%= render_slot(@header_content) %>
         </div>
         <!-- Right: Header buttons -->
         <div class="-mr-1.5 flex items-center space-x-2 md:ml-auto">

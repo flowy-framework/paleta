@@ -20,11 +20,13 @@ defmodule Paleta.Components.Span do
 
   defp truncate(%{value: nil} = assigns), do: assigns
 
-  defp truncate(%{value: value, max_length: max_length} = assigns) do
+  defp truncate(%{value: value, max_length: max_length} = assigns) when is_binary(value) do
     assigns
     |> assign(
       :value,
       Paleta.Utils.StringHelper.truncate(value, max_length: max_length)
     )
   end
+
+  defp truncate(assigns), do: assigns
 end
