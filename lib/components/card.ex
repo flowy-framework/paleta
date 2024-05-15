@@ -100,6 +100,20 @@ defmodule Paleta.Components.Card do
     """
   end
 
+  attr(:label, :string, required: true)
+  slot(:inner_block, required: false)
+
+  def card_field_block(assigns) do
+    ~H"""
+    <div class="flex justify-between">
+      <p class="line-clamp-1 text-slate-700 dark:text-navy-100">
+        <%= @label %>
+      </p>
+      <div class="text-right"><%= render_slot(@inner_block) %></div>
+    </div>
+    """
+  end
+
   attr(:value, :string, default: nil)
   slot(:inner_block, required: false)
 
