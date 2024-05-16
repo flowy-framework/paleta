@@ -4,7 +4,7 @@ defmodule Paleta.Components.Span do
   @doc """
   Renders a text.
   """
-  attr(:value, :string, default: nil)
+  attr(:value, :any, default: nil)
   attr(:rest, :global)
   attr(:max_length, :integer, default: 50)
 
