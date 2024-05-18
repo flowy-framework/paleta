@@ -57,21 +57,28 @@ defmodule Paleta.Components.Input do
   attr(:class, :string, default: "")
   attr(:rest, :global)
   attr(:errors, :list, default: [])
-  slot(:sufix, required: true)
+  slot(:sufix, default: nil)
+  slot(:prefix, default: nil)
 
-  def input_group(%{class: class} = assigns) do
+  def input_group(%{prefix: prefix, class: class} = assigns) do
     assigns =
       assigns
       |> assign_basic_attrs()
       |> assign(
         :class,
-        "form-input w-full rounded-l-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent #{class}"
+        input_group_class(prefix, class)
       )
 
     ~H"""
     <div>
       <span><%= @label %><span :if={@required} class="ml-1">*</span></span>
       <label for={@name} class="mt-1.5 flex -space-x-px">
+        <span
+          :if={@prefix != []}
+          class="flex items-center justify-center rounded-l-lg border border-slate-300 px-3.5 font-inter dark:border-navy-450"
+        >
+          <%= render_slot(@prefix) %>
+        </span>
         <input
           required={@required}
           type={@type}
@@ -82,13 +89,24 @@ defmodule Paleta.Components.Input do
           class={@class}
           {@rest}
         />
-        <span class="flex items-center justify-center rounded-r-lg border border-slate-300 px-3.5 font-inter dark:border-navy-450">
+        <span
+          :if={@sufix != []}
+          class="flex items-center justify-center rounded-r-lg border border-slate-300 px-3.5 font-inter dark:border-navy-450"
+        >
           <%= render_slot(@sufix) %>
         </span>
       </label>
       <.errors errors={@errors} />
     </div>
     """
+  end
+
+  defp input_group_class(prefix, class) when prefix == [] do
+    "form-input w-full rounded-l-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent #{class}"
+  end
+
+  defp input_group_class(_prefix, class) do
+    "form-input w-full rounded-r-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent #{class}"
   end
 
   attr(:label, :string, required: true)
