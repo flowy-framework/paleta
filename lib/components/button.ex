@@ -8,6 +8,9 @@ defmodule Paleta.Components.Button do
   attr(:type, :atom, default: :submit, values: [:button, :submit, :reset])
   attr(:left_icon, :string, default: nil)
   attr(:right_icon, :string, default: nil)
+  attr(:value, :string, default: nil)
+  attr(:style, :atom, default: :square, values: [:rounded, :square])
+  attr(:name, :string, default: nil)
   attr(:rest, :global)
 
   attr(:color, :atom,
@@ -15,18 +18,26 @@ defmodule Paleta.Components.Button do
     values: [:default, :primary, :secondary, :info, :success, :warning, :error]
   )
 
-  def button(%{color: color, class: custom_class, disabled: disabled} = assigns) do
-    full_class = "#{custom_class} #{class(color, disabled)}"
+  def button(%{color: color, class: custom_class, style: style, disabled: disabled} = assigns) do
+    full_class = "#{custom_class} #{class(color, style, disabled)}"
 
     assigns =
       assigns
       |> assign(:class, full_class)
 
     ~H"""
-    <button type={@type} phx-disable-with="" disabled={@disabled} class={@class} {@rest}>
+    <button
+      type={@type}
+      name={@name}
+      value={@value}
+      phx-disable-with=""
+      disabled={@disabled}
+      class={@class}
+      {@rest}
+    >
       <svg
         role="status"
-        class="while-submitting inline mr-3 w-4 h-4 text-white animate-spin"
+        class="inline w-4 h-4 mr-3 text-white while-submitting animate-spin"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -48,61 +59,89 @@ defmodule Paleta.Components.Button do
     """
   end
 
+  defp class(:default, :rounded, _) do
+    "btn rounded-full bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+  end
+
+  defp class(:primary, :rounded, _) do
+    "btn rounded-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
+  end
+
+  defp class(:secondary, :rounded, _) do
+    "btn rounded-full bg-secondary font-medium text-white hover:bg-secondary-focus focus:bg-secondary-focus active:bg-secondary-focus/90"
+  end
+
+  defp class(:info, :rounded, _) do
+    "btn rounded-full bg-info font-medium text-white hover:bg-info-focus focus:bg-info-focus active:bg-info-focus/90"
+  end
+
+  defp class(:success, :rounded, _) do
+    "btn rounded-full bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90"
+  end
+
+  defp class(:warning, :rounded, _) do
+    "btn rounded-full bg-warning font-medium text-white hover:bg-warning-focus focus:bg-warning-focus active:bg-warning-focus/90"
+  end
+
+  defp class(:error, :rounded, _) do
+    "btn rounded-full bg-error font-medium text-white hover:bg-error-focus focus:bg-error-focus active:bg-error-focus/90"
+  end
+
   # Enable classes
-  defp class(:default, false = _disabled),
+  defp class(:default, :square, false = _disabled),
     do:
       "btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
 
-  defp class(:primary, false = _disabled),
+  defp class(:primary, :square, false = _disabled),
     do:
       "btn bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
 
-  defp class(:secondary, false = _disabled),
+  defp class(:secondary, :square, false = _disabled),
     do:
       "btn bg-secondary font-medium text-white hover:bg-secondary-focus focus:bg-secondary-focus active:bg-secondary-focus/90 disabled:pointer-events-none disabled:select-none disabled:opacity-60"
 
-  defp class(:info, false = _disabled),
+  defp class(:info, :square, false = _disabled),
     do:
       "btn bg-info font-medium text-white hover:bg-info-focus focus:bg-info-focus active:bg-info-focus/90"
 
-  defp class(:success, false = _disabled),
+  defp class(:success, :square, false = _disabled),
     do:
       "btn bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90"
 
-  defp class(:warning, false = _disabled),
+  defp class(:warning, :square, false = _disabled),
     do:
       "btn bg-warning font-medium text-white hover:bg-warning-focus focus:bg-warning-focus active:bg-warning-focus/90"
 
-  defp class(:error, false = _disabled),
+  defp class(:error, :square, false = _disabled),
     do:
       "btn bg-error font-medium text-white hover:bg-error-focus focus:bg-error-focus active:bg-error-focus/90"
 
   # Disabled classes
-  defp class(:default, true = _disabled),
+  defp class(:default, :square, true = _disabled),
     do:
       "btn bg-slate-150 font-medium text-slate-800 hover:bg-slate-200 focus:bg-slate-200 active:bg-slate-200/80 disabled:pointer-events-none disabled:select-none disabled:opacity-60 dark:bg-navy-500 dark:text-navy-50 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
 
-  defp class(:primary, true = _disabled),
+  defp class(:primary, :square, true = _disabled),
     do:
       "btn bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 disabled:pointer-events-none disabled:select-none disabled:opacity-60 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
 
-  defp class(:secondary, true = _disabled),
+  defp class(:secondary, :square, true = _disabled),
     do:
       "btn bg-secondary font-medium text-white hover:bg-secondary-focus focus:bg-secondary-focus active:bg-secondary-focus/90 disabled:pointer-events-none disabled:select-none disabled:opacity-60"
 
-  defp class(:info, true = _disabled),
+  defp class(:info, :square, true = _disabled),
     do:
       "btn bg-info font-medium text-white hover:bg-info-focus focus:bg-info-focus active:bg-info-focus/90 disabled:pointer-events-none disabled:select-none disabled:opacity-60"
 
-  defp class(:success, true = _disabled),
+  defp class(:success, :square, true = _disabled),
     do:
       "btn bg-success font-medium text-white hover:bg-success-focus focus:bg-success-focus active:bg-success-focus/90 disabled:pointer-events-none disabled:select-none disabled:opacity-60"
 
-  defp class(:warning, true = _disabled),
+  defp class(:warning, :square, true = _disabled),
     do:
       "btn bg-warning font-medium text-white hover:bg-warning-focus focus:bg-warning-focus active:bg-warning-focus/90 disabled:pointer-events-none disabled:select-none disabled:opacity-60"
 
-  defp class(:error, true = _disabled),
+  defp class(:error, :square, true = _disabled),
     do:
       "btn bg-error font-medium text-white hover:bg-error-focus focus:bg-error-focus active:bg-error-focus/90 disabled:pointer-events-none disabled:select-none disabled:opacity-60"
 end
