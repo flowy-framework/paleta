@@ -11,15 +11,16 @@ defmodule Paleta.Components.Avatars.Avatar do
 
   attr(:type, :atom, values: [:rounded, :square, :squircle], default: :rounded)
   attr(:size, :string, default: "8")
-  attr(:img, :string)
-  attr(:custom_class, :string, default: "")
+  attr(:src, :string)
+  attr(:class, :string, default: "")
+  attr(:tooltip, :string, default: nil)
 
   def avatar(assigns) do
     assigns = assigns |> assign(:img_class, type(assigns.type))
 
     ~H"""
-    <div class={"avatar h-#{@size} w-#{@size} #{@custom_class}"}>
-      <img class={@img_class} src={@img} alt="avatar" />
+    <div class={"avatar size-#{@size} #{@class}"} x-tooltip.light={@tooltip && "'#{@tooltip}'"}>
+      <img class={@img_class} src={@src} alt="avatar" />
     </div>
     """
   end
