@@ -59,7 +59,7 @@ defmodule Paleta.Components.Form do
       >
         <div class={@inner_class}>
           <%= render_slot(@inner_block, f) %>
-          <div class={"space-x-2 text-#{@actions_align} #{@actions_class}"}>
+          <div :if={Enum.any?(@actions)} class={"space-x-2 text-#{@actions_align} #{@actions_class}"}>
             <%= render_slot(@actions || %{}, f) %>
           </div>
         </div>

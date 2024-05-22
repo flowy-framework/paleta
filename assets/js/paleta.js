@@ -12,6 +12,9 @@ import { Socket } from "phoenix";
 import { LiveSocket } from "phoenix_live_view";
 import topbar from "../vendor/topbar.js";
 
+// for uploading to S3
+import Uploaders from "./uploaders";
+
 let Hooks = {
   ApexChartHook,
   Editor,
@@ -34,6 +37,7 @@ let csrfToken = document
   .getAttribute("content");
 let liveSocket = new LiveSocket("/live", Socket, {
   hooks: Hooks,
+  uploaders: Uploaders,
   dom: {
     // make LiveView work nicely with alpinejs
     onBeforeElUpdated(from, to) {
