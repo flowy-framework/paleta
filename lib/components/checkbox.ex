@@ -47,8 +47,17 @@ defmodule Paleta.Components.Checkbox do
       |> assign(:class, full_class)
 
     ~H"""
-    <label class="inline-flex items-center space-x-2">
-      <input type="checkbox" value={@value} name={@name} class={@class} checked={@checked} {@rest} />
+    <label phx-feedback-for={@name} for={@id} class="inline-flex items-center space-x-2">
+      <input type="hidden" value="false" name={@name} />
+      <input
+        type="checkbox"
+        id={@id}
+        value="true"
+        name={@name}
+        class={@class}
+        checked={@checked}
+        {@rest}
+      />
       <p><%= @label %></p>
       <.errors errors={@errors} />
     </label>
