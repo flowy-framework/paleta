@@ -9,10 +9,10 @@ defmodule Paleta.Components.Field do
   def id_field(assigns) do
     ~H"""
     <span>
-      <span class="font-semibold text-slate-700 sm:ml-2 mr-1">
+      <span class="mr-1 font-semibold text-slate-700 sm:ml-2">
         ID:
       </span>
-      <CopyToClipboard.copy_to_clipboard class="mb-2 leading-tight text-xs" value={@value} />
+      <CopyToClipboard.copy_to_clipboard class="mb-2 text-xs leading-tight" value={@value} />
     </span>
     """
   end
@@ -23,7 +23,7 @@ defmodule Paleta.Components.Field do
   def date_field(assigns) do
     ~H"""
     <span>
-      <span class="font-semibold text-slate-700 sm:ml-2 mr-1">
+      <span class="mr-1 font-semibold text-slate-700 sm:ml-2">
         <%= @label %>:
       </span>
       <FromNow.from_now value={@value} />
@@ -38,7 +38,7 @@ defmodule Paleta.Components.Field do
   def field(assigns) do
     ~H"""
     <span>
-      <span class="font-semibold text-slate-700 sm:ml-2 mr-1">
+      <span class="mr-1 font-semibold text-slate-700 sm:ml-2">
         <%= @label %>:
       </span>
       <%= @value || render_slot(@inner_block) %>
@@ -48,11 +48,15 @@ defmodule Paleta.Components.Field do
 
   attr(:value, :string, required: true)
   attr(:empty_value, :string, default: "")
-  attr(:class, :string, default: "prose prose-sm dark:prose-invert")
+  attr(:class, :string, default: "")
+  attr(:size, :string, default: "prose-sm")
 
-  def markdown_field(%{value: value, empty_value: empty_value} = assigns) do
+  def markdown_field(
+        %{value: value, empty_value: empty_value, class: class, size: size} = assigns
+      ) do
     assigns =
       assigns
+      |> assign(:class, "prose dark:prose-invert #{size} #{class}")
       |> assign(:markdown, StringHelper.markdown_to_html(value || empty_value))
 
     ~H"""
