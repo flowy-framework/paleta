@@ -20,9 +20,9 @@ defmodule Paleta.Components.AppHeader do
       <!-- Header Items -->
       <div class="flex items-center justify-between w-full">
         <!-- Left: Sidebar Toggle Button -->
-        <div :if={@left_side} class="h-7 w-7">
+        <div class="h-7 w-7">
           <button
-            class="menu-toggle ml-0.5 flex h-7 w-7 flex-col justify-center space-y-1.5 text-primary outline-none focus:outline-none dark:text-accent-light/80"
+            class={"menu-toggle ml-0.5 flex h-7 w-7 flex-col justify-center space-y-1.5 text-primary outline-none focus:outline-none dark:text-accent-light/80" <> if @left_side, do: "", else: " md:hidden"}
             x-bind:class="$store.global.isSidebarExpanded && 'active'"
             @click="$store.global.isSidebarExpanded = !$store.global.isSidebarExpanded"
           >
