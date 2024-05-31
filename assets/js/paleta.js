@@ -15,6 +15,15 @@ import topbar from "../vendor/topbar.js";
 // for uploading to S3
 import Uploaders from "./uploaders";
 
+let AlpineInitDarkMode = {
+  mounted() {
+    // Initialize Alpine.js store with localStorage value
+    // Detect dark mode preference
+    Alpine.store("global").CustomIsDarkModeEnabled =
+      Alpine.store("global").isDarkModeEnabled;
+  },
+};
+
 let Hooks = {
   ApexChartHook,
   Editor,
@@ -23,6 +32,7 @@ let Hooks = {
   Drag,
   TomSelect,
   ProsemirrorEditor,
+  AlpineInitDarkMode,
 };
 
 // Show progress bar on live navigation and form submits
