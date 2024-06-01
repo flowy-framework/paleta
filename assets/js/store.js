@@ -9,7 +9,13 @@ export default {
   init() {
     let firstTime = true;
 
-    this.isDarkModeEnabled = Alpine.$persist(false).as("_x_darkMode_on");
+    if (firstTime) {
+      this.isDarkModeEnabled = Alpine.$persist(
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+      ).as("_x_darkMode_on");
+    } else {
+      this.isDarkModeEnabled = Alpine.$persist(false).as("_x_darkMode_on");
+    }
 
     this.isSidebarExpanded =
       document.querySelector(".sidebar") &&

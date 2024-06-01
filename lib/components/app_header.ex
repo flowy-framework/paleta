@@ -67,11 +67,13 @@ defmodule Paleta.Components.AppHeader do
           <% end %>
           <!-- Dark Mode Toggle -->
           <button
-            @click="$store.global.isDarkModeEnabled = !$store.global.isDarkModeEnabled"
+            id="alpineDarkMode"
+            phx-hook="AlpineInitDarkMode"
+            @click="$store.global.isDarkModeEnabled = !$store.global.isDarkModeEnabled; $store.global.CustomIsDarkModeEnabled = $store.global.isDarkModeEnabled"
             class="w-8 h-8 p-0 rounded-full btn hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
           >
             <svg
-              x-show="$store.global.isDarkModeEnabled"
+              x-show="$store.global.CustomIsDarkModeEnabled"
               x-transition:enter="transition-transform duration-200 ease-out absolute origin-top"
               x-transition:enter-start="scale-75"
               x-transition:enter-end="scale-100 static"
@@ -83,7 +85,7 @@ defmodule Paleta.Components.AppHeader do
             </svg>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              x-show="!$store.global.isDarkModeEnabled"
+              x-show="!$store.global.CustomIsDarkModeEnabled"
               x-transition:enter="transition-transform duration-200 ease-out absolute origin-top"
               x-transition:enter-start="scale-75"
               x-transition:enter-end="scale-100 static"
