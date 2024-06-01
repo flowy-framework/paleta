@@ -72,7 +72,7 @@ defmodule Paleta.Components.Input do
     ~H"""
     <div>
       <span><%= @label %><span :if={@required} class="ml-1">*</span></span>
-      <label for={@name} class="mt-1.5 flex -space-x-px">
+      <label for={@id} class="mt-1.5 flex -space-x-px">
         <span
           :if={@prefix != []}
           class="flex items-center justify-center rounded-l-lg border border-slate-300 px-3.5 font-inter dark:border-navy-450"
@@ -95,8 +95,8 @@ defmodule Paleta.Components.Input do
         >
           <%= render_slot(@sufix) %>
         </span>
+        <.errors errors={@errors} />
       </label>
-      <.errors errors={@errors} />
     </div>
     """
   end
