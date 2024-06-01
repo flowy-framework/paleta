@@ -6,6 +6,7 @@ defmodule Paleta.Components.AdvanceSelect do
 
   attr(:search_field, :string, default: "name")
   attr(:label_field, :string, default: "name")
+  attr(:id, :string, default: nil)
   attr(:name, :string, default: nil)
   attr(:value, :string, default: nil)
   attr(:field, Phoenix.HTML.FormField, default: nil)
@@ -32,7 +33,7 @@ defmodule Paleta.Components.AdvanceSelect do
     <label for={@id} class="block" id={"#{@id}-label"} phx-update="ignore">
       <span :if={@label}><%= @label %></span>
       <input
-        id={@name}
+        id={@id}
         required={@required}
         value={@value}
         data-items={@items}
