@@ -12,7 +12,7 @@ defmodule Paleta.Components.AdvanceSelect do
   attr(:options, :list, default: [])
   attr(:max_items, :integer, default: 1)
   attr(:required, :boolean, default: false)
-  attr(:label, :string)
+  attr(:label, :string, default: nil)
   attr(:rest, :global)
   attr(:errors, :list, default: [])
   attr(:order_field, :string, default: "name")
@@ -29,8 +29,8 @@ defmodule Paleta.Components.AdvanceSelect do
       |> encode_items()
 
     ~H"""
-    <label for={@name} class="block" id={"#{@name}-label"} phx-update="ignore">
-      <span><%= @label %></span>
+    <label for={@id} class="block" id={"#{@id}-label"} phx-update="ignore">
+      <span :if={@label}><%= @label %></span>
       <input
         id={@name}
         required={@required}
