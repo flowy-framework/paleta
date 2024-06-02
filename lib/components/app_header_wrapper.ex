@@ -5,7 +5,7 @@ defmodule Paleta.Components.AppHeaderWrapper do
 
   def app_header_wrapper(assigns) do
     ~H"""
-    <nav class="header print:hidden">
+    <nav class="header print:hidden" @click.away="$store.global.isSidebarExpanded = false">
       <%= render_slot(@inner_block) %>
     </nav>
     """
