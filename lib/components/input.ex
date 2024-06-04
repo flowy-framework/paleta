@@ -46,7 +46,7 @@ defmodule Paleta.Components.Input do
     text(assigns)
   end
 
-  attr(:label, :string, required: true)
+  attr(:label, :string, default: nil)
   attr(:id, :string, default: nil)
   attr(:name, :string, default: nil)
   attr(:type, :string, default: "text")
@@ -55,9 +55,14 @@ defmodule Paleta.Components.Input do
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:placeholder, :string, default: "")
   attr(:class, :string, default: "")
+  attr(:label_class, :string, default: "mt-1.5 flex -space-x-px")
   attr(:rest, :global)
   attr(:errors, :list, default: [])
-  slot(:sufix, default: nil)
+
+  slot :sufix, default: nil do
+    attr(:class, :string)
+  end
+
   slot(:prefix, default: nil)
 
   def input_group(%{prefix: prefix, class: class} = assigns) do
@@ -71,8 +76,8 @@ defmodule Paleta.Components.Input do
 
     ~H"""
     <div>
-      <span><%= @label %><span :if={@required} class="ml-1">*</span></span>
-      <label for={@id} class="mt-1.5 flex -space-x-px">
+      <span if={@label}><%= @label %><span :if={@required} class="ml-1">*</span></span>
+      <label for={@id} class={@label_class}>
         <span
           :if={@prefix != []}
           class="flex items-center justify-center rounded-l-lg border border-slate-300 px-3.5 font-inter dark:border-navy-450"
@@ -89,10 +94,7 @@ defmodule Paleta.Components.Input do
           class={@class}
           {@rest}
         />
-        <span
-          :if={@sufix != []}
-          class="flex items-center justify-center rounded-r-lg border border-slate-300 px-3.5 font-inter dark:border-navy-450"
-        >
+        <span :if={@sufix != []} class={sufix_class(@sufix)}>
           <%= render_slot(@sufix) %>
         </span>
         <.errors errors={@errors} />
@@ -100,6 +102,14 @@ defmodule Paleta.Components.Input do
     </div>
     """
   end
+
+  defp sufix_class(slot) when slot == [] do
+    slot |> dbg()
+
+    "flex items-center justify-center rounded-r-lg border border-slate-300 px-3.5 font-inter dark:border-navy-450"
+  end
+
+  defp sufix_class([%{class: class}]), do: class
 
   defp input_group_class(prefix, class) when prefix == [] do
     "form-input w-full rounded-l-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent #{class}"
