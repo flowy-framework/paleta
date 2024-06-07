@@ -103,13 +103,11 @@ defmodule Paleta.Components.Input do
     """
   end
 
-  defp sufix_class(slot) when slot == [] do
-    slot |> dbg()
+  defp sufix_class([%{class: class}]), do: class
 
+  defp sufix_class(_slot) do
     "flex items-center justify-center rounded-r-lg border border-slate-300 px-3.5 font-inter dark:border-navy-450"
   end
-
-  defp sufix_class([%{class: class}]), do: class
 
   defp input_group_class(prefix, class) when prefix == [] do
     "form-input w-full rounded-l-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:z-10 hover:border-slate-400 focus:z-10 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent #{class}"
