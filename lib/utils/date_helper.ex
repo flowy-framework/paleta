@@ -15,10 +15,10 @@ defmodule Paleta.Utils.DateHelper do
     |> from_now()
   end
 
-  def from_now(date), do: Timex.from_now(date)
+  def from_now(date), do: Timex.from_now(date, "en")
 
   def from_now(date, :short) do
-    str_date = Timex.from_now(date)
+    str_date = Timex.from_now(date, "en")
 
     # TODO: This is ugly as hell
     cond do
