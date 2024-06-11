@@ -9,6 +9,8 @@ defmodule Paleta.Utils.DateHelper do
     formated_date
   end
 
+  def from_now(nil), do: nil
+
   def from_now(date) when is_binary(date) do
     date
     |> parse_date()

@@ -150,7 +150,7 @@ defmodule Paleta.Components.Card do
 
   attr(:label, :string, required: true)
   attr(:value, :string, required: true)
-  attr(:format, :string, required: true, values: ["date_from_now", "short_id"])
+  attr(:format, :string, default: "date_from_now", values: ["date_from_now", "short_id"])
 
   def card_formatted_field(%{format: "date_from_now", value: value} = assigns) do
     assigns
