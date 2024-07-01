@@ -5,8 +5,8 @@ import GoogleMaps from "./hooks/google_maps.js";
 import Pickr from "./hooks/pickr.js";
 import Drag from "./hooks/drag_hook.js";
 import TomSelect from "./hooks/tom_select.js";
+import Trix from "./hooks/trix.js";
 import { ProsemirrorEditor } from "./hooks/prosemirror.js";
-import Trix from "trix"
 
 import "phoenix_html";
 import { Socket } from "phoenix";
@@ -34,6 +34,7 @@ let Hooks = {
   TomSelect,
   ProsemirrorEditor,
   AlpineInitDarkMode,
+  Trix
 };
 
 // Show progress bar on live navigation and form submits
