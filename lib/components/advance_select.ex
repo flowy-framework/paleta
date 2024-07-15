@@ -11,7 +11,7 @@ defmodule Paleta.Components.AdvanceSelect do
   attr(:value, :string, default: nil)
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:options, :list, default: [])
-  attr(:max_items, :integer, default: 1)
+  attr(:max_items, :any, default: 1)
   attr(:required, :boolean, default: false)
   attr(:label, :string, default: nil)
   attr(:rest, :global)
