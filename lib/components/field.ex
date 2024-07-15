@@ -65,4 +65,21 @@ defmodule Paleta.Components.Field do
     </div>
     """
   end
+
+  attr(:value, :string, required: true)
+  attr(:class, :string, default: "")
+
+  def html_field(%{value: value} = assigns) do
+    # TODO: We might want to sanitize the HTML here
+    # maybe using https://github.com/rrrene/html_sanitize_ex
+    assigns =
+      assigns
+      |> assign(:html, value)
+
+    ~H"""
+    <div class={"#{@class}"}>
+      <%= Phoenix.HTML.raw(@html) %>
+    </div>
+    """
+  end
 end

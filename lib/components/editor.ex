@@ -4,8 +4,9 @@ defmodule Paleta.Components.Editor do
   import Paleta.Components.Error
   alias Paleta.Components.Input
 
-  attr(:engine, :atom, default: :ace, values: [:ace, :prosemirror])
+  attr(:engine, :atom, default: :ace, values: [:ace, :prosemirror, :trix])
   attr(:value, :string, default: nil)
+  attr(:attachments_endpoint, :string, default: nil)
   attr(:name, :string, default: "editor-content")
   attr(:mode, :atom, default: :html, values: [:html, :yaml, :json])
   attr(:field, Phoenix.HTML.FormField, default: nil)
@@ -60,6 +61,16 @@ defmodule Paleta.Components.Editor do
       <Input.textarea label="" field={@field} class="hidden" />
       <.errors errors={@errors} />
     </div>
+    """
+  end
+
+  defp do_render(%{engine: :trix} = assigns) do
+    ~H"""
+    <Input.hidden_input field={@field} phx-hook="Trix" data-endpoint={@attachments_endpoint} />
+    <div class={@class} id="paleta-trix-editor-container" phx-update="ignore">
+      <trix-editor id="paleta-trix-editor" autofocus input={@field.id}></trix-editor>
+    </div>
+    <.errors errors={@errors} />
     """
   end
 end
