@@ -1,1 +1,24 @@
 @import "trix/dist/trix.css";
+
+.dark trix-toolbar .trix-button {
+  filter: invert();
+}
+.dark trix-editor {
+  color: white;
+}
+.dark trix-toolbar .trix-button:disabled {
+  filter: invert() grayscale(1) brightness(2);
+}
+.dark trix-toolbar .trix-button--icon::before {
+  opacity: 1;
+}
+.dark trix-toolbar .trix-button--icon:disabled::before {
+  opacity: 0.5;
+}
+.dark trix-toolbar .trix-dialog .trix-button-group {
+  filter: invert();
+}
+.dark trix-toolbar .trix-input--dialog,
+.dark trix-toolbar .trix-button--dialog {
+  color: rgba(0, 0, 0, 0.6);
+}
