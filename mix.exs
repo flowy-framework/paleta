@@ -69,7 +69,7 @@ defmodule Paleta.MixProject do
       {:mix_audit, "~> 2.0", only: [:dev, :test], runtime: false},
       {:heroicons, "~> 0.5.0"},
       {:earmark, "~> 1.4"},
-      {:exmoji, "~> 0.3.0"},
+      {:exmoji, github: "flowy-framework/exmoji", branch: "master"},
       {:makeup, "~> 1.1"},
       {:makeup_elixir, "~> 0.16"},
       {:gettext, ">= 0.0.0"},
