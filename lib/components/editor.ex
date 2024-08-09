@@ -66,9 +66,15 @@ defmodule Paleta.Components.Editor do
 
   defp do_render(%{engine: :trix} = assigns) do
     ~H"""
-    <Input.hidden_input field={@field} phx-hook="Trix" data-endpoint={@attachments_endpoint} />
+    <Input.hidden_input
+      id={@id}
+      name={@name}
+      value={@value}
+      phx-hook="Trix"
+      data-endpoint={@attachments_endpoint}
+    />
     <div class={@class} id="paleta-trix-editor-container" phx-update="ignore">
-      <trix-editor id="paleta-trix-editor" autofocus input={@field.id}></trix-editor>
+      <trix-editor id="paleta-trix-editor" autofocus input={@id}></trix-editor>
     </div>
     <.errors errors={@errors} />
     """
