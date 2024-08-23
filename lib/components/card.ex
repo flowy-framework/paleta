@@ -14,6 +14,7 @@ defmodule Paleta.Components.Card do
 
   slot(:inner_block, required: false)
   slot(:title_actions, required: false)
+  slot(:header, required: false)
 
   def card(%{color: color, class: class, title_class: title_class} = assigns) do
     assigns =
@@ -23,14 +24,16 @@ defmodule Paleta.Components.Card do
 
     ~H"""
     <div class={@class} id={@id}>
-      <div :if={@title} class="flex items-center justify-between h-8 my-3">
-        <h2 class={@title_class}>
+      <div :if={@title || @header} class="flex items-center justify-between h-8 my-3">
+        <h2 :if={@title} class={@title_class}>
           <%= @title %>
         </h2>
+        <%= render_slot(@header) %>
         <div :if={@title_actions} class="inline-flex">
           <%= render_slot(@title_actions) %>
         </div>
       </div>
+
       <div class="pt-2">
         <p :if={@description}>
           <%= @description %>
@@ -85,14 +88,14 @@ defmodule Paleta.Components.Card do
     """
   end
 
-  attr(:label, :string, required: true)
+  attr(:label, :string, default: nil)
   attr(:value, :string, default: nil)
   slot(:inner_block, required: false)
 
   def card_field(assigns) do
     ~H"""
     <div class="flex justify-between">
-      <p class="line-clamp-1 text-slate-700 dark:text-navy-100">
+      <p :if={@label} class="line-clamp-1 text-slate-700 dark:text-navy-100">
         <%= @label %>
       </p>
       <p class="text-right"><%= @value || render_slot(@inner_block) %></p>

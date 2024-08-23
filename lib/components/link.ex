@@ -3,6 +3,26 @@ defmodule Paleta.Components.Link do
   alias Paleta.Components.ShortId
 
   attr(:path, :string, required: true)
+  attr(:icon, :string, default: "")
+  attr(:tooltip, :string, default: "")
+  attr(:rest, :global)
+  attr(:permission, :string, default: "")
+  attr(:permissions, :any, default: [])
+
+  def external_link(assigns) do
+    assigns =
+      assigns
+      |> assign(
+        :class,
+        "btn h-8 w-8 p-0 hover:bg-info/20 focus:bg-info/20 active:bg-info/25"
+      )
+      |> assign(:type, :href)
+      |> assign(:target, "_blank")
+
+    Paleta.Auth.Restricter.do_render(__MODULE__, :_do_link, assigns)
+  end
+
+  attr(:path, :string, required: true)
   attr(:type, :atom, default: :patch, values: [:href, :patch, :navigate])
   attr(:rest, :global)
   attr(:permission, :string, default: "")
@@ -16,6 +36,7 @@ defmodule Paleta.Components.Link do
         "btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25"
       )
       |> assign(:icon, "fa-regular fa-eye")
+      |> assign(:target, nil)
 
     Paleta.Auth.Restricter.do_render(__MODULE__, :_do_link, assigns)
   end
@@ -35,6 +56,7 @@ defmodule Paleta.Components.Link do
         "btn h-8 w-8 p-0 text-error hover:bg-error/20 focus:bg-error/20 active:bg-error/25 #{class}"
       )
       |> assign(:icon, "fa fa-trash-alt")
+      |> assign(:target, nil)
 
     Paleta.Auth.Restricter.do_render(__MODULE__, :_do_link, assigns)
   end
@@ -53,6 +75,7 @@ defmodule Paleta.Components.Link do
         "btn h-8 w-8 p-0 text-info hover:bg-info/20 focus:bg-info/20 active:bg-info/25"
       )
       |> assign(:icon, "fa fa-edit")
+      |> assign(:target, nil)
 
     Paleta.Auth.Restricter.do_render(__MODULE__, :_do_link, assigns)
   end
@@ -71,7 +94,7 @@ defmodule Paleta.Components.Link do
     ~H"""
     <.link
       navigate={@path}
-      class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
+      class="transition-colors text-primary hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
     >
       <ShortId.short_id value={@id} />
     </.link>
@@ -95,7 +118,7 @@ defmodule Paleta.Components.Link do
         navigate={@navigate}
         class="text-sm font-semibold leading-6 text-zinc-900 hover:text-zinc-700"
       >
-        <Paleta.Components.Icon.icon name="hero-arrow-left-solid" class="h-3 w-3" />
+        <Paleta.Components.Icon.icon name="hero-arrow-left-solid" class="w-3 h-3" />
         <%= render_slot(@inner_block) %>
       </.link>
     </div>
@@ -104,7 +127,13 @@ defmodule Paleta.Components.Link do
 
   def _do_link(%{type: :href} = assigns) do
     ~H"""
-    <.link href={@path} class={@class} {@rest}>
+    <.link
+      href={@path}
+      target={@target}
+      x-tooltip.light={@tooltip && "'#{@tooltip}'"}
+      class={@class}
+      {@rest}
+    >
       <i class={@icon}></i>
     </.link>
     """
@@ -112,7 +141,7 @@ defmodule Paleta.Components.Link do
 
   def _do_link(%{type: :patch} = assigns) do
     ~H"""
-    <.link patch={@path} class={@class} {@rest}>
+    <.link patch={@path} x-tooltip.light={@tooltip && "'#{@tooltip}'"} class={@class} {@rest}>
       <i class={@icon}></i>
     </.link>
     """
@@ -120,7 +149,7 @@ defmodule Paleta.Components.Link do
 
   def _do_link(%{type: :navigate} = assigns) do
     ~H"""
-    <.link navigate={@path} class={@class} {@rest}>
+    <.link navigate={@path} x-tooltip.light={@tooltip && "'#{@tooltip}'"} class={@class} {@rest}>
       <i class={@icon}></i>
     </.link>
     """

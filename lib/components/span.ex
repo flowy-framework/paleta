@@ -7,6 +7,7 @@ defmodule Paleta.Components.Span do
   attr(:value, :any, default: nil)
   attr(:rest, :global)
   attr(:max_length, :integer, default: 50)
+  slot(:inner_block, required: false)
 
   def span(assigns) do
     assigns =
@@ -14,7 +15,7 @@ defmodule Paleta.Components.Span do
       |> truncate()
 
     ~H"""
-    <span {@rest}><%= @value %></span>
+    <span {@rest}><%= @value || render_slot(@inner_block) %></span>
     """
   end
 

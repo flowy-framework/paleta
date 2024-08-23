@@ -13,6 +13,10 @@ defmodule Paleta.Components.ShortId do
     """
   end
 
+  defp make_it_short(nil) do
+    "N/A"
+  end
+
   defp make_it_short(id) do
     id
     |> String.split("-")
