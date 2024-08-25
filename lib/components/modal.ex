@@ -161,6 +161,7 @@ defmodule Paleta.Components.Modal do
     ~H"""
     <button
       id="save-button"
+      name="save_button"
       type="submit"
       phx-disable-with=""
       class="btn min-w-[7rem] rounded-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
