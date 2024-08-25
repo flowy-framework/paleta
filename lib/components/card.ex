@@ -24,7 +24,7 @@ defmodule Paleta.Components.Card do
 
     ~H"""
     <div class={@class} id={@id}>
-      <div :if={@title || @header} class="flex items-center justify-between h-8 my-3">
+      <div :if={@title || !Enum.empty?(@header)} class="flex items-center justify-between h-8 my-3">
         <h2 :if={@title} class={@title_class}>
           <%= @title %>
         </h2>
