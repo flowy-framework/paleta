@@ -1,10 +1,10 @@
 defmodule Paleta.Components.Preloader do
-  use Phoenix.Component
+  use Paleta, :component
 
   def preloader(assigns) do
     ~H"""
-    <div class="app-preloader fixed z-50 grid h-full w-full place-content-center bg-slate-50 dark:bg-navy-900">
-      <div class="app-preloader-inner relative inline-block h-48 w-48"></div>
+    <div class="fixed z-50 grid w-full h-full app-preloader place-content-center bg-slate-50 dark:bg-navy-900">
+      <div class="relative inline-block w-48 h-48 app-preloader-inner"></div>
     </div>
     """
   end

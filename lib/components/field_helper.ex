@@ -1,5 +1,5 @@
 defmodule Paleta.Components.FieldHelper do
-  import Phoenix.Component
+  use Paleta, :component
 
   def assign_basic_attrs(%{field: nil} = assigns) do
     with %{value: %Phoenix.HTML.FormField{} = field} <- assigns do

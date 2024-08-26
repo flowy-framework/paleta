@@ -1,5 +1,6 @@
 defmodule Paleta.Components.Editor do
-  use Phoenix.Component
+  use Paleta, :component
+
   import Paleta.Components.FieldHelper
   import Paleta.Components.Error
   alias Paleta.Components.Input

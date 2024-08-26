@@ -1,5 +1,5 @@
 defmodule Paleta.Components.Spinner do
-  use Phoenix.Component
+  use Paleta, :component
 
   attr(:size, :string, default: "7")
   attr(:type, :atom, default: :basic, values: [:basic, :elastic])

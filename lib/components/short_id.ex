@@ -1,5 +1,5 @@
 defmodule Paleta.Components.ShortId do
-  use Phoenix.Component
+  use Paleta, :component
 
   attr(:value, :string, required: true)
 

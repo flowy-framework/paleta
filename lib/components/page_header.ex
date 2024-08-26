@@ -1,5 +1,6 @@
 defmodule Paleta.Components.PageHeader do
-  use Phoenix.Component
+  use Paleta, :component
+
   import Phoenix.HTML
   alias Paleta.Components.Breadcrumb
 
@@ -18,8 +19,8 @@ defmodule Paleta.Components.PageHeader do
 
   def eq_page_hader(assigns) do
     ~H"""
-    <div class="block justify-between items-center p-4 mt-2 mb-3 bg-white rounded-2xl shadow-md shadow-gray-200 lg:p-5 sm:flex">
-      <div class="mb-1 w-full">
+    <div class="items-center justify-between block p-4 mt-2 mb-3 bg-white shadow-md rounded-2xl shadow-gray-200 lg:p-5 sm:flex">
+      <div class="w-full mb-1">
         <div class="mb-4">
           <Breadcrumb.breadcrumb steps={@breadcrumb} title={@title} />
           <%!-- <%= if @show_title do %>

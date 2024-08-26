@@ -1,5 +1,5 @@
 defmodule Paleta.Components.Pagination do
-  use Phoenix.Component
+  use Paleta, :component
 
   attr(:pagination, :map, doc: "Show or hide pagination", default: nil)
   attr(:show_per_page, :boolean, default: false)

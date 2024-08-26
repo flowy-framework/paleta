@@ -1,5 +1,5 @@
 defmodule Paleta.Components.SidebarProfile do
-  use Phoenix.Component
+  use Paleta, :component
 
   attr(:logout_path, :string, default: "/log-out")
   attr(:profile_path, :string, default: "/profile")

@@ -1,5 +1,5 @@
 defmodule Paleta.Components.Button do
-  use Phoenix.Component
+  use Paleta, :component
 
   attr(:label, :string, default: "Save")
   attr(:in_progress_label, :string, default: "Saving...")

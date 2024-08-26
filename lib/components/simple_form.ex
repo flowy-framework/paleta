@@ -3,7 +3,7 @@ defmodule Paleta.Components.Form do
   A simple form component that wraps a form tag and provides a default layout
   """
 
-  use Phoenix.Component
+  use Paleta, :component
 
   slot(:inner_block, required: true)
 

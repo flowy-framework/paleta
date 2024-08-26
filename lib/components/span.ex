@@ -1,5 +1,5 @@
 defmodule Paleta.Components.Span do
-  use Phoenix.Component
+  use Paleta, :component
 
   @doc """
   Renders a text.

@@ -1,5 +1,5 @@
 defmodule Paleta.Components.ErrorPage do
-  use Phoenix.Component
+  use Paleta, :component
 
   attr(:title, :string, required: true)
 

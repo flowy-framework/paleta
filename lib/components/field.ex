@@ -1,5 +1,6 @@
 defmodule Paleta.Components.Field do
-  use Phoenix.Component
+  use Paleta, :component
+
   alias Paleta.Components.CopyToClipboard
   alias Paleta.Components.FromNow
   alias Paleta.Utils.StringHelper

@@ -1,12 +1,12 @@
 defmodule Paleta.Components.SettingButton do
-  use Phoenix.Component
+  use Paleta, :component
 
   def setting_button(assigns) do
     ~H"""
     <!-- Settings -->
     <a
       href="form-layout-5.html"
-      class="flex h-11 w-11 items-center justify-center rounded-lg outline-none transition-colors duration-200 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+      class="flex items-center justify-center transition-colors duration-200 rounded-lg outline-none h-11 w-11 hover:bg-primary/20 focus:bg-primary/20 active:bg-primary/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
     >
       <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path

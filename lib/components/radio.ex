@@ -1,5 +1,5 @@
 defmodule Paleta.Components.Radio do
-  use Phoenix.Component
+  use Paleta, :component
   import Paleta.Components.FieldHelper
 
   attr(:id, :string, default: "")

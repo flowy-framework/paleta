@@ -1,5 +1,5 @@
 defmodule Paleta.Components.Favorite do
-  use Phoenix.Component
+  use Paleta, :component
 
   attr(:value, :boolean, default: false)
 

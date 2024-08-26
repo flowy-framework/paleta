@@ -1,5 +1,5 @@
 defmodule Paleta.Components.Body do
-  use Phoenix.Component
+  use Paleta, :component
 
   slot(:inner_block, doc: "Body content", required: true)
   attr(:left_sidebar_open, :boolean, default: false)

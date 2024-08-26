@@ -1,5 +1,5 @@
 defmodule Paleta.Components.ActionButton do
-  use Phoenix.Component
+  use Paleta, :component
 
   attr(:path, :string, required: true)
   attr(:type, :atom, default: :patch, values: [:navigate, :patch])

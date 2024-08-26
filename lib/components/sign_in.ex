@@ -1,5 +1,5 @@
 defmodule Paleta.Components.SignIn do
-  use Phoenix.Component
+  use Paleta, :component
 
   attr(:title, :string, required: true)
   attr(:error, :string, default: nil)
@@ -10,7 +10,7 @@ defmodule Paleta.Components.SignIn do
 
   def sign_in(assigns) do
     ~H"""
-    <main class="grid w-full grow grid-cols-1 place-items-center">
+    <main class="grid w-full grid-cols-1 grow place-items-center">
       <div class="w-full max-w-[26rem] p-4 sm:px-5">
         <div class="text-center">
           <img class={@logo_css} src={@logo} alt="logo" />
@@ -24,10 +24,10 @@ defmodule Paleta.Components.SignIn do
             <p :if={@error} class="alert alert-danger" role="alert"><%= @error %></p>
           </div>
         </div>
-        <div class="card mt-5 rounded-lg p-5 lg:p-7">
+        <div class="p-5 mt-5 rounded-lg card lg:p-7">
           <.link
             href={@oauth_path}
-            class="btn mt-5 w-full bg-primary font-medium text-white hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
+            class="w-full mt-5 font-medium text-white btn bg-primary hover:bg-primary-focus focus:bg-primary-focus active:bg-primary-focus/90 dark:bg-accent dark:hover:bg-accent-focus dark:focus:bg-accent-focus dark:active:bg-accent/90"
           >
             Sign In
           </.link>
@@ -37,7 +37,7 @@ defmodule Paleta.Components.SignIn do
 
               <a
                 target="_blank"
-                class="text-primary transition-colors hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
+                class="transition-colors text-primary hover:text-primary-focus dark:text-accent-light dark:hover:text-accent"
                 href={Paleta.Config.catalog_url()}
               >
                 Explore the catalog

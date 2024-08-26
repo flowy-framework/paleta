@@ -1,8 +1,6 @@
 defmodule Paleta.Components.Modal do
-  use Phoenix.Component
-  # import Phoenix.LiveView.Helpers
+  use Paleta, :component
 
-  alias Phoenix.LiveView.JS
   alias Paleta.Components.Icon
 
   @doc """

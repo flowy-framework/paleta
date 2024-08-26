@@ -1,5 +1,5 @@
 defmodule Paleta.Components.CopyToClipboard do
-  use Phoenix.Component
+  use Paleta, :component
 
   attr(:class, :string)
   attr(:value, :string, required: true)

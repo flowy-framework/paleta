@@ -1,5 +1,5 @@
 defmodule Paleta.Components.Error do
-  use Phoenix.Component
+  use Paleta, :component
 
   @doc """
   Generates a generic error message.

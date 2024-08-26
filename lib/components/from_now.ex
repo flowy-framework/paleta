@@ -1,5 +1,6 @@
 defmodule Paleta.Components.FromNow do
-  use Phoenix.Component
+  use Paleta, :component
+
   alias Paleta.Utils.DateHelper
 
   attr(:value, :string, required: true)

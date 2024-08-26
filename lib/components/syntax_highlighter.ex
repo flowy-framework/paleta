@@ -1,5 +1,5 @@
 defmodule Paleta.Components.SyntaxHighlighter do
-  use Phoenix.Component
+  use Paleta, :component
   import Phoenix.HTML
 
   attr(:code, :string, default: nil)

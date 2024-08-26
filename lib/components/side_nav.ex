@@ -1,5 +1,5 @@
 defmodule Paleta.Components.SideNav do
-  use Phoenix.Component
+  use Paleta, :component
 
   slot(:inner_block, doc: "Add group")
 
@@ -81,7 +81,7 @@ defmodule Paleta.Components.SideNav do
   def eq_sidenav_group(assigns) do
     ~H"""
     <li class="w-full mt-4">
-      <h6 class="pl-6 ml-2 font-bold leading-tight uppercase text-xs opacity-60"><%= @label %></h6>
+      <h6 class="pl-6 ml-2 text-xs font-bold leading-tight uppercase opacity-60"><%= @label %></h6>
     </li>
     <%= render_slot(@inner_block) %>
     """

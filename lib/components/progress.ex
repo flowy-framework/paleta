@@ -1,5 +1,5 @@
 defmodule Paleta.Components.Progress do
-  use Phoenix.Component
+  use Paleta, :component
 
   attr(:color, :atom,
     default: :default,
@@ -10,7 +10,7 @@ defmodule Paleta.Components.Progress do
     assigns = assigns |> assign(:class_color, color(assigns.color))
 
     ~H"""
-    <div class="progress h-1 bg-slate-150 dark:bg-navy-500">
+    <div class="h-1 progress bg-slate-150 dark:bg-navy-500">
       <div class={"is-indeterminate relative w-4/12 rounded-full #{@class_color}"}></div>
     </div>
     """

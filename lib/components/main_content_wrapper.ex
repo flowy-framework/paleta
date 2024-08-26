@@ -1,5 +1,5 @@
 defmodule Paleta.Components.MainContentWrapper do
-  use Phoenix.Component
+  use Paleta, :component
 
   slot(:inner_block, doc: "Page content", required: true)
 

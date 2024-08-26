@@ -1,5 +1,5 @@
 defmodule Paleta.Components.Dummy do
-  use Phoenix.Component
+  use Paleta, :component
 
   @moduledoc """
   Dummy component for generating tailwind css classes

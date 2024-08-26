@@ -1,5 +1,5 @@
 defmodule Paleta.Components.AppHeader do
-  use Phoenix.Component
+  use Paleta, :component
 
   attr(:search, :boolean, default: false)
   attr(:search_module, :any, default: nil)

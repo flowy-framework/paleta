@@ -1,5 +1,5 @@
 defmodule Paleta.Components.Card do
-  use Phoenix.Component
+  use Paleta, :component
 
   alias Paleta.Utils.StringHelper
   alias Paleta.Utils.DateHelper

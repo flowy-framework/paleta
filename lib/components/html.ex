@@ -1,5 +1,5 @@
 defmodule Paleta.Components.Html do
-  use Phoenix.Component
+  use Paleta, :component
 
   slot(:inner_block, required: true)
 

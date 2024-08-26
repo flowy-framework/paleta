@@ -1,5 +1,5 @@
 defmodule Paleta.Components.Select do
-  use Phoenix.Component
+  use Paleta, :component
   import Paleta.Components.FieldHelper
   import Paleta.Components.Error
 

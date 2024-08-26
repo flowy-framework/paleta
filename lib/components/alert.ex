@@ -1,5 +1,5 @@
 defmodule Paleta.Components.Alert do
-  use Phoenix.Component
+  use Paleta, :component
 
   attr(:description, :string, default: nil)
   attr(:class, :string, default: "")

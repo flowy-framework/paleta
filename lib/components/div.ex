@@ -1,5 +1,5 @@
 defmodule Paleta.Components.Div do
-  use Phoenix.Component
+  use Paleta, :component
 
   attr(:tooltip, :string, default: nil)
   attr(:rest, :global)

@@ -1,5 +1,5 @@
 defmodule Paleta.Components.CardWithSideMenu do
-  use Phoenix.Component
+  use Paleta, :component
 
   defmodule Item do
     defstruct [:key, :label, :title, :icon, :path]

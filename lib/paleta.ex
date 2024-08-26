@@ -3,6 +3,21 @@ defmodule Paleta do
   Design System for Elixir
   """
 
+  def component do
+    quote do
+      use Phoenix.Component, global_prefixes: ~w(x-)
+
+      alias Phoenix.LiveView.JS
+    end
+  end
+
+  @doc """
+  When used, dispatch to the appropriate macro.
+  """
+  defmacro __using__(which) when is_atom(which) do
+    apply(__MODULE__, which, [])
+  end
+
   defmacro __using__(_) do
     quote do
       import Paleta.Components.{
@@ -65,6 +80,7 @@ defmodule Paleta do
         SyntaxHighlighter,
         Switch,
         Table,
+        Tabs,
         Html
       }
     end

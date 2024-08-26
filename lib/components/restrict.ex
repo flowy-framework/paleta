@@ -1,5 +1,5 @@
 defmodule Paleta.Components.Restrict do
-  use Phoenix.Component
+  use Paleta, :component
 
   attr(:permission, :string, default: "")
   attr(:permissions, :any, default: [])

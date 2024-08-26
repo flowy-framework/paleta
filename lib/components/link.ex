@@ -1,5 +1,6 @@
 defmodule Paleta.Components.Link do
-  use Phoenix.Component, global_prefixes: ~w(x-)
+  use Paleta, :component
+
   alias Paleta.Components.ShortId
 
   attr(:path, :string, required: true)

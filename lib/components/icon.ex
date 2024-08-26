@@ -1,5 +1,5 @@
 defmodule Paleta.Components.Icon do
-  use Phoenix.Component
+  use Paleta, :component
 
   @doc """
   Renders a [Hero Icon](https://heroicons.com).
@@ -17,7 +17,7 @@ defmodule Paleta.Components.Icon do
   ## Examples
 
       <.icon name="hero-x-mark-solid" />
-      <.icon name="hero-arrow-path" class="ml-1 w-3 h-3 animate-spin" />
+      <.icon name="hero-arrow-path" class="w-3 h-3 ml-1 animate-spin" />
   """
   attr(:name, :string, required: true)
   attr(:class, :string, default: nil)

@@ -1,5 +1,5 @@
 defmodule Paleta.Components.Head do
-  use Phoenix.Component
+  use Paleta, :component
 
   # Import convenience functions from controllers
   import Phoenix.Controller, only: [get_csrf_token: 0]

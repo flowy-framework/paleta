@@ -1,7 +1,6 @@
 defmodule Paleta.Components.Table do
-  use Phoenix.Component
+  use Paleta, :component
   alias Paleta.Components.Card
-  alias Phoenix.LiveView.JS
 
   attr(:id, :string, default: "p-table")
   attr(:rows, :list, doc: "Data you want to list", required: true)
