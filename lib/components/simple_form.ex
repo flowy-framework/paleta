@@ -124,6 +124,7 @@ defmodule Paleta.Components.Form do
     ~H"""
     <button
       id="save-button"
+      name="save_button"
       type="submit"
       phx-disable-with={@in_progress_label}
       class={@class}
