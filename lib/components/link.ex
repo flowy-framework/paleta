@@ -9,6 +9,7 @@ defmodule Paleta.Components.Link do
   attr(:rest, :global)
   attr(:permission, :string, default: "")
   attr(:permissions, :any, default: [])
+  slot(:inner_block, required: false)
 
   def external_link(assigns) do
     assigns =
@@ -24,6 +25,7 @@ defmodule Paleta.Components.Link do
   end
 
   attr(:path, :string, required: true)
+  slot(:inner_block, required: false)
   attr(:type, :atom, default: :patch, values: [:href, :patch, :navigate])
   attr(:rest, :global)
   attr(:permission, :string, default: "")
@@ -44,6 +46,7 @@ defmodule Paleta.Components.Link do
   end
 
   attr(:path, :string, required: true)
+  slot(:inner_block, required: false)
   attr(:type, :atom, default: :patch)
   attr(:class, :string, default: "")
   attr(:rest, :global)
@@ -65,6 +68,7 @@ defmodule Paleta.Components.Link do
   end
 
   attr(:path, :string, required: true)
+  slot(:inner_block, required: false)
   attr(:type, :atom, default: :patch, values: [:patch, :navigate])
   attr(:rest, :global)
   attr(:permission, :string, default: "")
@@ -138,6 +142,7 @@ defmodule Paleta.Components.Link do
       class={@class}
       {@rest}
     >
+      <%= render_slot(@inner_block) %>
       <i class={@icon}></i>
     </.link>
     """
@@ -147,6 +152,7 @@ defmodule Paleta.Components.Link do
     ~H"""
     <.link patch={@path} x-tooltip.light={@tooltip && "'#{@tooltip}'"} class={@class} {@rest}>
       <i class={@icon}></i>
+      <%= render_slot(@inner_block) %>
     </.link>
     """
   end
@@ -155,6 +161,7 @@ defmodule Paleta.Components.Link do
     ~H"""
     <.link navigate={@path} x-tooltip.light={@tooltip && "'#{@tooltip}'"} class={@class} {@rest}>
       <i class={@icon}></i>
+      <%= render_slot(@inner_block) %>
     </.link>
     """
   end
