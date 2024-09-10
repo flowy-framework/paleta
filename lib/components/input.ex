@@ -13,7 +13,7 @@ defmodule Paleta.Components.Input do
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:required, :boolean, default: false)
   attr(:placeholder, :string, default: "")
-  attr(:rest, :global, include: ~w(disabled readonly))
+  attr(:rest, :global, include: ~w(disabled readonly autofocus))
   attr(:errors, :list, default: [])
 
   def text(%{class: class} = assigns) do
@@ -208,7 +208,7 @@ defmodule Paleta.Components.Input do
   attr(:placeholder, :string, default: "")
   attr(:rows, :integer, default: 4)
   attr(:required, :boolean, default: false)
-  attr(:rest, :global, include: ~w(required disabled))
+  attr(:rest, :global, include: ~w(required disabled autofocus readonly))
   attr(:errors, :list, default: [])
 
   def textarea(%{class: class} = assigns) do
