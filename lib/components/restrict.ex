@@ -18,7 +18,6 @@ defmodule Paleta.Components.Restrict do
 
   defp render(assigns, false) do
     ~H"""
-
     """
   end
 end

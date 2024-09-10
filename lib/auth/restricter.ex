@@ -51,7 +51,6 @@ defmodule Paleta.Auth.Restricter do
 
   def do_render(_implementation, _fnc_name, assigns, false) do
     ~H"""
-
     """
   end
 end
