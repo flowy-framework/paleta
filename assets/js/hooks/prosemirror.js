@@ -61,5 +61,7 @@ export let ProsemirrorEditor = {
         document.getElementById(hidden_id).value = editorView.content;
       },
     });
+
+    place.hasAttribute("autofocus") && editorView.focus();
   },
 };
