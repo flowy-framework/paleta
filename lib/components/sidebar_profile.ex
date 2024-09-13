@@ -1,6 +1,10 @@
 defmodule Paleta.Components.SidebarProfile do
   use Paleta, :component
 
+  defmodule User do
+    defstruct [:first_name, :last_name, :email, :avatar_url]
+  end
+
   attr(:logout_path, :string, default: "/log-out")
   attr(:profile_path, :string, default: "/profile")
   attr(:user, :map, default: nil)
@@ -19,7 +23,7 @@ defmodule Paleta.Components.SidebarProfile do
       <button @click="isShowPopper = !isShowPopper" x-ref="popperRef" class="w-12 h-12 avatar">
         <img
           class="rounded-full"
-          src={@user.avatar_url || "/images/default-user-avatar.jpg"}
+          src={@user.avatar_url}
           alt="avatar"
         />
         <span class="absolute right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-success dark:border-navy-700">
@@ -32,7 +36,7 @@ defmodule Paleta.Components.SidebarProfile do
             <div class="avatar h-14 w-14">
               <img
                 class="rounded-full"
-                src={@user.avatar_url || "/images/default-user-avatar.jpg"}
+                src={@user.avatar_url}
                 alt="avatar"
               />
             </div>
