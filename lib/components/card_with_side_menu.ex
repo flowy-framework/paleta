@@ -2,7 +2,11 @@ defmodule Paleta.Components.CardWithSideMenu do
   use Paleta, :component
 
   defmodule Item do
-    defstruct [:key, :label, :title, :icon, :path]
+    defstruct [:key, :label, :title, :icon, :path, :order]
+
+    def build(map) when is_map(map) do
+      struct(__MODULE__, map)
+    end
 
     def build(key, title, icon, path) do
       %__MODULE__{key: key, label: title, title: title, icon: icon, path: path}
