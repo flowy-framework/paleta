@@ -21,11 +21,7 @@ defmodule Paleta.Components.SidebarProfile do
       class="flex"
     >
       <button @click="isShowPopper = !isShowPopper" x-ref="popperRef" class="w-12 h-12 avatar">
-        <img
-          class="rounded-full"
-          src={@user.avatar_url}
-          alt="avatar"
-        />
+        <img class="rounded-full" src={@user.avatar_url} alt="avatar" />
         <span class="absolute right-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-success dark:border-navy-700">
         </span>
       </button>
@@ -34,11 +30,7 @@ defmodule Paleta.Components.SidebarProfile do
         <div class="w-64 bg-white border rounded-lg popper-box border-slate-150 shadow-soft dark:border-navy-600 dark:bg-navy-700">
           <div class="flex items-center px-4 py-5 space-x-4 rounded-t-lg bg-slate-100 dark:bg-navy-800">
             <div class="avatar h-14 w-14">
-              <img
-                class="rounded-full"
-                src={@user.avatar_url}
-                alt="avatar"
-              />
+              <img class="rounded-full" src={@user.avatar_url} alt="avatar" />
             </div>
             <div>
               <a
