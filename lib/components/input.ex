@@ -56,7 +56,8 @@ defmodule Paleta.Components.Input do
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:placeholder, :string, default: "")
   attr(:class, :string, default: "")
-  attr(:label_class, :string, default: "mt-1.5 flex -space-x-px")
+  attr(:label_class, :string, default: "mt-1.5 flex -space-x-px block")
+  attr(:error_class, :string, default: "")
   attr(:rest, :global)
   attr(:errors, :list, default: [])
 
@@ -98,8 +99,8 @@ defmodule Paleta.Components.Input do
         <span :if={@sufix != []} class={sufix_class(@sufix)}>
           <%= render_slot(@sufix) %>
         </span>
-        <.errors errors={@errors} />
       </label>
+      <.errors errors={@errors} class={@error_class} />
     </div>
     """
   end
@@ -132,22 +133,24 @@ defmodule Paleta.Components.Input do
     assigns = assigns |> assign_basic_attrs()
 
     ~H"""
-    <label id={"pick-#{@id}"} for={@id} class="block flatpickr" phx-update="ignore" phx-hook="Pickr">
-      <span><%= @label %><span :if={@required} class="ml-1">*</span></span>
-      <input
-        required={@required}
-        type="text"
-        value={@value}
-        name={@name}
-        id={@id}
-        placeholder={@placeholder}
-        data-input
-        data-time_only="false"
-        class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-        {@rest}
-      />
+    <div>
+      <label id={"pick-#{@id}"} for={@id} class="block flatpickr" phx-update="ignore" phx-hook="Pickr">
+        <span><%= @label %><span :if={@required} class="ml-1">*</span></span>
+        <input
+          required={@required}
+          type="text"
+          value={@value}
+          name={@name}
+          id={@id}
+          placeholder={@placeholder}
+          data-input
+          data-time_only="false"
+          class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+          {@rest}
+        />
+      </label>
       <.errors errors={@errors} />
-    </label>
+    </div>
     """
   end
 
@@ -165,23 +168,25 @@ defmodule Paleta.Components.Input do
     assigns = assigns |> assign_basic_attrs()
 
     ~H"""
-    <label id={"pick-#{@id}"} for={@id} class="block flatpickr" phx-update="ignore">
-      <span><%= @label %><span :if={@required} class="ml-1">*</span></span>
-      <input
-        phx-hook="Pickr"
-        data-time_only="true"
-        required={@required}
-        type="text"
-        value={@value}
-        name={@name}
-        id={@id}
-        placeholder={@placeholder}
-        data-input
-        class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
-        {@rest}
-      />
+    <div>
+      <label id={"pick-#{@id}"} for={@id} class="block flatpickr" phx-update="ignore">
+        <span><%= @label %><span :if={@required} class="ml-1">*</span></span>
+        <input
+          phx-hook="Pickr"
+          data-time_only="true"
+          required={@required}
+          type="text"
+          value={@value}
+          name={@name}
+          id={@id}
+          placeholder={@placeholder}
+          data-input
+          class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
+          {@rest}
+        />
+      </label>
       <.errors errors={@errors} />
-    </label>
+    </div>
     """
   end
 
@@ -221,21 +226,23 @@ defmodule Paleta.Components.Input do
       )
 
     ~H"""
-    <label class="block">
-      <span>
-        <%= @label %><span :if={@required} class="ml-1">*</span>
-      </span>
-      <textarea
-        required={@required}
-        name={@name}
-        id={@id}
-        rows={@rows}
-        placeholder={@placeholder}
-        class={@class}
-        {@rest}
-      ><%= @value %></textarea>
+    <div>
+      <label class="block">
+        <span>
+          <%= @label %><span :if={@required} class="ml-1">*</span>
+        </span>
+        <textarea
+          required={@required}
+          name={@name}
+          id={@id}
+          rows={@rows}
+          placeholder={@placeholder}
+          class={@class}
+          {@rest}
+        ><%= @value %></textarea>
+      </label>
       <.errors errors={@errors} />
-    </label>
+    </div>
     """
   end
 end

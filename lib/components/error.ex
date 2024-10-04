@@ -5,10 +5,11 @@ defmodule Paleta.Components.Error do
   Generates a generic error message.
   """
   slot(:inner_block, required: true)
+  attr(:class, :string, default: "")
 
   def error(assigns) do
     ~H"""
-    <p class="flex gap-3 mt-3 text-sm leading-6 text-rose-600 phx-no-feedback:hidden">
+    <p class={"flex gap-3 mt-1 text-sm leading-6 text-rose-600 phx-no-feedback:hidden #{@class}"}>
       <Paleta.Components.Icon.icon
         name="hero-exclamation-circle-mini"
         class="mt-0.5 h-5 w-5 flex-none"
@@ -19,6 +20,7 @@ defmodule Paleta.Components.Error do
   end
 
   attr(:errors, :list, required: true)
+  attr(:class, :string, default: "")
 
   def errors(%{errors: errors} = assigns) do
     assigns =
@@ -26,7 +28,7 @@ defmodule Paleta.Components.Error do
       |> assign(:parsed_errors, Enum.map(errors, &translate_error(&1)))
 
     ~H"""
-    <.error :for={error <- @parsed_errors}>
+    <.error :for={error <- @parsed_errors} class={@class}>
       <%= error %>
     </.error>
     """
