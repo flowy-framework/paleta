@@ -20,35 +20,34 @@ const navyColor = {
 };
 
 const customColors = {
-  navy: navyColor,
-  "slate-150": "#E9EEF5",
-  primary: colors.indigo["600"],
-  "primary-focus": colors.indigo["700"],
-  "secondary-light": "#ff57d8",
-  secondary: "#F000B9",
-  "secondary-focus": "#BD0090",
-  "accent-light": colors.indigo["400"],
-  accent: "#5f5af6",
-  "accent-focus": "#4d47f5",
-  info: colors.sky["500"],
-  "info-focus": colors.sky["600"],
-  success: colors.emerald["500"],
-  "success-focus": colors.emerald["600"],
-  warning: "#ff9800",
-  "warning-focus": "#e68200",
-  error: "#ff5724",
-  "error-focus": "#f03000",
+  navy: navyColor, // We will keep this name to be used as default because LineOne theme has defined it as the main color used in all htmls.
+  "slate-150": "#E9EEF5", // Defined to be used in some borders or other places where other darker slate colors are used.
+  primary: colors.indigo["600"], // Used for the main brand color, call-to-action buttons, or key elements.
+  "primary-focus": colors.indigo["700"], // Used for focus on primary elements.
+  "secondary-light": "#ff57d8", // Used for secondary actions, supporting buttons, or accent elements in DARK mode.
+  secondary: "#F000B9", // Used for secondary actions, supporting buttons, or accent elements.
+  "secondary-focus": "#BD0090", // Used for focus on secondary elements.
+  "accent-light": colors.indigo["400"], // Used for highlighting, hover states, or attention-grabbing elements in DARK mode.
+  accent: "#5f5af6", // Used for highlighting, links, hover states, or attention-grabbing elements.
+  "accent-focus": "#4d47f5", // Used for focus on accent elements.
+  info: colors.sky["500"], // Used for information elements like alerts, buttons, labels, icons, etc.
+  "info-focus": colors.sky["600"], // Used for focus state on info elements.
+  success: colors.emerald["500"], // Used for success elements like alerts, buttons, labels, icons, etc.
+  "success-focus": colors.emerald["600"], // Used for focus state on success elements.
+  warning: "#ff9800", // Used for warning elements like alerts, buttons, labels, icons, etc.
+  "warning-focus": "#e68200", // Used for focus state on warning elements.
+  error: "#ff5724", // Used for error elements like alerts, buttons, labels, icons, etc.
+  "error-focus": "#f03000", // Used for focus state on error elements.
 };
 
 module.exports = {
-  content: ["./js/**/*.{js,ts}", "../lib/components/**/*.*ex", "../lib/components/**/*.ex"],
-  darkMode: "class",
-  safelist: [
-    'h-20',
-    'h-24',
-    'w-20',
-    'w-24',
+  content: [
+    "./js/**/*.{js,ts}",
+    "../lib/components/**/*.*ex",
+    "../lib/components/**/*.ex",
   ],
+  darkMode: "class",
+  safelist: ["h-20", "h-24", "w-20", "w-24"],
   theme: {
     extend: {
       fontFamily: {
@@ -92,6 +91,9 @@ module.exports = {
             visibility: "hidden",
           },
         },
+      },
+      size: {
+        5.5: "1.375rem",
       },
     },
   },
