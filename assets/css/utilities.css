@@ -1,0 +1,5 @@
+/* Define custom css rules to add more or to overwrite utilities rules. */
+
+.overscroll-contain {
+  overscroll-behavior: contain;
+}
