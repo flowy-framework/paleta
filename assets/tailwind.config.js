@@ -22,13 +22,13 @@ const navyColor = {
 const customColors = {
   navy: navyColor, // We will keep this name to be used as default because LineOne theme has defined it as the main color used in all htmls.
   "slate-150": "#E9EEF5", // Defined to be used in some borders or other places where other darker slate colors are used.
-  primary: colors.indigo["600"], // Used for the main brand color, call-to-action buttons, or key elements.
+  primary: { DEFAULT: colors.indigo["600"] }, // Used for the main brand color, call-to-action buttons, or key elements.
   "primary-focus": colors.indigo["700"], // Used for focus on primary elements.
   "secondary-light": "#ff57d8", // Used for secondary actions, supporting buttons, or accent elements in DARK mode.
-  secondary: "#F000B9", // Used for secondary actions, supporting buttons, or accent elements.
+  secondary: { DEFAULT: "#F000B9" }, // Used for secondary actions, supporting buttons, or accent elements.
   "secondary-focus": "#BD0090", // Used for focus on secondary elements.
   "accent-light": colors.indigo["400"], // Used for highlighting, hover states, or attention-grabbing elements in DARK mode.
-  accent: "#5f5af6", // Used for highlighting, links, hover states, or attention-grabbing elements.
+  accent: { DEFAULT: "#5f5af6" }, // Used for highlighting, links, hover states, or attention-grabbing elements.
   "accent-focus": "#4d47f5", // Used for focus on accent elements.
   info: colors.sky["500"], // Used for information elements like alerts, buttons, labels, icons, etc.
   "info-focus": colors.sky["600"], // Used for focus state on info elements.
