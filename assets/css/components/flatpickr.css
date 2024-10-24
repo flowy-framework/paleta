@@ -115,16 +115,16 @@ span.flatpickr-weekday,
   box-shadow: -5px 0 0 theme(colors.navy.500), 5px 0 0 theme(colors.navy.500);
 }
 
-.flatpickr-day.selected.startRange+.endRange:not(:nth-child(7n+1)),
-.flatpickr-day.startRange.startRange+.endRange:not(:nth-child(7n+1)),
-.flatpickr-day.endRange.startRange+.endRange:not(:nth-child(7n+1)) {
-  box-shadow: theme(colors.primary) -10px 0 0;
+.flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n + 1)),
+.flatpickr-day.startRange.startRange + .endRange:not(:nth-child(7n + 1)),
+.flatpickr-day.endRange.startRange + .endRange:not(:nth-child(7n + 1)) {
+  box-shadow: theme(colors.primary.DEFAULT) -10px 0 0;
 }
 
-.dark .flatpickr-day.selected.startRange+.endRange:not(:nth-child(7n+1)),
-.dark .flatpickr-day.startRange.startRange+.endRange:not(:nth-child(7n+1)),
-.dark .flatpickr-day.endRange.startRange+.endRange:not(:nth-child(7n+1)) {
-  box-shadow: theme(colors.accent) -10px 0 0;
+.dark .flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n + 1)),
+.dark .flatpickr-day.startRange.startRange + .endRange:not(:nth-child(7n + 1)),
+.dark .flatpickr-day.endRange.startRange + .endRange:not(:nth-child(7n + 1)) {
+  box-shadow: theme(colors.accent.DEFAULT) -10px 0 0;
 }
 
 .flatpickr-calendar.arrowTop:before,
