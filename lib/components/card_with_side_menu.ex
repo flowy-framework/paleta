@@ -19,11 +19,12 @@ defmodule Paleta.Components.CardWithSideMenu do
 
   attr(:items, :list, required: true)
   attr(:active, :atom, required: true)
+  attr(:class, :string, default: "grid grid-cols-12 gap-4 sm:gap-5 lg:gap-6")
   slot(:inner_block)
 
   def card_with_side_menu(assigns) do
     ~H"""
-    <div class="grid grid-cols-12 gap-4 sm:gap-5 lg:gap-6">
+    <div class={@class}>
       <div class="col-span-12 lg:col-span-2">
         <div class="p-4 card sm:p-5">
           <ul class="mt-2 space-y-1.5 font-inter font-medium">
