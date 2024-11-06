@@ -3,8 +3,10 @@ defmodule Paleta.Components.Sidebar do
 
   @deprecated "Use dead component <.sidebar/> instead"
   def render(assigns) do
+    assigns = assign(assigns, :class, "sidebar")
+
     ~H"""
-    <div class="sidebar">
+    <div class={@class}>
       <%= render_slot(@inner_block) %>
     </div>
     """
