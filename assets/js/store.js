@@ -42,7 +42,10 @@ export default {
 
     Alpine.effect(() => {
       if (Alpine.store("breakpoints").name && !firstTime) {
-        this.isSidebarExpanded = false;
+        this.isSidebarExpanded =
+          document.querySelector(".sidebar") &&
+          document.body.classList.contains("is-sidebar-open") &&
+          Alpine.store("breakpoints").xlAndUp;
         this.isRightSidebarExpanded = false;
       }
     });

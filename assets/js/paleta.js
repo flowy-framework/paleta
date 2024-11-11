@@ -24,6 +24,14 @@ let AlpineInitDarkMode = {
       Alpine.store("global").isDarkModeEnabled;
   },
 };
+let AlpineInitSidebarExpanded = {
+  mounted() {
+    // Initialize Alpine.js store with localStorage value
+    // Detect dark mode preference
+    Alpine.store("global").CustomIsSidebarExpanded =
+      Alpine.store("global").isSidebarExpanded;
+  },
+};
 
 let Hooks = {
   ApexChartHook,
@@ -34,7 +42,8 @@ let Hooks = {
   TomSelect,
   ProsemirrorEditor,
   AlpineInitDarkMode,
-  Trix
+  AlpineInitSidebarExpanded,
+  Trix,
 };
 
 // Show progress bar on live navigation and form submits
