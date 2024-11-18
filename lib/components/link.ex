@@ -5,7 +5,7 @@ defmodule Paleta.Components.Link do
 
   attr(:path, :string, required: true)
   attr(:icon, :string, default: "")
-  attr(:tooltip, :string, default: "")
+  attr(:tooltip, :string, default: nil)
   attr(:rest, :global)
   attr(:permission, :string, default: "")
   attr(:permissions, :any, default: [])
@@ -30,7 +30,7 @@ defmodule Paleta.Components.Link do
   attr(:rest, :global)
   attr(:permission, :string, default: "")
   attr(:permissions, :any, default: [])
-  attr(:tooltip, :string, default: "")
+  attr(:tooltip, :string, default: nil)
 
   def view_link(assigns) do
     assigns =
@@ -52,7 +52,7 @@ defmodule Paleta.Components.Link do
   attr(:rest, :global)
   attr(:permission, :string, default: "")
   attr(:permissions, :any, default: [])
-  attr(:tooltip, :string, default: "")
+  attr(:tooltip, :string, default: nil)
 
   def delete_link(%{class: class} = assigns) do
     assigns =
@@ -73,7 +73,7 @@ defmodule Paleta.Components.Link do
   attr(:rest, :global)
   attr(:permission, :string, default: "")
   attr(:permissions, :any, default: [])
-  attr(:tooltip, :string, default: "")
+  attr(:tooltip, :string, default: nil)
 
   def edit_link(assigns) do
     assigns =
