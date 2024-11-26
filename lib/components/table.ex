@@ -15,6 +15,8 @@ defmodule Paleta.Components.Table do
   end
 
   slot(:adv_search, doc: "Describe advance inputs")
+
+  slot(:left_action, doc: "Actions on the left side of the table")
   slot(:actions, doc: "Describe one of your table columns")
 
   def table(%{actions: actions, pagination: pagination} = assigns) do
@@ -129,6 +131,11 @@ defmodule Paleta.Components.Table do
             <table class="w-full text-left is-hoverable">
               <thead>
                 <tr class="border-transparent border-y border-b-slate-200 dark:border-b-navy-500">
+                  <th
+                    :if={length(@left_action) > 0}
+                    class="px-3 py-3 font-semibold uppercase whitespace-nowrap text-slate-800 dark:text-navy-100 lg:px-5"
+                  >
+                  </th>
                   <th class="px-3 py-3 font-semibold uppercase whitespace-nowrap text-slate-800 dark:text-navy-100 lg:px-5">
                     <%= @first_column.label %>
                   </th>
@@ -156,6 +163,11 @@ defmodule Paleta.Components.Table do
                     @row_click && "hover:cursor-pointer"
                   ]}
                 >
+                  <td :if={length(@left_action) > 0} class="px-4 py-3 whitespace-nowrap sm:px-5">
+                    <div class="inline-flex">
+                      <%= render_slot(@left_action, row) %>
+                    </div>
+                  </td>
                   <td class="px-4 py-3 whitespace-nowrap sm:px-5">
                     <%= render_slot(@first_column, row) %>
                   </td>
