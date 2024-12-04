@@ -22,3 +22,5 @@
 @import "./components/prosemirror.css";
 @import "./components/trix.css";
 @import "./components/editor.css";
+
+@import "../../deps/live_phone/assets/live_phone";

@@ -16,6 +16,8 @@ import topbar from "../vendor/topbar.js";
 // for uploading to S3
 import Uploaders from "./uploaders";
 
+import LivePhone from "live_phone"
+
 let AlpineInitDarkMode = {
   mounted() {
     // Initialize Alpine.js store with localStorage value
@@ -44,6 +46,7 @@ let Hooks = {
   AlpineInitDarkMode,
   AlpineInitSidebarExpanded,
   Trix,
+  LivePhone
 };
 
 // Show progress bar on live navigation and form submits

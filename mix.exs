@@ -73,6 +73,7 @@ defmodule Paleta.MixProject do
       {:makeup, "~> 1.1"},
       {:makeup_elixir, "~> 0.16"},
       {:gettext, ">= 0.0.0"},
+      {:live_phone, "~> 0.8"},
 
       # Assets bundling
       {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
