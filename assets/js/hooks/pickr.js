@@ -13,7 +13,7 @@ const Pickr = {
       settings.wrap = true,
       settings.altInput = this.el.dataset.pickrAltFormat ? true : false,
       settings.altFormat = this.el.dataset.pickrAltFormat || "d M Y",
-      settings.dateFormat = this.el.dataset.pickrDateFormat || "Y-m-d"
+      settings.dateFormat = this.el.dataset.pickrDateFormat || "m/d/Y"
     }
 
     this.pickr = flatpickr(this.el, settings)
@@ -27,7 +27,7 @@ const Pickr = {
         wrap: true,
         altInput: this.el.dataset.pickrAltFormat ? true : false,
         altFormat: this.el.dataset.pickrAltFormat || "d M Y",
-        dateFormat: this.el.dataset.pickrDateFormat || "Y-m-d"
+        dateFormat: this.el.dataset.pickrDateFormat || "m/d/Y"
       })
     }
   },
