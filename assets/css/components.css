@@ -23,4 +23,4 @@
 @import "./components/trix.css";
 @import "./components/editor.css";
 
-@import "../../deps/live_phone/assets/live_phone";
+@import "live_phone/assets/live_phone";
