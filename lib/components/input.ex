@@ -125,16 +125,24 @@ defmodule Paleta.Components.Input do
   attr(:value, :string, default: nil)
   attr(:field, Phoenix.HTML.FormField, default: nil)
   attr(:required, :boolean, default: false)
-  attr(:placeholder, :string, default: "")
+  attr(:placeholder, :string, default: nil)
   attr(:rest, :global)
   attr(:errors, :list, default: [])
+  attr(:displayformat, :string, default: "", doc: "The format to display the date")
 
   def datepicker(assigns) do
     assigns = assigns |> assign_basic_attrs()
 
     ~H"""
     <div>
-      <label id={"pick-#{@id}"} for={@id} class="block flatpickr" phx-update="ignore" phx-hook="Pickr">
+      <label
+        id={"pick-#{@id}"}
+        for={@id}
+        class="block flatpickr"
+        phx-update="ignore"
+        phx-hook="Pickr"
+        data-pickr-alt-format={@displayformat}
+      >
         <span><%= @label %><span :if={@required} class="ml-1">*</span></span>
         <input
           required={@required}
@@ -142,7 +150,7 @@ defmodule Paleta.Components.Input do
           value={@value}
           name={@name}
           id={@id}
-          placeholder={@placeholder}
+          placeholder={@placeholder || @displayformat}
           data-input
           data-time_only="false"
           class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
@@ -173,7 +181,6 @@ defmodule Paleta.Components.Input do
         <span><%= @label %><span :if={@required} class="ml-1">*</span></span>
         <input
           phx-hook="Pickr"
-          data-time_only="true"
           required={@required}
           type="text"
           value={@value}
@@ -181,6 +188,7 @@ defmodule Paleta.Components.Input do
           id={@id}
           placeholder={@placeholder}
           data-input
+          data-time_only="true"
           class="form-input mt-1.5 w-full rounded-lg border border-slate-300 bg-transparent px-3 py-2 placeholder:text-slate-400/70 hover:border-slate-400 focus:border-primary dark:border-navy-450 dark:hover:border-navy-400 dark:focus:border-accent"
           {@rest}
         />
