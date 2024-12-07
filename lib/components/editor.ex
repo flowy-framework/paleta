@@ -15,6 +15,7 @@ defmodule Paleta.Components.Editor do
   attr(:class, :string, default: "")
   attr(:rest, :global)
   attr(:id, :string, default: "")
+  attr(:autofocus, :boolean, default: false)
 
   @spec editor(map) :: Phoenix.LiveView.Rendered.t()
   def editor(assigns) do
@@ -75,7 +76,7 @@ defmodule Paleta.Components.Editor do
       data-endpoint={@attachments_endpoint}
     />
     <div class={@class} id="paleta-trix-editor-container" phx-update="ignore">
-      <trix-editor id="paleta-trix-editor" autofocus input={@id}></trix-editor>
+      <trix-editor id="paleta-trix-editor" input={@id} autofocus={@autofocus}></trix-editor>
     </div>
     <.errors errors={@errors} />
     """
