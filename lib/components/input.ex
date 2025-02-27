@@ -61,11 +61,11 @@ defmodule Paleta.Components.Input do
   attr(:rest, :global)
   attr(:errors, :list, default: [])
 
-  slot :sufix, default: nil do
+  slot :sufix, required: false do
     attr(:class, :string)
   end
 
-  slot(:prefix, default: nil)
+  slot :prefix, required: false
 
   def input_group(%{prefix: prefix, class: class} = assigns) do
     assigns =
